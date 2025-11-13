@@ -1,0 +1,6 @@
+@use "sass:map";
+@use "../variable/color";
+
+@function au-color($key) {
+    @return map.get(color.$color, $key);
+}

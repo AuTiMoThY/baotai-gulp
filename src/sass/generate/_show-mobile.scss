@@ -1,0 +1,9 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+
+.show-mobile.show-mobile {
+    display: none;
+    @include pad {
+        display: block;
+    }
+}

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* *****************************************/
+/*    css
+/*    V #{$VERSION}
+/*        by AuOzzy
+/******************************************/
+
+@use "baotai/mobile-break-line" as *;
+@use "generate/show-desktop" as *;
+@use "generate/show-mobile" as *;
+@use "baotai/btn-more" as *;
+@use "baotai/page-title" as *;
+@use "baotai/page-banner" as *;
+@use "baotai/news" as *;
+@use "baotai/news-card" as *;
+@use "baotai/news-detail" as *;
+@use "baotai/work-progress" as *;
+@use "baotai/page-contact" as *;

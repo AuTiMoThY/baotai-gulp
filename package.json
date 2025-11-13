@@ -1,0 +1,57 @@
+{
+  "name": "auGulp",
+  "version": "2.0",
+  "main": "gulpfile.js",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp --dev",
+    "generate": "gulp --prod",
+    "create": "node scripts/create-cut.js",
+    "insert": "node scripts/insert-code.js",
+    "merge-js": "gulp mergeSrlJS",
+    "merge-css": "gulp mergeSrlCSS"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "autoprefixer": "^10.4.21",
+    "browser-sync": "^3.0.4",
+    "browserslist": "^4.27.0",
+    "gulp": "^5.0.1",
+    "gulp-autoprefixer": "^10.0.0",
+    "gulp-cache": "^1.1.3",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-header": "^2.0.9",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^9.1.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-prettier": "^6.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-sass-vars": "^1.1.5",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "prettier": "^3.6.2",
+    "rollup": "^4.30.1",
+    "sass": "^1.93.3"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "IE 9"
+  ],
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
+}

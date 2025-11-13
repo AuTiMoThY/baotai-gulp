@@ -1,0 +1,28 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+@use "../abstracts/functions/set-vw" as *;
+@use "../abstracts/mixin/position" as *;
+@use "../abstracts/mixin/element_effect" as *;
+
+.news-body {
+    padding-bottom: 0;
+    .main-box {
+        padding-bottom: set-vw(163, 1920);
+        @include pad {
+            padding-bottom: set-vw(144, 768);
+
+        }
+    }
+    .news-box {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: set-vw(63, 1920) 0;
+        
+        @include pad {
+            width: set-vw(685, 768);
+            grid-template-columns: 1fr;
+            margin: auto;
+        }
+
+    }
+}

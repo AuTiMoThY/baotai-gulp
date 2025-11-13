@@ -1,0 +1,12 @@
+@use "sass:string";
+@use "../../abstracts/functions/set-vw" as *;
+@use "../../abstracts/mixin/media" as *;
+@mixin svgtxt($width, $height, $widthMobile: $width) {
+    width: set-vw($width, 1920);
+    @include rwd-tablet() {
+        width: set-vw($widthMobile, 768);
+    }
+    &-img {
+        aspect-ratio: string.unquote("#{$width} / #{$height}");
+    }
+}

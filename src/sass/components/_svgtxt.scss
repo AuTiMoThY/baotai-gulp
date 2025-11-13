@@ -1,0 +1,14 @@
+.svgtxt {
+    position: relative;
+    &-img {
+        object-fit: contain;
+    }
+
+    &-txt {
+        position: absolute;
+        display: block;
+        text-indent: -9999px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}

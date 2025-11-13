@@ -1,0 +1,3 @@
+@function responsive-ratio($oldViewport, $newViewport) {
+    @return math.div($newViewport, $oldViewport);
+}

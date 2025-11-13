@@ -1,0 +1,9 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+
+.show-desktop.show-desktop {
+    display: block;
+    @include pad {
+        display: none;
+    }
+}

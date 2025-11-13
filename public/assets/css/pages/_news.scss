@@ -1,0 +1,19 @@
+@use "../../../../src/sass/abstracts/functions/set-vw" as *;
+
+.news-body {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-background;
+    padding-bottom: 8vw;
+
+
+    .main-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+        align-items: center;
+    }
+}

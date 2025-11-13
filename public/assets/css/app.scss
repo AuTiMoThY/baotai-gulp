@@ -1,0 +1,18 @@
+//Utils
+@import "utils/variables";
+@import "utils/mixin";
+@import "utils/basic";
+
+
+//layout
+@import "layout/header";
+@import "layout/footer";
+@import "layout/menu";
+
+//Pages
+@import "pages/index";
+@import "pages/project";
+@import "pages/projectInner";
+@import "pages/push_map";
+@import "pages/_work_progress";
+@import "pages/news";

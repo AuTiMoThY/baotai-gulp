@@ -1,0 +1,8 @@
+@use "../../../public/assets/css/utils/mixin" as *;
+
+.mobile-break-line {
+    display: none;
+    @include pad {
+        display: block;
+    }
+}

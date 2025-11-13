@@ -1,0 +1,47 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+@use "../abstracts/functions/set-vw" as *;
+
+
+.page-title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: set-vw(98, 1920);
+    margin-bottom: set-vw(98, 1920);
+
+    @include pad {
+        margin-top: set-vw(71, 768);
+        margin-bottom: set-vw(52, 768);
+    }
+    .top,
+    .bottom {
+        display: flex;
+        .zh {
+            @include indexZHtitle();
+        }
+
+        .en {
+            @include indexENtitle();
+        }
+    }
+
+    .top {
+        gap: set-vw(12, 1920);
+        @include pad {
+            gap: set-vw(12, 768);
+        }
+        .line {
+            margin-left: 0.25vw;
+            margin-right: 0.5vw;
+            width: 1.5vw;
+            align-self: center;
+            height: 1px;
+            background-color: #c3b09d;
+
+            @include pad {
+                width: set-vw(33, 768);
+            }
+        }
+    }
+}

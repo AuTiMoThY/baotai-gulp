@@ -1,0 +1,418 @@
+.projectInner-body{
+
+    // Swiper共用上下頁按鈕樣式
+    .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,
+    .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+        content: "";
+    }
+    .swiper-button-prev, .swiper-button-next{
+        background-color: $color-btn;
+        border-radius: 100%;
+        width: 2.1vw;
+        height: 2vw;
+
+        @include pad{
+            width: 5.1vw;
+            height: 5vw;
+        }
+
+        @include mobile{
+            width: 7.1vw;
+            height: 7vw;
+        }
+        
+        img{
+            width: 60%;
+        }
+    }
+
+    .case_dt_box{
+
+        padding: 7%;
+        @include pad{
+            padding-bottom: 10%;
+        }
+
+        .flex_box{
+            display: flex;
+            gap: 6%;
+
+            @include pad{
+                flex-direction: column;
+            }
+
+            .slide_box{
+                flex: 1 1 50%;
+                width: 50%;
+
+                @include pad{
+                    width: 100%;
+                }
+
+                .swiper{
+                    width: 100%;
+                }
+            }
+
+            .dt_box{
+                flex: 1 1 50%;
+                margin-right: 10%;
+
+                @include pad{
+                    margin: 0;
+                    margin-top: 5vw;
+                }
+
+                h2{
+                    margin-bottom: 30px;
+                    padding-bottom: 20px;
+                    position: relative;
+
+                    @include pad{
+                        font-size: 5.5vw;
+                    }
+
+                    @include mobile{
+                        font-size: 6.5vw;
+                    }
+
+                    &::after{
+                        content: "";
+                        display: block;
+                        width: 30px;
+                        height: 1px;
+                        background-color: #c3b09d;
+                        position: absolute;
+                        bottom: 0;
+
+                        @include pad{
+                            width: 6vw;
+                        }
+                    }
+
+                    small{
+                        margin-left: 15px;
+                    }
+                }
+
+
+                ul{
+                    li{
+                        display: flex;
+                        border-bottom: 1px solid #ffffff4f;
+                        padding-bottom: 0.8vw;
+                        margin-bottom: 0.8vw;
+
+                        @include pad{
+                            padding-bottom: 2.5vw;
+                            margin-bottom: 2.5vw;
+                        }
+
+                        h3{
+                            position: relative;
+                            padding-right: 0.6vw;
+                            margin-right: 0.8vw;
+
+                            @include pad{
+                                padding-right: 2vw;
+                                margin-right: 3vw;
+                            }
+
+                            @include mobile{
+                                flex: 1 1 27%;
+                            }
+
+                            &::after{
+                                content: "";
+                                width: 1px;
+                                height: 70%;
+                                background-color: #fff;
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+
+                                
+                            }
+                        }
+                        p{
+                            @include mobile{
+                                flex: 1 1 90%;
+                            }
+                        }
+                    }
+                }
+
+
+                .share_box{
+                    display: flex;
+                    a{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        color: #fff;
+                        font-family: "Noto Serif TC";
+                        font-size: 0.85vw;
+                        padding-right: 0.8vw;
+                        margin-right: 0.8vw;
+                        letter-spacing: 0.15em;
+
+                        @include pad{
+                            font-size: 2.5vw;
+                            padding-right: 3vw;
+                            margin-right: 3vw;
+                        }
+
+                        @include mobile{
+                            font-size: 3.5vw;
+                            padding-right: 3vw;
+                            margin-right: 3vw;
+                        }
+
+                        &::after{
+                            content: "";
+                            width: 1px;
+                            height: 50%;
+                            background-color: #c7b299;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            bottom: 0;
+                            margin: auto;
+                        }
+                        &:last-child{
+                            margin-right: 0;
+                            padding-right: 0;
+                            &::after{
+                                display: none;
+                            }
+                        }
+                        
+                        img{
+                            width: 30px;
+                            margin-right: 10px;
+
+                            @include mobile{
+                               width: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .case_content_box{
+        text-align: center;
+        padding: 7%;
+        padding-top: 0;
+
+        h2{
+            margin-bottom: 3%;
+
+            @include pad{
+               margin-bottom: 6%; 
+            }
+        }
+
+        .img_wall{
+            display: flex;
+            flex-wrap: wrap;
+            margin: -0.8%;
+
+            .img_one{
+                flex: 1 1 33.33%;
+                width: 33.33%;
+                padding: 0.8%;
+            }
+        }
+
+        .img_map{
+            margin: 4% 0;
+
+            @include pad{
+                padding: 6% 0;
+            }
+        }
+        .content_text{
+            .card_one{
+                display: flex;
+                margin: 4% 0;
+
+                @include pad{
+                    flex-direction: column;
+                }
+
+                @include mobile{
+                    margin: 8% 0;
+                }
+
+                .img_box{
+                    flex: 1 1 60%;
+                }
+                .text_box{
+                    flex: 1 1 50%;
+                    text-align: left;
+                    padding: 0 10%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    @include pad{
+                        padding: 0;
+                        padding-top: 4%;
+                    }
+
+                    @include mobile{
+                       padding-top: 6%;
+                    }
+
+                    h4{
+                        margin-bottom: 5%;
+                        @include pad{
+                            margin-bottom: 2%;
+                        }
+
+                        @include mobile{
+                            margin-bottom: 3%;
+                        }
+                    }
+                    p{
+                        line-height: 2;
+                    }
+                }
+
+                &:nth-child(even){
+                    flex-direction: row-reverse;
+
+                    @include pad{
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+
+        .back_btn_box{
+
+            @include pad{
+                margin: 10% 0;
+            }
+
+            a{
+                display: inline-flex;
+                align-items: center;
+                gap: 6%;
+                font-family: "Cormorant Garamond";
+                color: $color-subtext;
+                font-size: 0.9vw;
+                letter-spacing: 0.1em;
+                border: 1px solid;
+                border-radius: 30px;
+                padding: 0.3vw 1.5vw;
+
+                @include pad{
+                    font-size: 4vw;
+                    padding: 0.8vw 8vw;
+                }
+
+                img{
+                    width: 1vw;
+                    @include pad{
+                        width: 2.5vw;
+                    }
+                }
+            }
+        }
+    }
+
+    .form_box{
+        padding: 7%;
+        padding-top: 0;
+
+        h2{
+            text-align: center;
+            margin-bottom: 5%;
+        }
+
+        .flex_box{
+            display: flex;
+            gap:7%;
+
+            @include pad{
+                flex-direction: column;
+            }
+
+            .map_box{
+                flex: 1 1 50%;
+
+                iframe{
+                    @include pad{
+                        height: 300px;
+                    }
+                }
+            }
+            .form{
+                flex: 1 1 50%;
+                padding-right: 10vw;
+                
+                @include pad{
+                    padding: 0;
+                    padding-top: 5%;
+                }
+
+                .input_one{
+                    border-bottom: 1px solid #ffffff4f;
+                    padding-bottom: 0.85vw;
+                    margin-bottom: 0.85vw;
+                    display: flex;
+
+                    @include pad{
+                        padding-bottom: 2vw;
+                        margin-bottom: 2vw;
+                    }
+
+                    label{
+                       flex: 1 1 15%;
+
+                       @include mobile{
+                         flex: 1 1 22%;
+                       }
+                    }
+
+                    input,
+                    textarea{
+                        flex: 1 1 70%;
+                        width: 100%;
+                    }
+                
+                }
+
+                .submit_box{
+                    text-align: center;
+                    margin-top: 3vw;
+
+                    #submit_btn{
+                        font-family: "Noto Serif TC";
+                        color: $color-subtext;
+                        font-weight: 500;
+                        font-size: 0.9vw;
+                        letter-spacing: 0.1em;
+                        border: 1px solid;
+                        border-radius: 30px;
+                        padding: 0.3vw 4vw;
+                        display: inline-block;
+
+                        @include pad{
+                            font-size: 4vw;
+                            padding: 1.5vw 10vw;
+                            line-height: 1;
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+    }
+}

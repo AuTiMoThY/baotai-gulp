@@ -1,0 +1,92 @@
+{% set page_title = "最新消息" %} {% set body_class = "news-detail-body " %}{%
+extends "layout.njk" %} {% block content %}
+<main class="page-main news-detail">
+    <div class="news-detail-cover">
+        <picture class="cover-img">
+            <source
+                srcset="[[PROD_PATH]]assets/images/news/news-detail-m.jpg"
+                media="(max-width: 900px)" />
+            <img
+                src="[[PROD_PATH]]assets/images/news/news-detail.jpg"
+                alt=""
+                srcset="" />
+        </picture>
+    </div>
+    <div class="news-detail-content">
+        <div class="news-detail-content-hd">
+            <div class="hd-col">
+                <div class="date-box">
+                    <div class="date">2025-07-21</div>
+                </div>
+                <div class="title">過嶺精品小豪宅 首付35萬起</div>
+            </div>
+            <div class="hd-col">
+                <div class="share">
+                    <div class="share-label">SHARE:</div>
+                    <ul class="share-list">
+                        {% set share_list = [ { "icon": "facebook", "url":
+                        "javascript:;" }, { "icon": "instagram", "url":
+                        "javascript:;" }, { "icon": "line", "url":
+                        "javascript:;" } ] %} {% for item in share_list %}
+                        <li class="share-item">
+                            <a href="[[ item.url ]]" class="share-link">
+                                <img
+                                    src="[[PROD_PATH]]assets/images/icons/[[ item.icon ]].svg"
+                                    alt="[[ item.icon ]]"
+                                    srcset="" />
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="news-detail-content-bd">
+            <div class="html-editor">
+                <p>
+                    在寶台建設心中，建築的價值從來不只是鋼筋與水泥的堆疊，而是如何將每一個細節轉化為居住的幸福。家的溫度，來自於我們對於生活的理解，也來自於對品質的堅持。
+                    <br />
+                    因此，在安全的基礎上，我們採用了新日鐵制震壁，為家築起堅實守護；搭配白馬
+                    SPC
+                    防水地板，讓家人在日常腳步中都能安心自在。窗戶不僅是光影與景色的入口，更是空氣流通與健康的關鍵。我們特別選擇蘭普特絲防霾紗窗與昭和氣密窗
+                    5+5
+                    複層玻璃，讓清風進得來，塵囂卻止步於外，為生活留下一片靜謐純淨。
+                </p>
+                <p>
+                    走進室內，映入眼簾的是整體天花板設計，搭配全室日立冷氣，無論春夏秋冬都能享受恆溫舒適。衛浴空間中，TOTO
+                    衛浴與樂奇四合一暖風機貼心守候，讓每一次洗滌都成為舒緩身心的時刻，不僅是日常所需，更是一種細膩的照顧。
+                </p>
+                <p>
+                    在便利的生活機能上，我們希望將現代智慧融入其中。兆豐電能熱水器提供穩定水量，Dormakaba
+                    電子鎖守護出入安全，而 LG 洗脫烘、櫻花三機與 SVAGO
+                    洗碗機，則讓繁瑣的家務化為輕鬆日常，留給家人更多時間交流與陪伴。
+                </p>
+                <p>
+                    寶台建設深信，建築不應只是冷冰冰的空間，而應是承載情感與幸福的所在。從建材到設備，每一項選擇都不是理所當然，而是對生活需求的深思熟慮。因為我們明白，所謂的「家」，是人生最重要的避風港，是陪伴家人共度時光的舞台。
+                </p>
+                <p>
+                    在這裡，建築被賦予了溫度，空間也被注入了靈魂。寶台建設所追求的，不僅是建築的完成，而是讓每一位居住者，能在其中找到最真實的歸屬與最踏實的幸福。
+                </p>
+                <p>寶台建設──以初心築夢，以細節成就家的永恆。</p>
+            </div>
+        </div>
+        <div class="news-detail-content-ft">
+            <a href="news.html" class="btn-back">
+                <div class="btn-more">
+                    <div class="more">
+                        <div>BACK</div>
+                        <div class="arrow">
+                            <img
+                                src="[[PROD_PATH]]assets/images/index/next.svg"
+                                alt="next"
+                                srcset="" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %} {% block page_script %}
+<script src="js/main.js"></script>
+{% endblock %}

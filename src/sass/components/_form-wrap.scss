@@ -1,0 +1,6 @@
+@use "../abstracts/functions/set-vw" as *;
+.form-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: set-vw(57, 1920);
+}

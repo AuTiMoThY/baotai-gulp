@@ -1,0 +1,24 @@
+@mixin media-down($breakpoint) {
+    // @debug "#{$breakpoint} : #{is-absolute-length($breakpoint)}";
+    // @debug "#{$breakpoint} : #{is-number($breakpoint)}";
+    @if is-number($breakpoint) {
+        $breakpoint: $breakpoint * 1px;
+        @media (max-width: $breakpoint) { @content; }
+    }
+    @else {
+
+        @debug "#{$breakpoint} - 打鬼隊出動！！";
+    }
+}
+
+@mixin rwd-tablet() {
+    @include media-down(1024) {
+        @content;
+    }
+}
+
+@mixin rwd-mobile() {
+    @include media-down(768) {
+        @content;
+    }
+}

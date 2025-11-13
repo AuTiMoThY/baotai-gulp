@@ -1,0 +1,50 @@
+@use "../utils/mixin" as *;
+
+.footer {
+  position: relative;
+  bottom: 0px;
+  display: flex;
+  z-index: 10;
+  background-color: #736357;
+  width: 100%;
+  align-items: center;
+  padding-bottom: 1vw;
+  padding-top: 1vw;
+  justify-content: center;
+  @include pad {
+    padding-bottom: 3.5vw;
+    padding-top: 5vw;
+  }
+  .footer-box {
+    display: flex;
+    color: white;
+    font-weight: 500;
+    font-size: $font-15;
+    align-self: center;
+    font-family: "微軟正黑體", sans-serif;
+    letter-spacing: 0.2em;
+    @include pad {
+      flex-direction: column-reverse;
+      width: 100%;
+      font-size: 2.2vw;
+    }
+
+    div {
+      align-self: center;
+      a {
+        color: white;
+      }
+      @include pad {
+        margin-bottom: 2vw;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .address,
+    .phone {
+      margin-left: 1vw;
+    }
+  }
+}

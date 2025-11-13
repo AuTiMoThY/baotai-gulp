@@ -1,0 +1,26 @@
+@use "sass:math";
+@use "sass:string";
+@function responsive-clamp($size-large, $size-small, $px-or-rem: "rem") {
+    // 视口宽度变化范围
+    $viewport-large: 1920; // 宽屏
+    $viewport-small: 768; // 窄屏
+
+    // 计算线性方程参数
+    $slope: math.div(($size-large - $size-small), ($viewport-large - $viewport-small));
+    $base: $size-large - $slope * $viewport-large;
+
+    @if $px-or-rem == "px" {
+        @return clamp(
+            #{$size-small}px,
+            string.unquote("calc(#{$slope * 100vw} + #{$base}px)"),
+            #{$size-large}px
+        );
+    }
+    @else {
+        @return clamp(
+            #{math.div($size-small, 16)}rem,
+            string.unquote("calc(#{$slope * 100vw} + #{math.div($base, 16)}rem)"),
+            #{math.div($size-large, 16)}rem
+        );
+    }
+}

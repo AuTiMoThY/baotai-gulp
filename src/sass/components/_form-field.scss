@@ -1,0 +1,50 @@
+@use "../abstracts/functions/set-vw" as *;
+@use "../abstracts/mixin/position" as *;
+@use "../abstracts/mixin/media" as *;
+
+.form-field {
+    position: relative;
+
+    label {
+        @include absolute(50%);
+        transform: translateY(-50%);
+        left: 0;
+        font-size: set-vw(26, 1920);
+        letter-spacing: 0.5em;
+        transition: all 0.3s ease-in-out;
+
+        @include rwd-tablet() {
+            font-size: set-vw(21, 768);
+        }
+    }
+    input,
+    textarea {
+        width: 100%;
+        padding: set-vw(16, 1920) 0;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+    }
+
+    textarea {
+        min-height: 60px;
+        resize: vertical;
+        overflow: hidden;
+    }
+
+    &.active {
+        label {
+            top: 0;
+
+            padding: 0.2rem 1rem;
+            border-radius: 0.5rem;
+            background-color: #060b1e;
+            font-size: set-vw(18, 1920);
+
+            @include rwd-tablet() {
+                font-size: set-vw(18, 768);
+            }
+        }
+    }
+}

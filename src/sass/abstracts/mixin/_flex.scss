@@ -1,0 +1,12 @@
+@mixin flex($align: null, $justify: null, $direction: null) {
+    display: flex;
+    @if $align != null {
+        align-items: $align;
+    }
+    @if $justify != null {
+        justify-content: $justify;
+    }
+    @if $direction != null {
+        flex-direction: $direction;
+    }
+}

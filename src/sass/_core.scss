@@ -1,0 +1,37 @@
+
+// @use "bootstrap/scss/functions";
+// @use "bootstrap/scss/variables";
+// @use "bootstrap/scss/variables-dark";
+
+// custom variable
+@use "abstracts/variable/variant";
+@use "abstracts/variable/color";
+@use "abstracts/functions/au-color";
+@use "abstracts/functions/px-to-rem";
+@use "abstracts/variable/font";
+@use "abstracts/variable/easing";
+@use "abstracts/variable/box_shadow";
+
+// @use "bootstrap/scss/mixins";
+
+// ********** MIXIN & FUNCTIONS START ********** //
+@use "abstracts/functions/checking";
+@use "abstracts/functions/responsive-clamp";
+@use "abstracts/functions/set-vw";
+@use "abstracts/functions/set-flex-basis";
+@use "abstracts/functions/responsive-ratio";
+
+@use "abstracts/mixin/multiline_ellipsis";
+@use "abstracts/mixin/gradient";
+@use "abstracts/mixin/psudoClass";
+@use "abstracts/mixin/position";
+@use "abstracts/mixin/wh";
+@use "abstracts/mixin/circle";
+@use "abstracts/mixin/triangle";
+@use "abstracts/mixin/media";
+@use "abstracts/mixin/aspectRatioBox";
+@use "abstracts/mixin/element_effect";
+@use "abstracts/mixin/hover_underline";
+@use "abstracts/mixin/twImg_hover";
+@use "abstracts/mixin/flex";
+// @use "abstracts/mixin/popup_base";

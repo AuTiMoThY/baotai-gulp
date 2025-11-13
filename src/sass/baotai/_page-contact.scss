@@ -1,0 +1,139 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+@use "../abstracts/functions/set-vw" as *;
+
+.page-contact {
+    padding-bottom: set-vw(262, 1920);
+    @include pad {
+        padding-bottom: set-vw(146, 768);
+    }
+}
+
+.contact-wrap {
+    display: flex;
+    padding-left: set-vw(150, 1920);
+    padding-right: set-vw(150, 1920);
+    @include pad {
+        padding-left: set-vw(40, 768);
+        padding-right: set-vw(40, 768);
+
+        flex-direction: column-reverse;
+        gap: set-vw(66, 768);
+    }
+
+    .contact-info {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: set-vw(86, 1920);
+
+        @include pad {
+            gap: set-vw(52, 768);
+        }
+    }
+
+    .contact-photo {
+        width: set-vw(811, 1920);
+        @include pad {
+            width: 100%;
+        }
+    }
+}
+
+
+.contact-info-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        margin-bottom: set-vw(20, 1920);
+        font-size: set-vw(26, 1920);
+        color: #fff;
+        font-family: "Noto Serif TC", serif;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        @include pad {
+            margin-bottom: set-vw(18, 768);
+            font-size: 4.7vw;
+        }
+    }
+
+    .line {
+        width: 1px;
+        height: set-vw(26, 1920);
+        background-color: #C3B09D;
+        margin-bottom: set-vw(20, 1920);
+        
+        @include pad {
+            height: set-vw(26, 768);
+            margin-bottom: set-vw(13, 1920);
+        }
+    }
+
+    .txt {
+        font-size: set-vw(18, 1920);
+        text-align: center;
+        line-height: 2;
+        @include pad {
+            font-size: 3.9vw;
+        }
+    }
+}
+
+
+.contact-info-qrcode {
+    display: flex;
+    gap: set-vw(69, 1920);
+    @include pad {
+        gap: set-vw(78, 768);
+    }
+
+    .qrcode-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: set-vw(12, 1920);
+        @include pad {
+            gap: set-vw(17, 768);
+        }
+    }
+
+    .qrcode-img {
+        width: set-vw(200, 1920);
+        @include pad {
+            width: set-vw(223, 768);
+        }
+    }
+
+    .qrcode-label {
+        display: flex;
+        align-items: center;
+        gap: set-vw(14, 1920);
+        @include pad {
+            gap: set-vw(14, 768);
+        }
+
+        .icon {
+            width: set-vw(18, 1920);
+            @include pad {
+                width: set-vw(20, 768);
+            }
+        }
+
+        .txt {
+            color: #fff;
+            font-size: set-vw(18, 1920);
+            letter-spacing: 0.15em;
+            @include pad {
+                font-size: set-vw(21, 768);
+            }
+        }
+    }
+}
+
+.contact-photo-img {
+    overflow: hidden;
+}

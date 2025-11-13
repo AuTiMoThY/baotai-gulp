@@ -1,0 +1,190 @@
+@use "../../../../src/sass/abstracts/functions/set-vw" as *;
+
+.work-progress-body {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #473d39;
+    // padding-bottom: 8vw;
+
+    .main-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        padding-bottom: set-vw(163, 1920);
+        @include pad {
+            padding-bottom: set-vw(144, 768);
+
+        }
+
+        .item-list-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3vw 1vw;
+            width: 85%;
+            @include pad {
+                grid-template-columns: repeat(1, 1fr);
+                gap: set-vw(92, 768);
+                width: set-vw(685, 768);
+            }
+
+            .item-box {
+                display: flex;
+                flex-direction: column;
+                background-color: #6a5d54;
+                color: white;
+                padding-left: 1vw;
+                padding-right: 1vw;
+                padding-top: 1vw;
+                padding-bottom: 1.8vw;
+                width: 27vw;
+                // margin-right: 1vw;
+                // margin-bottom: 3vw;
+
+                @include pad {
+                    width: 100%;
+                    padding: set-vw(26, 768) set-vw(31, 768) set-vw(58, 768);
+                    margin-right: 0;
+                    margin-bottom: 0;
+                }
+                .img-box {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: center;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .name {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    gap: set-vw(30, 1920);
+                    font-family: "Noto Serif TC", serif;
+                    font-size: 1.2vw;
+                    letter-spacing: 0.1em;
+                    margin-top: set-vw(30, 1920);
+                    margin-bottom: set-vw(35, 1920);
+                    // padding-bottom: 1vw;
+                    font-weight: 500;
+
+                    @include pad {
+                        gap: set-vw(39, 768);
+
+                        margin-top: set-vw(43 * 0.9, 768);
+                        margin-bottom: set-vw(42 * 0.9, 768);
+                        font-size: set-vw(32, 768);
+                    }
+
+                    &::after {
+                        content: "";
+                        display: block;
+                        width: 1.8vw;
+                        height: 1px;
+                        background-color: #c7b299;
+
+                        @include pad {
+                            width: set-vw(40, 768);
+                        }
+                    }
+                }
+
+                .info-box {
+                    display: flex;
+                    justify-content: space-between;
+                    .left-box {
+                        display: flex;
+                        flex-direction: column;
+                        width: 65%;
+                        .info {
+                            display: flex;
+                            @include content();
+                        }
+                        .title {
+                            white-space: nowrap;
+                        }
+                        .btn-box {
+                            // display: flex;
+                            margin-top: 1.2vw;
+
+                            @include pad {
+                                margin-top: set-vw(46 * 0.9, 768);
+                            }
+                            .more {
+                                // padding: 0.15vw 0.85vw 0.25vw;
+                                padding: set-vw(8, 1920) set-vw(22, 1920) set-vw(8, 1920);
+                                border: 1px solid #c7b299;
+                                color: #c7b299;
+                                letter-spacing: 0.1em;
+                                
+                                div {
+                                    font-family: "微軟正黑體", sans-serif;
+                                }
+
+                                @include pad {
+                                    padding: set-vw(12 - 3, 768) set-vw(27, 768) set-vw(12, 768);
+                                    padding-left: set-vw(35, 768);
+                                }
+                            }
+                            .arrow {
+                                width: 1.1vw;
+
+                                @include pad {
+                                    width: set-vw(24 * 1.2, 768);
+                                }
+                            }
+
+                            &:hover {
+                                .arrow {
+                                    @include pad {
+                                        transform: translateX(0);
+                                    }
+                                }
+                            }
+                            // .btn {
+                            //   display: flex;
+                            //   font-family: "微軟正黑體";
+                            //   font-size: $font-18;
+                            //   padding: 0.25vw 0.85vw;
+                            //   padding-top: 0.15vw;
+                            //   border-radius: 2vw;
+                            //   letter-spacing: 0.1em;
+                            //   cursor: pointer;
+                            //   div {
+                            //     color: #c7b299;
+                            //   }
+                            //   img {
+                            //     width: 1.1vw;
+                            //     margin-left: 0.3vw;
+                            //   }
+                            // }
+                        }
+                    }
+                    .right-box {
+                        display: flex;
+                        flex-direction: column;
+                        width: 35%;
+                        .img-box {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            overflow: hidden;
+                            img {
+                                width: 100%;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

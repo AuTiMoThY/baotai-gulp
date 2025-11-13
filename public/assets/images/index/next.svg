@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_圖層_2" data-name="圖層 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.24 6.69">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #c3b09d;
+        stroke-miterlimit: 10;
+        stroke-width: .75px;
+      }
+    </style>
+  </defs>
+  <g id="_圖層_1-2" data-name="圖層 1">
+    <polyline class="cls-1" points="0 6.31 25 6.31 16 .31"/>
+  </g>
+</svg>

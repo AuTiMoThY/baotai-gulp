@@ -1,0 +1,85 @@
+{% set page_title = "聯絡我們" %} {% set body_class = "contact-body " %} {%
+extends "layout.njk" %} {% block content %}
+<main class="main-box page-main page-contact">
+    <div class="banner-box page-banner">
+        <div class="img-box">
+            <picture>
+                <source
+                    srcset="assets/images/contact/banner-m.jpg"
+                    media="(max-width: 1024px)" />
+                <img src="assets/images/contact/banner.jpg" alt="" />
+            </picture>
+        </div>
+    </div>
+
+    <div class="title-box page-title">
+        <div class="top">
+            <div class="line"></div>
+            <div class="zh">聯絡我們</div>
+            <div class="line"></div>
+        </div>
+        <div class="bottom">
+            <div class="en">CONTACT US</div>
+        </div>
+    </div>
+
+    <div class="contact-wrap">
+        <div class="contact-col contact-info">
+            <div class="contact-info-text">
+                <b class="title">幸福，由此連結</b>
+                <div class="line"></div>
+                <p class="txt show-desktop">
+                    掃描 QR code，立即聯繫客服，開啟您的專屬售後服務，<br />
+                    每一次回應，都是我們對您的承諾；<br />
+                    每一份用心，都是守護居家品質的起點。<br />
+                    寶台建設持續陪伴，讓家的美好恆久如新。
+                </p>
+                <p class="txt show-mobile">
+                    掃描 QR code，立即聯繫客服，<br />
+                    開啟您的專屬售後服務，<br />
+                    每一次回應，都是我們對您的承諾；<br />
+                    每一份用心，都是守護居家品質的起點。<br />
+                    寶台建設持續陪伴，讓家的美好恆久如新。
+                </p>
+            </div>
+            <div class="contact-info-qrcode">
+                <figure class="qrcode-col">
+                    <div class="qrcode-img">
+                        <img
+                            src="assets/images/contact/qrcode-android.jpg"
+                            alt="" />
+                    </div>
+                    <figcaption class="qrcode-label">
+                        <div class="icon">
+                            <img src="assets/images/icons/android.svg" alt="" />
+                        </div>
+                        <div class="txt">寶台APP 安卓</div>
+                    </figcaption>
+                </figure>
+                <figure class="qrcode-col">
+                    <div class="qrcode-img">
+                        <img
+                            src="assets/images/contact/qrcode-ios.jpg"
+                            alt="" />
+                    </div>
+                    <figcaption class="qrcode-label">
+                        <div class="icon">
+                            <img src="assets/images/icons/ios.svg" alt="" />
+                        </div>
+                        <div class="txt">寶台APP 蘋果</div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="contact-col contact-photo">
+            <div class="contact-photo-img">
+                <img src="assets/images/contact/photo.jpg" alt="" />
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %} {% block page_script %}
+<script src="assets/js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="js/contact.js"></script>
+{% endblock %}

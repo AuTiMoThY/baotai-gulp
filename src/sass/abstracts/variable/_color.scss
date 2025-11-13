@@ -1,0 +1,43 @@
+@use "sass:map";
+$color: (
+    "Gray-01": #1a1a1a,
+    "Gray-02": #333333,
+    "Gray-03": #cccccc,
+    "Gray-04": #e5e5e5,
+    "Gray-05": #f6f6f6,
+    "Gray-06": #ffffff,
+
+    "auxiliary-color-1": #04be02,
+    "auxiliary-color-2": #ea4e3d,
+    "auxiliary-color-3": #ffaa09,
+
+    "status-color-1": #04be02,
+    "status-color-2": #ea4f3d,
+    "status-color-3": #ffaa09,
+
+    "primary-color": #AD8C6B,
+    "primary-1": #AC8B6B,
+    "secondary-color": #ffffff,
+    "light-color": #655d5a,
+    "border-color": #c9ab7e,
+    "background-color": #000000,
+    "panel-color": #272115,
+
+    "primary-button-text-color": #7ff800,
+    "text-highlight": #866638,
+    "text-highlight2": #ff6f54,
+    "text-highlight3": #fffe8f
+);
+
+$additional-colors: (
+    "dark-blue": #3046b6,
+    "light-blue": #c4f1ff,
+    "medium-blue": #82a4e4,
+    "deep-blue": #063478,
+    "common-blue": #4368c8,
+    "light-green": #c5e2d2,
+    "medium-green": #71b394,
+    "highlight-yellow": #f9fd4e
+);
+
+$color: map.merge($color, $additional-colors);
