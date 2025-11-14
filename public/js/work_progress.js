@@ -13,15 +13,14 @@ window.onload = function () {
         }
     });
 
-    pageBanner.bannerAni(".work-progress-body");
-    pageTitle.titleAni(".work-progress-body");
+    ucyCore.pageBanner.bannerAni(".work-progress-body");
+    ucyCore.pageTitle.titleAni(".work-progress-body");
 
     const listAni = () => {
-        const isMobile = window.matchMedia("(max-width: 1024px)").matches;
         const items = document.querySelectorAll(".work-progress-body .item-list-box .item-box");
         const itemsArray = Array.from(items);
 
-        if (isMobile) {
+        if (ucyCore.isMobile()) {
             itemsArray.forEach((item, index) => {
                 // 排除第一個 item
                 if (index === 0) {

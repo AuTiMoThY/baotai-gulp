@@ -1,0 +1,330 @@
+{% set page_title = "沿革展望" %}
+{% set body_class = "history-body " %}
+{% set historyData = [
+    {
+        year: 2003,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2004,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2005,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2006,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2007,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2008,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2009,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2010,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2011,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2012,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2013,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2014,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2015,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2016,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2017,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2018,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2019,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2020,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2021,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2022,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2023,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2024,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    },
+    {
+        year: 2025,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    }
+]
+%}
+
+{% macro historyItem(year, img, content) %}
+<div class="swiper-slide" data-year="[[ year ]]">
+    <div class="history-slide-title">
+        <span class="title">[[ year ]]</span>
+        <span class="txt show-desktop">YEAR</span>
+    </div>
+    <div class="history-slide-img">
+        <img src="assets/images/history/[[ img ]]" alt="" />
+    </div>
+    <div class="history-slide-content">
+        <ul class="list">
+            {% for item in content %}
+            <li class="item">[[ item ]]</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endmacro %}
+{% extends "layout.njk" %}
+{% block content %}
+    <main class="main-box page-main page-history">
+        <section class="banner-box page-banner">
+            <div class="img-box">
+                <picture>
+                    <source srcset="assets/images/history/banner-m.jpg"
+                            media="(max-width: 1024px)" />
+                    <img src="assets/images/history/banner.jpg" alt="" />
+                </picture>
+            </div>
+        </section>
+        <section class="title-box page-title">
+            <div class="top">
+                <div class="line"></div>
+                <div class="zh">沿革展望</div>
+                <div class="line"></div>
+            </div>
+            <div class="bottom">
+                <div class="en">LEGACY & VISION</div>
+            </div>
+        </section>
+        <section class="history-photo">
+            <div class="history-photo-img">
+                <img src="assets/images/history/photo.jpg" alt="" />
+            </div>
+        </section>
+        <section class="history-summary summary-block">
+            <b class="title">匠心歷程，承續初心</b>
+            <div class="line"></div>
+            <p class="txt show-desktop">
+                寶台建設機構自創立以來，
+                <br />
+                二十餘年堅守「專業、誠信、創新」，穩健深耕建築本質。
+                <br />
+                跨越三代的傳承，不僅是企業延續，更是對「家的承諾」。
+                <br />
+                我們以建築履歷保障權益，每一磚瓦皆秉持良心與責任，確保居者安心。
+                <br />
+                未來將持續以初心為本，專注品質與創新，為世代築起長遠幸福。
+            </p>
+            <p class="txt show-mobile">
+                寶台建設機構自創立以來，
+                <br />
+                二十餘年堅守「專業、誠信、創新」，
+                <br />
+                穩健深耕建築本質。跨越三代的傳承，
+                <br />
+                不僅是企業延續，更是對「家的承諾」。
+                <br />
+                我們以建築履歷保障權益，每一磚瓦皆秉持
+                <br />
+                良心與責任，確保居者安心。
+                <br />
+                未來將持續以初心為本，
+                <br />
+                專注品質與創新，為世代築起長遠幸福。
+            </p>
+        </section>
+        <section class="history-content">
+            <div class="history-swiper swiper">
+                <div class="year-box">
+                    <div class="digit-container" id="digit-0"></div>
+                    <div class="digit-container" id="digit-1"></div>
+                    <div class="digit-container" id="digit-2"></div>
+                    <div class="digit-container" id="digit-3"></div>
+                </div>
+                <div class="swiper-wrapper">
+                    {% for item in historyData %}
+                        [[ historyItem(item.year, item.img, item.content) ]]
+                    {% endfor %}
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination" data-start="2003"></div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev show-mobile"></div>
+                <div class="swiper-button-next show-mobile"></div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block page_script %}
+    <script src="assets/js/main.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/history.js"></script>
+{% endblock %}

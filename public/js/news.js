@@ -20,8 +20,8 @@ window.onload = function () {
         }
     });
 
-    pageBanner.bannerAni(".news-body");
-    pageTitle.titleAni(".news-body");
+    ucyCore.pageBanner.bannerAni(".news-body");
+    ucyCore.pageTitle.titleAni(".news-body");
 
     const newsListAni = () => {
         const isMobile = window.matchMedia("(max-width: 1024px)").matches;

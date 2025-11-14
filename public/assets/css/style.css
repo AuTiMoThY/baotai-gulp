@@ -224,6 +224,22 @@
     width: 4.296875vw;
   }
 }
+.summary-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .summary-block .title {
   margin-bottom: 1.0416666667vw;
   font-size: 1.3541666667vw;
@@ -786,6 +802,10 @@
 
 @media (max-width: 900px) {
   .contact-info-qrcode {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 10.15625vw;
   }
 }
@@ -814,7 +834,7 @@
 
 @media (max-width: 900px) {
   .contact-info-qrcode .qrcode-img {
-    width: 29.0364583333vw;
+    width: 35vw;
   }
 }
 .contact-info-qrcode .qrcode-label {
@@ -1029,6 +1049,7 @@
   color: #fff;
   font-size: 0.9375vw;
   letter-spacing: 0.15em;
+  font-family: "微軟正黑體", sans-serif;
 }
 
 @media (max-width: 900px) {
@@ -1087,5 +1108,258 @@
   .portfolio-timeline-item .year::after {
     font-size: 2.734375vw;
   }
+}
+.page-history {
+  padding-bottom: 11.4583333333vw;
+}
+
+@media (max-width: 900px) {
+  .page-history {
+    padding-bottom: 24.21875vw;
+  }
+}
+.history-photo {
+  margin-bottom: 5.78125vw;
+}
+
+@media (max-width: 900px) {
+  .history-photo {
+    margin-bottom: 8.59375vw;
+  }
+}
+.history-photo-img {
+  width: 84.4791666667vw;
+  margin: auto;
+}
+
+@media (max-width: 900px) {
+  .history-photo-img {
+    width: 89.1927083333vw;
+  }
+}
+.history-photo-img img {
+  aspect-ratio: 1622/540;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.history-summary {
+  margin-bottom: 6.5625vw;
+}
+
+@media (max-width: 900px) {
+  .history-summary {
+    margin-bottom: 17.0572916667vw;
+  }
+}
+.history-swiper {
+  overflow: visible;
+}
+
+.history-swiper .swiper-slide {
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .history-swiper .swiper-slide {
+    aspect-ratio: unset;
+  }
+}
+.history-swiper .swiper-pagination {
+  top: 1.40625vw;
+  right: 0;
+  bottom: unset;
+  left: unset;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.4166666667vw;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 31.6145833333vw;
+  overflow-y: auto;
+}
+
+.history-swiper .swiper-pagination-bullet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5208333333vw;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  opacity: 0.4;
+  color: #c7b299;
+  font-family: "Jost", sans-serif;
+  font-size: 0.8333333333vw;
+  letter-spacing: 0.05em;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.history-swiper .swiper-pagination-bullet::after {
+  content: "";
+  display: block;
+  width: 1.25vw;
+  height: 1px;
+  background-color: #c7b299;
+  opacity: 0;
+}
+
+.history-swiper .swiper-pagination-bullet:hover {
+  opacity: 1;
+}
+
+.history-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.history-swiper .swiper-pagination-bullet-active::after {
+  opacity: 1;
+}
+
+.history-content .year-box {
+  position: absolute;
+  top: 4.53125vw;
+  left: 35.3125vw;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.25vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 50px;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.history-content .digit-container {
+  position: relative;
+  width: 8.125vw;
+  aspect-ratio: 156/218;
+}
+
+.history-content .digit-scroll {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.history-content .digit {
+  height: 11.3541666667vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 15.625vw;
+  font-family: "Jost", sans-serif;
+  color: #c7b299;
+}
+
+.history-slide-title {
+  position: absolute;
+  top: 2.3958333333vw;
+  left: 35.3125vw;
+  z-index: 2;
+  color: #c7b299;
+  font-family: "Jost", sans-serif;
+}
+
+@media (max-width: 900px) {
+  .history-slide-title {
+    position: relative;
+    top: unset;
+    left: unset;
+  }
+}
+.history-slide-title .title {
+  font-size: 15.625vw;
+  line-height: 1;
+  color: #000;
+}
+
+@media (max-width: 900px) {
+  .history-slide-title .title {
+    font-size: 15.625vw;
+  }
+}
+.history-slide-title .title {
+  display: none;
+}
+
+.history-slide-title .txt {
+  position: absolute;
+  top: calc(0% + 15.8333333333vw);
+  left: 30.9375vw;
+  font-size: 1.40625vw;
+}
+
+.history-slide-img {
+  -webkit-transform: translateX(18.6458333333vw);
+      -ms-transform: translateX(18.6458333333vw);
+          transform: translateX(18.6458333333vw);
+  width: 19.53125vw;
+}
+
+.history-slide-img img {
+  aspect-ratio: 375/563;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.history-slide-content {
+  position: absolute;
+  top: 23.1770833333vw;
+  left: 42.34375vw;
+}
+
+.history-slide-content .list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1.09375vw 4.2708333333vw;
+  max-height: 5.46875vw;
+}
+
+.history-slide-content .item {
+  list-style: disc;
+  color: #fff;
+  font-family: "微軟正黑體", sans-serif;
+  line-height: 2;
+  letter-spacing: 0.15em;
+  font-size: 0.95vw;
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .history-slide-content .item {
+    font-size: 3.2vw;
+  }
+}
+.history-slide-content .item {
+  font-size: 0.8333333333vw;
+  line-height: 1;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,42 @@
+{%
+set historyData = [
+    {
+        year: 2003,
+        img: "img-2003.jpg",
+        content: [
+            "獲獎國家優良建商營造商認證標章",
+            "獲獎優良施工獎",
+            "幸福公園2獲獎第24屆中華建築金石獎",
+            "托斯卡尼3獲獎第18屬國家建築金質獎",
+            "獲獎國家建築金獎"
+        ]
+    },
+    {
+        year: 2004,
+        img: "img-2016.jpg",
+        content: [
+            "寶台建設機構成立",
+            "傳家寶系列的起源"
+        ]
+    }
+]
+%}
+
+{% macro historyItem(year, img, content) %}
+<div class="swiper-slide" data-year="[[ year ]]">
+    <div class="history-slide-title">
+        <span class="title">[[ year ]]</span>
+        <span class="txt show-desktop">YEAR</span>
+    </div>
+    <div class="history-slide-img">
+        <img src="assets/images/history/[[ img ]]" alt="" />
+    </div>
+    <div class="history-slide-content">
+        <ul class="list">
+            {% for item in content %}
+            <li class="item">[[ item ]]</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endmacro %}

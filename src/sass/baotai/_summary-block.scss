@@ -3,6 +3,10 @@
 @use "../abstracts/functions/set-vw" as *;
 
 .summary-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     .title {
         margin-bottom: set-vw(20, 1920);
         font-size: set-vw(26, 1920);

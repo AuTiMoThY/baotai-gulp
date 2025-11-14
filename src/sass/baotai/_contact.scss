@@ -54,6 +54,7 @@
     display: flex;
     gap: set-vw(69, 1920);
     @include pad {
+        flex-direction: column;
         gap: set-vw(78, 768);
     }
 
@@ -70,7 +71,7 @@
     .qrcode-img {
         width: set-vw(200, 1920);
         @include pad {
-            width: set-vw(223, 768);
+            width: 35vw;
         }
     }
 

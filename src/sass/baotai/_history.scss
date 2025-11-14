@@ -1,0 +1,210 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+@use "../abstracts/functions/set-vw" as *;
+
+.page-history {
+    padding-bottom: set-vw(220, 1920);
+    @include pad {
+        padding-bottom: set-vw(186, 768);
+    }
+}
+
+.history-photo {
+    margin-bottom: set-vw(111, 1920);
+    @include pad {
+        margin-bottom: set-vw(66, 768);
+    }
+    &-img {
+        width: set-vw(1622, 1920);
+        margin: auto;
+
+        @include pad {
+            width: set-vw(685, 768);
+        }
+
+        img {
+            aspect-ratio: 1622 / 540;
+            object-fit: cover;
+        }
+    }
+}
+
+.history-summary {
+    margin-bottom: set-vw(126, 1920);
+    @include pad {
+        margin-bottom: set-vw(131, 768);
+    }
+}
+
+.history-swiper {
+    overflow: visible;
+    .swiper-slide {
+        position: relative;
+        // aspect-ratio: 1920 / 563;
+
+        @include pad {
+            aspect-ratio: unset;
+        }
+    }
+
+    .swiper-pagination {
+        top: set-vw(27, 1920);
+        right: 0;
+        bottom: unset;
+        left: unset;
+
+        display: flex;
+        flex-direction: column;
+        gap: set-vw(8, 1920);
+        width: fit-content;
+        height: set-vw(607, 1920);
+        overflow-y: auto;
+    }
+
+    .swiper-pagination-bullet {
+        display: flex;
+        align-items: center;
+        gap: set-vw(10, 1920);
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        opacity: 0.4;
+        color: #c7b299;
+        font-family: "Jost", sans-serif;
+        font-size: set-vw(16, 1920);
+        letter-spacing: 0.05em;
+
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            display: block;
+            width: set-vw(24, 1920);
+            height: 1px;
+            background-color: #c7b299;
+            opacity: 0;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &-active {
+            opacity: 1;
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.history-content {
+    .year-box {
+        position: absolute;
+        top: set-vw(87, 1920);
+        left: set-vw(678, 1920);
+        z-index: 2;
+        display: flex;
+        gap: set-vw(24, 1920);
+        justify-content: center;
+        margin-bottom: 50px;
+        perspective: 1000px;
+    }
+
+    .digit-container {
+        position: relative;
+        width: set-vw(156, 1920);
+        aspect-ratio: 156 / #{(216 + 2)};
+        // overflow: hidden;
+    }
+
+    .digit-scroll {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+    }
+
+    .digit {
+        height: set-vw(216 + 2, 1920);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: set-vw(300, 1920);
+        // font-weight: bold;
+        font-family: "Jost", sans-serif;
+        color: #c7b299;
+    }
+}
+
+.history-slide {
+    &-title {
+        position: absolute;
+        top: set-vw(46, 1920);
+        left: set-vw(678, 1920);
+        z-index: 2;
+        color: #c7b299;
+
+        font-family: "Jost", sans-serif;
+
+        @include pad {
+            position: relative;
+            top: unset;
+            left: unset;
+        }
+
+        .title {
+            font-size: set-vw(300, 1920);
+            // font-weight: 600;
+            // letter-spacing: 0.05em;
+            line-height: 1;
+            color: #000;
+            @include pad {
+                font-size: set-vw(120, 768);
+            }
+
+            display: none;
+        }
+
+        .txt {
+            position: absolute;
+            top: calc(0% + set-vw(304, 1920));
+            left: set-vw(594, 1920);
+            font-size: set-vw(27, 1920);
+        }
+    }
+
+    &-img {
+        // position: absolute;
+        transform: translateX(set-vw(358, 1920));
+
+        width: set-vw(375, 1920);
+
+        img {
+            aspect-ratio: 375 / 563;
+            object-fit: cover;
+        }
+    }
+
+    &-content {
+        position: absolute;
+        top: set-vw(445, 1920);
+        left: set-vw(813, 1920);
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: set-vw(21, 1920) set-vw(82, 1920);
+            max-height: set-vw(105, 1920);
+        }
+
+        .item {
+            list-style: disc;
+            color: #fff;
+            @include content;
+            font-size: set-vw(16, 1920);
+            line-height: 1;
+        }
+    }
+}

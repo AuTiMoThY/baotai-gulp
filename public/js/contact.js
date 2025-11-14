@@ -11,8 +11,8 @@ window.onload = function () {
         }
     });
 
-    pageBanner.bannerAni(".contact-body");
-    pageTitle.titleAni(".contact-body");
+    ucyCore.pageBanner.bannerAni(".contact-body");
+    ucyCore.pageTitle.titleAni(".contact-body");
     
     // 等待字體載入完成後再執行 SplitText
     document.fonts.ready.then(() => {

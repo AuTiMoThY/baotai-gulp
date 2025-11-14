@@ -5,6 +5,10 @@
 
 import { pageBanner } from "./modules/pageBanner";
 import { pageTitle } from "./modules/pageTitle";
+import { isMobile } from "./modules/common/isMobile";
 
-window.pageBanner = pageBanner;
-window.pageTitle = pageTitle;
+window.ucyCore = {
+    isMobile,
+    pageBanner,
+    pageTitle,
+}
