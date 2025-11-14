@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gulp --dev",
     "generate": "gulp --prod",
-    "create": "node scripts/create-cut.js",
+    "create": "node scripts/create-page.js",
     "insert": "node scripts/insert-code.js",
     "merge-js": "gulp mergeSrlJS",
     "merge-css": "gulp mergeSrlCSS"

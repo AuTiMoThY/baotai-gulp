@@ -71,27 +71,27 @@ window.onload = function () {
 
         splitTxtsCreate(".contact-info-text .txt.show-mobile", tl);
 
-        tl.addLabel("qrcode");
-        tl.from(
-            ".qrcode-col",
-            {
-                y: 50,
-                opacity: 0,
-                duration: 1.5,
-                stagger: 0.25
-            },
-            ">-1"
-        );
+        // tl.addLabel("qrcode");
+        // tl.from(
+        //     ".qrcode-col",
+        //     {
+        //         y: 50,
+        //         opacity: 0,
+        //         duration: 1.5,
+        //         stagger: 0.25
+        //     },
+        //     ">-1"
+        // );
 
-        tl.addLabel("photo");
-        tl.from(
-            ".contact-photo-img img",
-            {
-                y: 100,
-                opacity: 0,
-                duration: 3
-            },
-            "title"
-        );
+        // tl.addLabel("photo");
+        // tl.from(
+        //     ".contact-photo-img img",
+        //     {
+        //         y: 100,
+        //         opacity: 0,
+        //         duration: 3
+        //     },
+        //     "title"
+        // );
     });
 };

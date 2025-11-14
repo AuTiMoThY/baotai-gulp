@@ -47,40 +47,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .title {
-        margin-bottom: set-vw(20, 1920);
-        font-size: set-vw(26, 1920);
-        color: #fff;
-        font-family: "Noto Serif TC", serif;
-        letter-spacing: 0.08em;
-        font-weight: 600;
-        @include pad {
-            margin-bottom: set-vw(18, 768);
-            font-size: 4.7vw;
-        }
-    }
-
-    .line {
-        width: 1px;
-        height: set-vw(26, 1920);
-        background-color: #C3B09D;
-        margin-bottom: set-vw(20, 1920);
-        
-        @include pad {
-            height: set-vw(26, 768);
-            margin-bottom: set-vw(13, 1920);
-        }
-    }
-
-    .txt {
-        font-size: set-vw(18, 1920);
-        text-align: center;
-        line-height: 2;
-        @include pad {
-            font-size: 3.9vw;
-        }
-    }
 }
 
 

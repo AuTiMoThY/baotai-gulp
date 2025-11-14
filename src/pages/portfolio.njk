@@ -1,0 +1,223 @@
+{% set portfolio_list = [
+    {
+        year: 2025,
+        img_l: [],
+        img_r: [
+            {
+                src: "assets/images/portfolio/2025-r-1.jpg",
+                label: "寶台未來"
+            }
+        ]
+    },
+    {
+        year: 2024,
+        img_l: [
+            {
+                src: "assets/images/portfolio/2024-l-1.jpg",
+                label: "傳家寶33"
+            }
+        ],
+        img_r: [
+            {
+                src: "assets/images/portfolio/2024-r-1.jpg",
+                label: "寶台A17"
+            },
+            {
+                src: "assets/images/portfolio/2024-r-2.jpg",
+                label: "幸福公園8"
+            }
+        ]
+    },
+    {
+        year: 2023,
+        img_l: [
+            {
+                src: "assets/images/portfolio/2023-l-1.jpg",
+                label: "傳家寶30"
+            },
+            {
+                src: "assets/images/portfolio/2023-l-2.jpg",
+                label: "傳家寶32"
+            }
+        ],
+        img_r: [
+            {
+                src: "assets/images/portfolio/2023-r-1.jpg",
+                label: "幸福公園7"
+            }
+        ]
+    },
+    {
+        year: 2022,
+        img_l: [
+            {
+                src: "assets/images/portfolio/2022-l-1.jpg",
+                label: "傳家寶31"
+            }
+        ],
+        img_r: [
+            {
+                src: "assets/images/portfolio/2022-r-1.jpg",
+                label: "寶台雙子星"
+            }
+        ]
+    },
+    {
+        year: 2020,
+        img_l: [
+            {
+                src: "assets/images/portfolio/2020-l-1.jpg",
+                label: "傳家寶27"
+            },
+            {
+                src: "assets/images/portfolio/2020-l-2.jpg",
+                label: "傳家寶29"
+            },
+            {
+                src: "assets/images/portfolio/2020-l-3.jpg",
+                label: "盧卡小鎮2"
+            }
+        ],
+        img_r: [
+            {
+                src: "assets/images/portfolio/2020-r-1.jpg",
+                label: "幸福公園5"
+            },
+            {
+                src: "assets/images/portfolio/2020-r-2.jpg",
+                label: "幸福公園6"
+            }
+        ]
+    },
+    {
+        year: 2019,
+        img_l: [
+            {
+                src: "assets/images/portfolio/2019-l-1.jpg",
+                label: "傳家寶26"
+            },
+            {
+                src: "assets/images/portfolio/2019-l-2.jpg",
+                label: "傳家寶28"
+            },
+            {
+                src: "assets/images/portfolio/2019-l-3.jpg",
+                label: "托斯卡尼5"
+            },
+            {
+                src: "assets/images/portfolio/2019-l-4.jpg",
+                label: "盧卡小鎮"
+            },
+            {
+                src: "assets/images/portfolio/2019-l-5.jpg",
+                label: "寶台總部d"
+            }
+        ],
+        img_r: []
+    }
+] %}
+
+{% macro timelineItem(year, img_l, img_r) %}
+<li class="portfolio-timeline-item">
+
+    <!-- 桌機版：在這裡顯示左半部圖片，手機版隱藏 -->
+    <div class="img-list img-list-l show-desktop">
+        {% if img_l.length > 0 %}
+        {% for img in img_l %}
+        <a href="javascript:;" class="img-item">
+            <figure class="img-figure">
+                <div class="img">
+                    <img src="[[ img.src ]]" alt="[[ img.label ]]" />
+                </div>
+                <figcaption class="img-label">[[ img.label ]]</figcaption>
+            </figure>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="year">[[ year ]]</div>
+    <div class="img-list img-list-r">
+        {% if img_r.length > 0 %}
+        {% for img in img_r %}
+        <a href="javascript:;" class="img-item">
+            <figure class="img-figure">
+                <div class="img">
+                    <img src="[[ img.src ]]" alt="[[ img.label ]]" />
+                </div>
+                <figcaption class="img-label">[[ img.label ]]</figcaption>
+            </figure>
+        </a>
+        {% endfor %}
+        {% endif %}
+        <!-- 手機版：在這裡顯示左半部圖片 -->
+        {% if img_l.length > 0 %}
+        {% for img in img_l %}
+        <a href="javascript:;" class="img-item show-mobile">
+            <figure class="img-figure">
+                <div class="img">
+                    <img src="[[ img.src ]]" alt="[[ img.label ]]" />
+                </div>
+                <figcaption class="img-label">[[ img.label ]]</figcaption>
+            </figure>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </div>
+</li>
+{% endmacro %}
+{% set page_title = "歷年業績" %}
+{% set body_class = "portfolio-body " %}
+{% extends "layout.njk" %}
+{% block content %}
+<main class="main-box page-main page-portfolio">
+    <div class="banner-box page-banner">
+        <div class="img-box">
+            <picture>
+                <source
+                    srcset="assets/images/portfolio/banner-m.jpg"
+                    media="(max-width: 1024px)" />
+                <img src="assets/images/portfolio/banner.jpg" alt="" />
+            </picture>
+        </div>
+    </div>
+
+    <div class="title-box page-title">
+        <div class="top">
+            <div class="line"></div>
+            <div class="zh">歷年業績</div>
+            <div class="line"></div>
+        </div>
+        <div class="bottom">
+            <div class="en">PROJECT PORTFOLIO</div>
+        </div>
+    </div>
+
+    <div class="portfolio-wrap">
+        <div class="portfolio-hd summary-block">
+            <div class="title">一磚一瓦，承載三代信任</div>
+            <div class="line"></div>
+            <div class="txt">
+                寶台建設機構自創立以來，穩紮穩打完成眾多建案，<br />
+                每一個作品都承載著家族的用心與時代的記憶。<br />
+                我們以誠信與責任，築起三代住戶共同的安心選擇，<br />
+                歷年成果不只是建築紀錄，更是守護家的承諾，<br />
+                見證寶台始終如一的堅持與實力。
+            </div>
+        </div>
+
+        <div class="portfolio-bd">
+            <div class="portfolio-timeline-line"></div>
+
+            <ul class="portfolio-timeline">
+                {% for item in portfolio_list %}
+                [[ timelineItem(item.year, item.img_l, item.img_r) ]]
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %} {% block page_script %}
+<script src="assets/js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="js/portfolio.js"></script>
+{% endblock %}
