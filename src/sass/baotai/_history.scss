@@ -3,7 +3,7 @@
 @use "../abstracts/functions/set-vw" as *;
 
 .page-history {
-    padding-bottom: set-vw(220, 1920);
+    padding-bottom: set-vw(220 - 80, 1920);
     @include pad {
         padding-bottom: set-vw(186, 768);
     }
@@ -25,6 +25,10 @@
         img {
             aspect-ratio: 1622 / 540;
             object-fit: cover;
+
+            @include pad {
+                aspect-ratio: 685 / 451;
+            }
         }
     }
 }
@@ -37,7 +41,10 @@
 }
 
 .history-content {
+    padding-bottom: set-vw(80, 1920);
+    overflow: hidden;
     @include pad {
+        padding-bottom: 0;
         padding-left: set-vw(45, 768);
         padding-right: set-vw(45, 768);
     }
@@ -66,6 +73,7 @@
         position: absolute;
         top: set-vw(27, 1920);
         right: 0;
+        z-index: 30;
 
         width: fit-content;
         height: set-vw(607, 1920);
@@ -162,17 +170,20 @@
 
     &-nav {
         @include pad {
-            width: max(set-vw(35, 768), 20px);
-            height: max(set-vw(35, 768), 20px);
+            width: max(set-vw(35, 768), 35px);
+            height: max(set-vw(35, 768), 35px);
             &.swiper-button-prev {
+                left: 0;
                 img {
                     transform: scaleX(-1);
                 }
             }
+            &.swiper-button-next {
+                right: 0;
+            }
             &.swiper-button-prev, &.swiper-button-next {
-                top: set-vw(751, 768);
+                top: set-vw(730, 768);
                 margin-top: 0;
-
             }
         }
     }
@@ -216,6 +227,7 @@
         position: absolute;
         width: 100%;
         text-align: center;
+        will-change: transform;
     }
 
     .digit {

@@ -9,14 +9,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cormorant+Infant:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@100;300;500;700&family=Noto+Serif+TC:wght@500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cormorant+Infant:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@100;300;500;700&family=Noto+Serif+TC:wght@500;700&display=swap"
             rel="stylesheet" />
-
         <link rel="stylesheet" href="assets/css/hamburgers.css" />
         <link rel="stylesheet" href="assets/css/app.css?1" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.css" />
-
         <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body class="history-body">
@@ -27,13 +25,11 @@
                 <a class="logo-box" href="index.html">
                     <img src="assets/images/index/logo.webp" alt="" srcset="" />
                 </a>
-
                 <button class="hamburger hamburger--spin pad" type="button">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
                     </span>
                 </button>
-
                 <div class="link-box">
                     <div class="l_div">
                         <a class="link" href="javascript:;">
@@ -41,30 +37,37 @@
                             <div class="zh">關於寶台</div>
                         </a>
                         <ul class="sub_link">
-                            <li><a href="">經營理念</a></li>
-                            <li><a href="history.html">大事年表</a></li>
+                            <li>
+                                <a href="">經營理念</a>
+                            </li>
+                            <li>
+                                <a href="history.html">大事年表</a>
+                            </li>
                         </ul>
                     </div>
-
                     <div class="l_div">
                         <a class="link" href="javascript:;">
                             <div class="en">PROJECT</div>
                             <div class="zh">建案資訊</div>
                         </a>
                         <ul class="sub_link">
-                            <li><a href="project.html">新案預告</a></li>
-                            <li><a href="project.html">熱銷建案</a></li>
-                            <li><a href="">推案地圖</a></li>
+                            <li>
+                                <a href="preview.html">新案預告</a>
+                            </li>
+                            <li>
+                                <a href="project.html">熱銷建案</a>
+                            </li>
+                            <li>
+                                <a href="">推案地圖</a>
+                            </li>
                         </ul>
                     </div>
-
                     <div class="l_div">
                         <a class="link" href="portfolio.html">
                             <div class="en">PORTFOLIO</div>
                             <div class="zh">經典業績</div>
                         </a>
                     </div>
-
                     <div class="l_div">
                         <a class="link" href="work_progress.html">
                             <div class="en">PROGRESS</div>
@@ -108,12 +111,16 @@
                 </section>
                 <section class="history-photo">
                     <div class="history-photo-img">
-                        <img src="assets/images/history/photo.jpg" alt="" />
+                        <picture>
+                            <source srcset="assets/images/history/photo-m.jpg" media="(max-width: 1024px)" />
+                            <img src="assets/images/history/photo.jpg" alt="" />
+                        </picture>
                     </div>
                 </section>
                 <section class="history-summary summary-block">
                     <b class="title">匠心歷程，承續初心</b>
                     <div class="line"></div>
+                    <!-- 電腦版 -->
                     <p class="txt show-desktop">
                         寶台建設機構自創立以來，
                         <br />
@@ -125,6 +132,7 @@
                         <br />
                         未來將持續以初心為本，專注品質與創新，為世代築起長遠幸福。
                     </p>
+                    <!-- 手機版 -->
                     <p class="txt show-mobile">
                         寶台建設機構自創立以來，
                         <br />
@@ -152,6 +160,7 @@
                             <div class="digit-container" id="digit-3"></div>
                         </div>
                         <div class="swiper-wrapper">
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2003">
                                 <div class="history-slide-title">
                                     <span class="title">2003</span>
@@ -175,6 +184,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2004">
                                 <div class="history-slide-title">
                                     <span class="title">2004</span>
@@ -192,6 +202,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2005">
                                 <div class="history-slide-title">
                                     <span class="title">2005</span>
@@ -215,6 +226,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2006">
                                 <div class="history-slide-title">
                                     <span class="title">2006</span>
@@ -232,6 +244,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2007">
                                 <div class="history-slide-title">
                                     <span class="title">2007</span>
@@ -255,6 +268,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2008">
                                 <div class="history-slide-title">
                                     <span class="title">2008</span>
@@ -272,6 +286,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2009">
                                 <div class="history-slide-title">
                                     <span class="title">2009</span>
@@ -295,6 +310,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2010">
                                 <div class="history-slide-title">
                                     <span class="title">2010</span>
@@ -312,6 +328,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2011">
                                 <div class="history-slide-title">
                                     <span class="title">2011</span>
@@ -335,6 +352,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2012">
                                 <div class="history-slide-title">
                                     <span class="title">2012</span>
@@ -352,6 +370,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2013">
                                 <div class="history-slide-title">
                                     <span class="title">2013</span>
@@ -375,6 +394,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2014">
                                 <div class="history-slide-title">
                                     <span class="title">2014</span>
@@ -392,6 +412,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2015">
                                 <div class="history-slide-title">
                                     <span class="title">2015</span>
@@ -415,6 +436,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2016">
                                 <div class="history-slide-title">
                                     <span class="title">2016</span>
@@ -432,6 +454,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2017">
                                 <div class="history-slide-title">
                                     <span class="title">2017</span>
@@ -455,6 +478,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2018">
                                 <div class="history-slide-title">
                                     <span class="title">2018</span>
@@ -472,6 +496,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2019">
                                 <div class="history-slide-title">
                                     <span class="title">2019</span>
@@ -495,6 +520,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2020">
                                 <div class="history-slide-title">
                                     <span class="title">2020</span>
@@ -512,6 +538,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2021">
                                 <div class="history-slide-title">
                                     <span class="title">2021</span>
@@ -535,6 +562,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2022">
                                 <div class="history-slide-title">
                                     <span class="title">2022</span>
@@ -552,6 +580,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2023">
                                 <div class="history-slide-title">
                                     <span class="title">2023</span>
@@ -575,6 +604,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2024">
                                 <div class="history-slide-title">
                                     <span class="title">2024</span>
@@ -592,6 +622,7 @@
                                 </div>
                             </div>
 
+                            <!-- .swiper-slide 要給 data-year -->
                             <div class="swiper-slide" data-year="2025">
                                 <div class="history-slide-title">
                                     <span class="title">2025</span>
@@ -616,7 +647,7 @@
                             </div>
                         </div>
                         <div class="history-swiper-pagination" ss-container>
-                            <div class="swiper-pagination" data-start="2003"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="history-swiper-nav swiper-button-prev show-mobile">
                             <img src="assets/images/icons/arrow.svg" alt="" />
@@ -630,9 +661,9 @@
         </div>
         <footer class="footer">
             <div class="footer-box">
-                <div class="copyright">Copyright &copy; 2025寶台建設機構股份有限公司版權所有</div>
+                <div class="copyright">Copyright&copy;2025寶台建設機構股份有限公司版權所有</div>
                 <div class="address">地址：桃園市龍潭區渴望二路99巷98號2樓</div>
-                <div class="phone">TEL： 03-407-2003</div>
+                <div class="phone">TEL：03-407-2003</div>
             </div>
         </footer>
         <!-- /.body_wrap  END  !!-->
@@ -646,8 +677,8 @@
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.min.js"></script>
-
         <script src="assets/js/main.js"></script>
+
         <script src="js/main.js"></script>
         <script src="js/history.js"></script>
     </body>

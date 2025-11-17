@@ -3,15 +3,8 @@ window.onload = function () {
     const vh = window.innerHeight; // 視窗高度
     gsap.registerPlugin(ScrollTrigger, SplitText)
 
-    window.addEventListener('scroll', function () {
-        const header = document.querySelector('.header');
+    ucyCore.headerScroll.init();
 
-        if (window.scrollY > 50) {
-            header.classList.add('transparent');
-        } else {
-            header.classList.remove('transparent');
-        }
-    });
     let slidesView = window.innerWidth <= 1440 ? 2.5 : 2;
 
     const swiper = new Swiper(".mySwiper", {

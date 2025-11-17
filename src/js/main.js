@@ -6,9 +6,11 @@
 import { pageBanner } from "./modules/pageBanner";
 import { pageTitle } from "./modules/pageTitle";
 import { isMobile } from "./modules/common/isMobile";
+import { headerScroll } from "./modules/common/headerScroll";
 
 window.ucyCore = {
     isMobile,
     pageBanner,
     pageTitle,
+    headerScroll,
 }

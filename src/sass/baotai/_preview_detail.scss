@@ -1,0 +1,173 @@
+@use "../../../public/assets/css/utils/variables" as *;
+@use "../../../public/assets/css/utils/mixin" as *;
+@use "../abstracts/functions/set-vw" as *;
+@use "../abstracts/mixin/element_effect" as *;
+
+.page-preview_detail {
+    padding-top: set-vw(220, 1920);
+    padding-bottom: set-vw(266, 1920);
+
+    @include pad {
+        padding-top: set-vw(160, 768);
+        padding-bottom: set-vw(140, 768);
+    }
+
+    // Swiper共用上下頁按鈕樣式
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after,
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        content: "";
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        background-color: $color-btn;
+        border-radius: 100%;
+        width: 2.1vw;
+        height: 2vw;
+
+        @include pad {
+            width: 5.1vw;
+            height: 5vw;
+        }
+
+        @include mobile {
+            width: 7.1vw;
+            height: 7vw;
+        }
+
+        img {
+            width: 60%;
+        }
+    }
+
+    .form_box {
+        width: set-vw(888, 1920);
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            margin-bottom: 5%;
+        }
+
+        .flex_box {
+            display: flex;
+            gap: 7%;
+
+            @include pad {
+                flex-direction: column;
+            }
+
+            .form {
+                flex: 1;
+
+                @include pad {
+                    padding: 0;
+                    padding-top: 5%;
+                }
+
+                .input_one {
+                    border-bottom: 1px solid #ffffff4f;
+                    padding-bottom: 0.85vw;
+                    margin-bottom: 0.85vw;
+                    display: flex;
+
+                    @include pad {
+                        padding-bottom: 2vw;
+                        margin-bottom: 2vw;
+                    }
+
+                    label {
+                        flex: 1 1 15%;
+
+                        @include mobile {
+                            flex: 1 1 22%;
+                        }
+                    }
+
+                    input,
+                    textarea {
+                        flex: 1 1 70%;
+                        width: 100%;
+                    }
+                }
+
+                .submit_box {
+                    text-align: center;
+                    margin-top: 3vw;
+
+                    #submit_btn {
+                        font-family: "Noto Serif TC";
+                        color: $color-subtext;
+                        font-weight: 500;
+                        font-size: 0.9vw;
+                        letter-spacing: 0.1em;
+                        border: 1px solid;
+                        border-radius: 30px;
+                        padding: 0.3vw 4vw;
+                        display: inline-block;
+
+                        @include pad {
+                            font-size: 4vw;
+                            padding: 1.5vw 10vw;
+                            line-height: 1;
+                        }
+                    }
+
+                    @include element-effect(false, true);
+                }
+            }
+        }
+    }
+}
+
+
+.preview_detail {
+    &-hd {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .title {
+            margin-bottom: set-vw(60, 1920);
+            font-size: set-vw(36, 1920);
+            // text-align: center;
+
+            @include pad {
+                margin-bottom: set-vw(44, 768);
+                font-size: set-vw(32, 768);
+            }
+        }
+
+        .img {
+            width: set-vw(994, 1920);
+            margin-bottom: set-vw(57, 1920);
+
+            @include pad {
+                margin-bottom: set-vw(46, 768);
+            }
+
+            img {
+                aspect-ratio: 994 / 559;
+                object-fit: cover;
+
+                @include pad {
+                    aspect-ratio: 686 / 433;
+                }
+            }
+        }
+
+        .btn-back {
+            // display: block;
+            // width: fit-content;
+            // margin: 0 auto;
+        }
+    }
+
+    &-form {
+        padding-top: set-vw(94, 1920);
+
+        @include pad {
+            padding-top: set-vw(57, 768);
+        }
+    }
+}

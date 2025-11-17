@@ -21,13 +21,17 @@ const njkPath = path.join(projectRoot, 'src', 'pages', `${pageName}.njk`);
 const scssPath = path.join(projectRoot, 'src', 'sass', 'baotai', `_${pageName}.scss`);
 
 // njk 模板內容
-const njkTemplate = `{% set page_title = "" %} {% set body_class = "${pageName}-body " %} {%
-extends "layout.njk" %} {% block content %}
-<main class="main-box page-main page-${pageName}"></main>
-{% endblock %} {% block page_script %}
-<script src="assets/js/main.js"></script>
-<script src="js/main.js"></script>
-<script src="js/${pageName}.js"></script>
+const njkTemplate = `{% set page_title = "" %}
+{% set body_class = "${pageName}-body " %}
+{% extends "layout.njk" %}
+{% block content %}
+<main class="main-box page-main page-${pageName}">
+
+</main>
+{% endblock %}
+{% block page_script %}
+<script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+<script src="js/${pageName}.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}
 
 `;

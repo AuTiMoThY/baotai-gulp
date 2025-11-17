@@ -379,7 +379,6 @@
 </div>
 
 {% endblock %} {% block page_script %}
-<script src="assets/js/main.js"></script>
-<script src="js/main.js"></script>
-<script src="js/index.js"></script>
+<script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+<script src="js/index.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}

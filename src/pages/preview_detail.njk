@@ -1,0 +1,55 @@
+{% set page_title = "" %}
+{% set body_class = "preview_detail-body " %}
+{% extends "layout.njk" %}
+{% block content %}
+    <main class="main-box page-main page-preview_detail">
+        <section class="preview_detail-hd">
+            <h2 class="title">桃園大竹案</h2>
+            <div class="img">
+                <img src="assets/images/preview/img-1.jpg" alt="" srcset="">
+            </div>
+            <a href="preview.html" class="btn-back">
+                <div class="btn-more">
+                    <div class="more">
+                        <div>BACK</div>
+                        <div class="arrow">
+                            <img src="[[PROD_PATH]]assets/images/index/next.svg" alt="next" srcset="" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </section>
+        <section class="preview_detail-form">
+            <div class="form_box">
+                <h2>預約賞屋</h2>
+                <div class="flex_box">
+                    <div class="form">
+                        <div class="input_one">
+                            <label for="ca_name">姓　　名</label>
+                            <input type="text" name="ca_name" id="ca_name">
+                        </div>
+                        <div class="input_one">
+                            <label for="ca_phone">電　　話</label>
+                            <input type="text" name="ca_phone" id="ca_phone">
+                        </div>
+                        <div class="input_one">
+                            <label for="ca_mail">信　　箱</label>
+                            <input type="text" name="ca_mail" id="ca_mail">
+                        </div>
+                        <div class="input_one">
+                            <label for="ca_msg">留　　言</label>
+                            <textarea name="ca_msg" id="ca_msg" rows="5"></textarea>
+                        </div>
+                        <div class="submit_box">
+                            <a id="submit_btn" href="javascript:;">送出</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block page_script %}
+    <script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+    {# <script src="js/preview_detail.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script> #}
+{% endblock %}

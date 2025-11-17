@@ -1,55 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>寶台青耘｜寶台建設機構</title>
-    <link rel="icon" href="assets/images/ico.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cormorant+Infant:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@100;300;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.css">
-    <link rel="stylesheet" href="js/fancybox3/jquery.fancybox.min.css">
-
-</head>
-
-<body class="projectInner-body">
-    <header class="header">
-        <div class="header-box">
-            <a class="logo-box" href="index.html">
-                <img src="assets/images/index/logo.webp" alt="" srcset="">
-            </a>
-            <div class="link-box">
-                <a class="link" href="">
-                    <div class="en">ABOUT</div>
-                    <div class="zh">關於寶台</div>
-                </a>
-                <a class="link active" href="project.html">
-                    <div class="en">PROJECT</div>
-                    <div class="zh">建案資訊</div>
-                </a>
-                <a class="link" href="">
-                    <div class="en">PORTFOLIO</div>
-                    <div class="zh">經典業績</div>
-                </a>
-                <a class="link" href="work_progress.html">
-                    <div class="en">PROGRESS</div>
-                    <div class="zh">工程進度</div>
-                </a>
-                <a class="link" href="news.html">
-                    <div class="en">NEWS</div>
-                    <div class="zh">最新消息</div>
-                </a>
-                <a class="link" href="">
-                    <div class="en">SERVICE</div>
-                    <div class="zh">客戶服務</div>
-                </a>
-            </div>
-        </div>
-    </header>
+{% set page_title = "寶台青耘" %}
+{% set body_class = "projectInner-body " %}
+{% extends "layout.njk" %}
+{% block head_script %}
+<!-- ===================================================== -->
+<!-- 這一頁有使用到 fancybox3 -->
+<link rel="stylesheet" href="js/fancybox3/jquery.fancybox.min.css">
+<!-- ===================================================== -->
+{% endblock %}
+{% block content %}
 
     <div class="banner-box">
         <div class="img-box">
@@ -169,36 +127,23 @@
 
     </div>
 
-
-
-    <footer class="footer">
-        <div class="footer-box">
-            <div class="copyright">Copyright &copy; 2025寶台建設機構機構股份有限公司版權所有</div>
-            <div class="address">地址：桃園市龍潭區渴望二路99巷98號2樓</div>
-            <div class="phone">TEL： 03-407-2003</div>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+{% endblock %}
+{% block page_script %}
+    <script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+    <!-- ===================================================== -->
+    <!-- 這一頁有使用到 fancybox3 -->
     <script src="js/fancybox3/jquery.fancybox.min.js"></script>
-    <!-- <script src="js/project.js"></script> -->
-
+    <!-- ===================================================== -->
     <script>
-         var mySwiper = new Swiper ('.swiper', {
-                loop: true, // 循环模式选项
-                speed:1500,
-                // 如果需要前进后退按钮
-                navigation: {
+        var mySwiper = new Swiper ('.swiper', {
+            loop: true, // 循环模式选项
+            speed:1500,
+            // 如果需要前进后退按钮
+            navigation: {
+                addIcons: false,
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
-                },
-         })        
-    </script>
-</body>
-
-</html>
+            },
+        })        
+   </script>
+{% endblock %}

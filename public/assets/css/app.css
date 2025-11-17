@@ -661,7 +661,7 @@ header.transparent {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
     width: 100%;
-    font-size: 2.2vw;
+    font-size: 3vw;
   }
 }
 .footer .footer-box div {

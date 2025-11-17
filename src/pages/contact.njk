@@ -79,7 +79,6 @@ extends "layout.njk" %} {% block content %}
     </div>
 </main>
 {% endblock %} {% block page_script %}
-<script src="assets/js/main.js"></script>
-<script src="js/main.js"></script>
-<script src="js/contact.js"></script>
+<script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+<script src="js/contact.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}

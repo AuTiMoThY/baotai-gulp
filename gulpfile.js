@@ -168,7 +168,7 @@ function nunjucksTask() {
                         IMG_PATH: isProduction ? `${config.serverUrl}assets/images/` : `${assetsPath}/images/`,
                         CSS_PATH: isProduction ? `${config.serverUrl}assets/css/` : `${assetsPath}/css/`,
                         JS_PATH: isProduction ? `${config.serverUrl}assets/js/` : `${assetsPath}/js/`,
-                        VERSION: isProduction ? version : "",
+                        VERSION: isProduction ? getCurrentVersion() : "",
                         PROD_PATH: isProduction ? config.serverUrl : "",
                     }
                 })

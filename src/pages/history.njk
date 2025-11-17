@@ -225,6 +225,7 @@
 %}
 
 {% macro historyItem(year, img, content) %}
+<!-- .swiper-slide 要給 data-year -->
 <div class="swiper-slide" data-year="[[ year ]]">
     <div class="history-slide-title">
         <span class="title">[[ year ]]</span>
@@ -266,12 +267,17 @@
         </section>
         <section class="history-photo">
             <div class="history-photo-img">
-                <img src="assets/images/history/photo.jpg" alt="" />
+                <picture>
+                    <source srcset="assets/images/history/photo-m.jpg"
+                            media="(max-width: 1024px)" />
+                    <img src="assets/images/history/photo.jpg" alt="" />
+                </picture>
             </div>
         </section>
         <section class="history-summary summary-block">
             <b class="title">匠心歷程，承續初心</b>
             <div class="line"></div>
+            <!-- 電腦版 -->
             <p class="txt show-desktop">
                 寶台建設機構自創立以來，
                 <br />
@@ -283,6 +289,7 @@
                 <br />
                 未來將持續以初心為本，專注品質與創新，為世代築起長遠幸福。
             </p>
+            <!-- 手機版 -->
             <p class="txt show-mobile">
                 寶台建設機構自創立以來，
                 <br />
@@ -315,7 +322,7 @@
                     {% endfor %}
                 </div>
                 <div class="history-swiper-pagination" ss-container>
-                    <div class="swiper-pagination" data-start="2003"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
                 <div class="history-swiper-nav swiper-button-prev show-mobile">
                     <img src="assets/images/icons/arrow.svg" alt="" />
@@ -328,7 +335,6 @@
     </main>
 {% endblock %}
 {% block page_script %}
-    <script src="assets/js/main.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/history.js"></script>
+    <script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+    <script src="js/history.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}

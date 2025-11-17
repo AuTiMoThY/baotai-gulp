@@ -1,16 +1,14 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    window.addEventListener("scroll", function () {
-        const header = document.querySelector(".header");
+    ucyCore.headerScroll.init();
+    ucyCore.pageBanner.bannerAni(".history-body");
 
-        if (window.scrollY > 50) {
-            header.classList.add("transparent");
-        } else {
-            header.classList.remove("transparent");
-        }
-    });
-
+    const startYear = Number(
+        document.querySelectorAll(".history-swiper .swiper-slide")[0].dataset
+            .year
+    );
+    console.log(startYear);
     let currentYear = 2003;
     const initDigits = () => {
         for (let i = 0; i < 4; i++) {
@@ -64,16 +62,16 @@ window.onload = function () {
 
     const swiper = new Swiper(".history-swiper", {
         mousewheel: false,
-        allowTouchMove: false,
+        allowTouchMove: ucyCore.isMobile() ? true : false,
         speed: 1000,
         effect: "creative",
         creativeEffect: {
             prev: {
-                translate: [0, 0, 400],
+                translate: [ucyCore.isMobile() ? -100 : 0, 0, 0],
                 opacity: 0
             },
             next: {
-                translate: [0, 0, -200],
+                translate: [ucyCore.isMobile() ? 100 : 0, 0, 0],
                 opacity: 0
             }
         },
@@ -87,14 +85,10 @@ window.onload = function () {
             clickable: true,
             renderBullet: function (index, className) {
                 // console.log(this);
-                const start = Number(this.pagination.el.dataset.start);
-                return `<span class="${className}" data-year="${index + start}">${index + start}</span>`;
+                return `<span class="${className}" data-year="${index + startYear}">${index + startYear}</span>`;
             }
         },
         on: {
-            // init: function (swiper) {
-            //     SimpleScrollbar.initEl(swiper.pagination.el);
-            // },
             slideChange: function (swiper) {
                 currentYear = Number(
                     swiper.slides[swiper.activeIndex].dataset.year
@@ -102,14 +96,6 @@ window.onload = function () {
                 scrollToYear(currentYear);
 
                 const activeSlide = swiper.slides[swiper.activeIndex];
-                const prevSlide = swiper.slides[swiper.previousIndex];
-
-                // console.log(activeSlide, prevSlide);
-
-                const tl = gsap.timeline({
-                    duration: 1,
-                    ease: "power2.out"
-                });
 
                 gsap.fromTo(
                     [
@@ -117,34 +103,76 @@ window.onload = function () {
                         activeSlide.querySelector(".history-slide-content")
                     ],
                     {
-                        opacity: 0
+                        opacity: 0,
+                        duration: 1
                     },
                     {
                         opacity: 1,
-                        stagger: 1
                     }
                 );
             }
-            // slideChangeTransitionEnd: function (swiper) {
-            //     console.log("slideChangeTransitionEnd", swiper);
-
-            //     const activeSlide = swiper.slides[swiper.activeIndex];
-            //     const prevSlide = swiper.slides[swiper.previousIndex];
-
-            //     console.log(activeSlide, prevSlide);
-
-            //     const tl = gsap.timeline({
-            //         duration: 1,
-            //         ease: "power2.out"
-            //     });
-
-            //     gsap.to(
-            //         [prevSlide.querySelector(".history-slide-img"), prevSlide.querySelector(".history-slide-content")],
-            //         {
-            //             opacity: 0
-            //         }
-            //     );
-            // },
         }
     });
+
+    gsap.set(".history-summary .line", { scaleY: 0 });
+    gsap.set(".history-summary .txt", { opacity: 0, y: 80 });
+    gsap.set(".history-summary .title", { opacity: 0, y: 80 });
+    gsap.set(".history-photo picture", { opacity: 0 });
+
+    document.fonts.ready.then(() => {
+        ucyCore.pageTitle.titleAni(".history-body", () => {
+            const photoTl = gsap.timeline({
+                scrollTrigger: {
+                    // markers: true,
+                    trigger: ".history-photo",
+                    start: "top 75%",
+                    end: "bottom 75%"
+                }
+            });
+            photoTl.to(".history-photo picture", { opacity: 1, duration: 1.5 });
+
+            const summaryTl = gsap.timeline({
+                scrollTrigger: {
+                    // markers: true,
+                    trigger: ".history-summary",
+                    start: "-30% 75%",
+                    end: "bottom 75%"
+                }
+            });
+            summaryTl.to(".history-summary .title", {
+                opacity: 1,
+                y: 0,
+                duration: 1
+            });
+            summaryTl.to(
+                ".history-summary .line",
+                { scaleY: 1, opacity: 1, duration: 1 },
+                "<+=0.3"
+            );
+            summaryTl.to(
+                ".history-summary .txt",
+                { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
+                "<+=0.3"
+            );
+        });
+    });
+
+    const tl = gsap.timeline({
+        defaults: { duration: 1.5 },
+        scrollTrigger: {
+            // markers: true,
+            trigger: ".history-swiper",
+            start: "top 75%",
+            end: "top 75%"
+        }
+    });
+
+    tl.from(".history-swiper-pagination", {
+        opacity: 0,
+        x: 100,
+        duration: 1.5
+    });
+    tl.from(".history-slide-img", { opacity: 0 }, "<+0.3");
+    tl.from(".history-swiper .year-box", { opacity: 0 }, "<+0.3");
+    tl.from(".history-slide-content", { opacity: 0 }, "<+0.3");
 };
