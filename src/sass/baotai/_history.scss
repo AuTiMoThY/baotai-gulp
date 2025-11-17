@@ -36,29 +36,82 @@
     }
 }
 
+.history-content {
+    @include pad {
+        padding-left: set-vw(45, 768);
+        padding-right: set-vw(45, 768);
+    }
+}
+
 .history-swiper {
     overflow: visible;
+    @include pad {
+        padding-top: set-vw(87, 768);
+    }
     .swiper-slide {
         position: relative;
         // aspect-ratio: 1920 / 563;
+        pointer-events: none;
+
+        &.swiper-slide-active {
+            pointer-events: auto;
+        }
 
         @include pad {
             aspect-ratio: unset;
         }
     }
 
-    .swiper-pagination {
+    &-pagination {
+        position: absolute;
         top: set-vw(27, 1920);
         right: 0;
-        bottom: unset;
+
+        width: fit-content;
+        height: set-vw(607, 1920);
+
+        .ss-scroll {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .ss-content {
+            @include pad {
+                width: 100%;
+                scrollbar-width: none;
+            }
+        }
+
+        @include pad {
+            top: 0;
+            right: unset;
+
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .swiper-pagination {
+        position: relative;
+        top: unset;
         left: unset;
+        bottom: unset;
+        right: unset;
 
         display: flex;
         flex-direction: column;
         gap: set-vw(8, 1920);
         width: fit-content;
         height: set-vw(607, 1920);
-        overflow-y: auto;
+        // scrollbar-width: none;
+        // overflow-y: auto;
+
+        @include pad {
+            flex-direction: row;
+            gap: set-vw(36, 768);
+
+            width: 100%;
+            height: auto;
+        }
     }
 
     .swiper-pagination-bullet {
@@ -77,6 +130,11 @@
         transition: all 0.3s ease-in-out;
         cursor: pointer;
 
+        @include pad {
+            flex-direction: column;
+            font-size: set-vw(32, 768);
+        }
+
         &::after {
             content: "";
             display: block;
@@ -84,6 +142,10 @@
             height: 1px;
             background-color: #c7b299;
             opacity: 0;
+
+            @include pad {
+                width: 100%;
+            }
         }
 
         &:hover {
@@ -94,6 +156,23 @@
             opacity: 1;
             &::after {
                 opacity: 1;
+            }
+        }
+    }
+
+    &-nav {
+        @include pad {
+            width: max(set-vw(35, 768), 20px);
+            height: max(set-vw(35, 768), 20px);
+            &.swiper-button-prev {
+                img {
+                    transform: scaleX(-1);
+                }
+            }
+            &.swiper-button-prev, &.swiper-button-next {
+                top: set-vw(751, 768);
+                margin-top: 0;
+
             }
         }
     }
@@ -110,13 +189,27 @@
         justify-content: center;
         margin-bottom: 50px;
         perspective: 1000px;
+        pointer-events: none;
+
+        @include pad {
+            // position: relative;
+            top: set-vw(643, 768);
+            left: 0;
+
+            width: 100%;
+        }
     }
 
     .digit-container {
         position: relative;
         width: set-vw(156, 1920);
-        aspect-ratio: 156 / #{(216 + 2)};
-        // overflow: hidden;
+        aspect-ratio: 156 / #{(216 + 24)};
+        overflow: hidden;
+
+        @include pad {
+            width: set-vw(65, 768);
+            aspect-ratio: 65 / #{(86 + 24)};
+        }
     }
 
     .digit-scroll {
@@ -126,7 +219,8 @@
     }
 
     .digit {
-        height: set-vw(216 + 2, 1920);
+        width: 100%;
+        height: set-vw(216 + 24, 1920);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -134,6 +228,10 @@
         // font-weight: bold;
         font-family: "Jost", sans-serif;
         color: #c7b299;
+
+        @include pad {
+            height: set-vw(86 + 24, 768);
+        }
     }
 }
 
@@ -180,9 +278,17 @@
 
         width: set-vw(375, 1920);
 
+        @include pad {
+            transform: translateX(0);
+            width: set-vw(685, 768);
+        }
+
         img {
             aspect-ratio: 375 / 563;
             object-fit: cover;
+            @include pad {
+                aspect-ratio: 685 / 451;
+            }
         }
     }
 
@@ -191,20 +297,47 @@
         top: set-vw(445, 1920);
         left: set-vw(813, 1920);
 
+        @include pad {
+            position: relative;
+            top: unset;
+            left: unset;
+
+            display: flex;
+            justify-content: center;
+
+            padding-top: set-vw(247, 768);
+        }
+
         .list {
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
             gap: set-vw(21, 1920) set-vw(82, 1920);
             max-height: set-vw(105, 1920);
+
+            @include pad {
+                gap: set-vw(24, 768);
+                max-height: none;
+            }
         }
 
         .item {
             list-style: disc;
+            list-style-position: inside;
             color: #fff;
             @include content;
             font-size: set-vw(16, 1920);
             line-height: 1;
+
+            // &::marker {
+            //     @include pad {
+            //         margin-right: set-vw(16, 768);
+            //     }
+            // }
+
+            @include pad {
+                font-size: set-vw(26, 768);
+            }
         }
     }
 }

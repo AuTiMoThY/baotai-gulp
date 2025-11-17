@@ -37,7 +37,10 @@ window.onload = function () {
         for (let i = 0; i < 4; i++) {
             const targetDigit = parseInt(yearStr[i]);
             const scroll = document.getElementById(`scroll-${i}`);
-            const getDigitHeight = scroll.querySelector(".digit").offsetHeight; // 取得數字的高度
+            const getDigitHeight = scroll
+                .querySelector(".digit")
+                .getBoundingClientRect()
+                .height.toFixed(2); // 取得數字的高度（通常為整數）
 
             // 計算目標位置
             const targetY = -targetDigit * getDigitHeight;
@@ -74,17 +77,24 @@ window.onload = function () {
                 opacity: 0
             }
         },
+        navigation: {
+            addIcons: false,
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
             renderBullet: function (index, className) {
                 // console.log(this);
-
                 const start = Number(this.pagination.el.dataset.start);
                 return `<span class="${className}" data-year="${index + start}">${index + start}</span>`;
             }
         },
         on: {
+            // init: function (swiper) {
+            //     SimpleScrollbar.initEl(swiper.pagination.el);
+            // },
             slideChange: function (swiper) {
                 currentYear = Number(
                     swiper.slides[swiper.activeIndex].dataset.year
@@ -94,7 +104,7 @@ window.onload = function () {
                 const activeSlide = swiper.slides[swiper.activeIndex];
                 const prevSlide = swiper.slides[swiper.previousIndex];
 
-                console.log(activeSlide, prevSlide);
+                // console.log(activeSlide, prevSlide);
 
                 const tl = gsap.timeline({
                     duration: 1,
@@ -102,16 +112,18 @@ window.onload = function () {
                 });
 
                 gsap.fromTo(
-                    [activeSlide.querySelector(".history-slide-img"), activeSlide.querySelector(".history-slide-content")],
+                    [
+                        activeSlide.querySelector(".history-slide-img"),
+                        activeSlide.querySelector(".history-slide-content")
+                    ],
                     {
                         opacity: 0
                     },
                     {
                         opacity: 1,
-                        stagger: 0.5
+                        stagger: 1
                     }
                 );
-
             }
             // slideChangeTransitionEnd: function (swiper) {
             //     console.log("slideChangeTransitionEnd", swiper);

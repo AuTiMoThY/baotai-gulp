@@ -314,11 +314,15 @@
                         [[ historyItem(item.year, item.img, item.content) ]]
                     {% endfor %}
                 </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination" data-start="2003"></div>
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev show-mobile"></div>
-                <div class="swiper-button-next show-mobile"></div>
+                <div class="history-swiper-pagination" ss-container>
+                    <div class="swiper-pagination" data-start="2003"></div>
+                </div>
+                <div class="history-swiper-nav swiper-button-prev show-mobile">
+                    <img src="assets/images/icons/arrow.svg" alt="" />
+                </div>
+                <div class="history-swiper-nav swiper-button-next show-mobile">
+                    <img src="assets/images/icons/arrow.svg" alt="" />
+                </div>
             </div>
         </section>
     </main>

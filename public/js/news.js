@@ -24,11 +24,11 @@ window.onload = function () {
     ucyCore.pageTitle.titleAni(".news-body");
 
     const newsListAni = () => {
-        const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+        // const isMobile = window.matchMedia("(max-width: 1024px)").matches;
         const items = document.querySelectorAll(".news-box .item");
         const itemsArray = Array.from(items);
 
-        if (isMobile) {
+        if (ucyCore.isMobile()) {
             itemsArray.forEach((item, index) => {
                 // 排除第一個 item
                 if (index === 0) {
