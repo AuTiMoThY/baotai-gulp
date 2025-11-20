@@ -1,0 +1,4 @@
+@use "sass:math";
+@function set-lh($fz, $lh) {
+    @return math.div($lh, $fz);
+}

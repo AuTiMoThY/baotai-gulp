@@ -1,7 +1,7 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    ucyCore.headerScroll.init();
+    
     ucyCore.pageBanner.bannerAni(".portfolio-body");
     ucyCore.pageTitle.titleAni(".portfolio-body");
 

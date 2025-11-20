@@ -1,7 +1,7 @@
 export const pageTitle = {
     titleAni(bodyClass, callback) {
         const zhSplit = SplitText.create(
-            `${bodyClass} .main-box .title-box .top .zh`,
+            `${bodyClass} .title-box .top .zh`,
             {
                 type: "chars,words,lines",
                 linesClass: "clip-text"
@@ -9,7 +9,7 @@ export const pageTitle = {
         );
 
         const enSplit = SplitText.create(
-            `${bodyClass} .main-box .title-box .bottom .en`,
+            `${bodyClass} .title-box .bottom .en`,
             {
                 type: "chars,words,lines",
                 linesClass: "clip-text"
@@ -18,7 +18,7 @@ export const pageTitle = {
         let tl = gsap.timeline({
             scrollTrigger: {
                 // markers: true,
-                trigger: `${bodyClass} .main-box .title-box`,
+                trigger: `${bodyClass} .title-box`,
                 start: "top 75%",
                 once: true,
             }
@@ -48,7 +48,7 @@ export const pageTitle = {
             )
 
             .from(
-                `${bodyClass} .main-box .title-box .top .line`,
+                `${bodyClass} .title-box .top .line`,
                 { duration: 1, width: "0", opacity: 0 },
                 "<0.45"
             )

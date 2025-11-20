@@ -43,7 +43,11 @@
 
     .form_box {
         width: set-vw(888, 1920);
-        margin: 0 auto;
+        margin-inline: auto;
+
+        @include pad {
+            width: set-vw(683, 768);
+        }
 
         h2 {
             text-align: center;
@@ -96,8 +100,12 @@
                     text-align: center;
                     margin-top: 3vw;
 
+                    @include pad {
+                        margin-top: set-vw(42, 768);
+                    }
+
                     #submit_btn {
-                        font-family: "Noto Serif TC";
+                        font-family: "Microsoft JhengHei", "微軟正黑體", "Segoe UI", "PingFang TC", sans-serif;
                         color: $color-subtext;
                         font-weight: 500;
                         font-size: 0.9vw;
@@ -108,7 +116,7 @@
                         display: inline-block;
 
                         @include pad {
-                            font-size: 4vw;
+                            font-size: 3.2vw;
                             padding: 1.5vw 10vw;
                             line-height: 1;
                         }
@@ -143,6 +151,7 @@
             margin-bottom: set-vw(57, 1920);
 
             @include pad {
+                width: set-vw(686, 768);
                 margin-bottom: set-vw(46, 768);
             }
 
@@ -159,7 +168,7 @@
         .btn-back {
             // display: block;
             // width: fit-content;
-            // margin: 0 auto;
+            // margin-inline: ;
         }
     }
 

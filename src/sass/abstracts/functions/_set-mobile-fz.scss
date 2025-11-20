@@ -1,0 +1,10 @@
+@use "sass:math";
+
+@function set-mobile-fz($value) {
+    // 線性公式：vw = pt * 0.1238 + 0.2288
+    // 基於線性回歸計算，適用於 24-45pt 範圍
+    $result: $value * 0.1238 + 0.2288;
+    // 四捨五入到小數點第一位
+    $rounded: math.div(math.round($result * 10), 10);
+    @return #{$rounded}vw;
+}

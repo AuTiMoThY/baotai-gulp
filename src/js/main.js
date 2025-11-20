@@ -13,4 +13,14 @@ window.ucyCore = {
     pageBanner,
     pageTitle,
     headerScroll,
-}
+};
+
+window.onload = function () {
+    ucyCore.headerScroll.init();
+};
+
+$('.hamburger').click(function (e) { 
+    e.preventDefault();
+    $(this).toggleClass('is-active');
+    $('.header-box .link-box').toggleClass('active');
+});

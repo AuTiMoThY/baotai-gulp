@@ -1,7 +1,7 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    ucyCore.headerScroll.init();
+    
     ucyCore.pageBanner.bannerAni(".history-body");
 
     const startYear = Number(

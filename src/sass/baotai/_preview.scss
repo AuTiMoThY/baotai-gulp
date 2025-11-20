@@ -21,7 +21,7 @@
             right: 4vw;
             top: 13vw;
 
-            @include mobile {
+            @include pad {
                 display: none;
             }
             .swiper-pagination {
@@ -209,7 +209,7 @@
                     }
                 }
                 .txt {
-                    font-family: "Noto Sans TC", sans-serif;
+                    font-family: "Microsoft JhengHei", "微軟正黑體", "Segoe UI", "PingFang TC", sans-serif;
                     color: #fff;
                     letter-spacing: 0.1em;
                     font-size: $font-17;

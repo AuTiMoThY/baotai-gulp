@@ -25,7 +25,7 @@ const njkTemplate = `{% set page_title = "" %}
 {% set body_class = "${pageName}-body " %}
 {% extends "layout.njk" %}
 {% block content %}
-<main class="main-box page-main page-${pageName}">
+<main class="main-box page-${pageName}">
 
 </main>
 {% endblock %}

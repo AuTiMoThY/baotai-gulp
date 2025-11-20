@@ -1,0 +1,79 @@
+{% set page_title = "影音專區" %}
+{% set body_class = "media-body " %}
+{% extends "layout.njk" %}
+{% block content %}
+    <main class="main-box page-media">
+        <section class="banner-box page-banner">
+            <div class="img-box">
+                <picture>
+                    <source srcset="assets/images/media/banner-m.jpg" media="(max-width: 1024px)" />
+                    <img src="assets/images/media/banner.jpg" alt="" />
+                </picture>
+            </div>
+        </section>
+        <section class="title-box page-title">
+            <div class="top">
+                <div class="line"></div>
+                <div class="zh">影音專區</div>
+                <div class="line"></div>
+            </div>
+            <div class="bottom">
+                <div class="en">MEDIA CENTER</div>
+            </div>
+        </section>
+        <section class="media-wrap">
+            <aside class="media-aside">
+                <ul class="media-aside-list">
+                    <li class="media-aside-item active">
+                        <a href="javascript:;" class="inner ff-noto-serif-tc">全部總覽</a>
+                    </li>
+                    <li class="media-aside-item">
+                        <a href="javascript:;" class="inner ff-noto-serif-tc">寶台品牌</a>
+                    </li>
+                    <li class="media-aside-item">
+                        <a href="javascript:;" class="inner ff-noto-serif-tc">個案作品集</a>
+                    </li>
+                </ul>
+            </aside>
+            <ul class="media-list">
+                <li class="media-item">
+                    <div class="iframe-wrap">
+                        <iframe src="https://www.youtube.com/embed/oVblUGyufUE?si=Z6H6h6ATTTj6p_01"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div class="title ff-noto-serif-tc">寶台青耘形象廣告</div>
+                </li>
+                <li class="media-item">
+                    <div class="iframe-wrap">
+                        <iframe src="https://www.youtube.com/embed/LRSB5Q4XhZQ?si=iL9JQTKTszt6xQhr"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div class="title ff-noto-serif-tc">『寶台建設』寶台A17形象廣告</div>
+                </li>
+                <li class="media-item">
+                    <div class="iframe-wrap">
+                        <iframe src="https://www.youtube.com/embed/d5_LiDGg3Dc?si=lkhbj0kGvvcaMwjv"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div class="title ff-noto-serif-tc">寶台幸福公園2形象廣告</div>
+                </li>
+            </ul>
+        </section>
+    </main>
+{% endblock %}
+{% block page_script %}
+    <script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+    <script src="js/media.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+{% endblock %}

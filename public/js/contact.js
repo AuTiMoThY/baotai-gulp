@@ -1,7 +1,7 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    ucyCore.headerScroll.init();
+    
     ucyCore.pageBanner.bannerAni(".contact-body");
     ucyCore.pageTitle.titleAni(".contact-body");
     

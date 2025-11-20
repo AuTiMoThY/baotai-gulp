@@ -1,18 +1,19 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    ucyCore.headerScroll.init();
+    
     ucyCore.pageBanner.bannerAni(".preview-body");
     document.fonts.ready.then(() => {
         ucyCore.pageTitle.titleAni(".preview-body");
     });
 
-    // 檢查是否為手機版（寬度小於等於 500px）
-    const isMobile = window.innerWidth <= 1024;
     let swiper = null;
 
-    // 只在非手機版時初始化 Swiper
-    if (!isMobile) {
+    // 初始化或銷毀 Swiper 的函數
+    function initSwiper() {
+        const swiperEl = document.querySelector(".mySwiper");
+        if (!swiperEl) return;
+
         let slidesView = window.innerWidth <= 1440 ? 2.5 : 2;
 
         swiper = new Swiper(".mySwiper", {
@@ -27,8 +28,6 @@ window.onload = function () {
                 el: ".swiper-pagination-progressbar",
                 type: "progressbar",
             },
-            
-
             on: {
                 init: function () {
                     updateFraction(this);
@@ -38,59 +37,54 @@ window.onload = function () {
                 },
             },
         });
+    }
 
-        window.addEventListener("resize", () => {
-            const isMobileNow = window.innerWidth <= 1024;
-            
-            // 如果切換到手機版，銷毀 Swiper
-            if (isMobileNow && swiper) {
-                swiper.destroy(true, true);
-                swiper = null;
-                // 移除 Swiper 相關類別，恢復列表樣式
-                const swiperEl = document.querySelector(".mySwiper");
-                if (swiperEl) {
-                    swiperEl.classList.add("swiper-disabled");
-                }
-                return;
+    function destroySwiper() {
+        if (swiper) {
+            swiper.destroy(true, true);
+            swiper = null;
+        }
+        const swiperEl = document.querySelector(".mySwiper");
+        if (swiperEl) {
+            swiperEl.classList.add("swiper-disabled");
+        }
+    }
+
+    function handleResize() {
+        const isMobileNow = window.innerWidth <= 1024;
+        
+        // 如果切換到手機版，銷毀 Swiper
+        if (isMobileNow && swiper) {
+            destroySwiper();
+            return;
+        }
+        
+        // 如果從手機版切換回桌面版，重新初始化 Swiper
+        if (!isMobileNow && !swiper) {
+            const swiperEl = document.querySelector(".mySwiper");
+            if (swiperEl) {
+                swiperEl.classList.remove("swiper-disabled");
             }
-            
-            // 如果從手機版切換回桌面版，重新初始化 Swiper
-            if (!isMobileNow && !swiper) {
-                const swiperEl = document.querySelector(".mySwiper");
-                if (swiperEl) {
-                    swiperEl.classList.remove("swiper-disabled");
-                }
-                let slidesView = window.innerWidth <= 1440 ? 2.5 : 2;
-                swiper = new Swiper(".mySwiper", {
-                    direction: "vertical",
-                    slidesPerView: slidesView,
-                    mousewheel: true,
-                    centeredSlides: true,
-                    speed: 1000,
-                    navigation: { prevEl: ".prev", nextEl: ".next" },
-                    initialSlide: 1,
-                    pagination: {
-                        el: ".swiper-pagination-progressbar",
-                        type: "progressbar",
-                    },
-                    on: {
-                        init: function () {
-                            updateFraction(this);
-                        },
-                        slideChange: function () {
-                            updateFraction(this);
-                        },
-                    },
-                });
-                return;
-            }
-            
-            // 更新 Swiper 設定
-            if (swiper) {
-                swiper.params.slidesPerView = window.innerWidth <= 1440 ? 2.5 : 2;
-                swiper.update();
-            }
-        });
+            // 使用 setTimeout 確保 DOM 更新完成後再初始化
+            setTimeout(() => {
+                initSwiper();
+            }, 100);
+            return;
+        }
+        
+        // 更新 Swiper 設定
+        if (swiper) {
+            swiper.params.slidesPerView = window.innerWidth <= 1440 ? 2.5 : 2;
+            swiper.update();
+        }
+    }
+
+    // 檢查初始狀態並設定
+    const isMobile = window.innerWidth <= 1024;
+    
+    if (!isMobile) {
+        // 桌面版：初始化 Swiper
+        initSwiper();
     } else {
         // 手機版：添加類別以應用列表樣式
         const swiperEl = document.querySelector(".mySwiper");
@@ -98,6 +92,9 @@ window.onload = function () {
             swiperEl.classList.add("swiper-disabled");
         }
     }
+
+    // 無論初始狀態如何，都註冊 resize 監聽器
+    window.addEventListener("resize", handleResize);
 
     function updateFraction(swiper) {
         const fractionEl = document.querySelector(".swiper-pagination");

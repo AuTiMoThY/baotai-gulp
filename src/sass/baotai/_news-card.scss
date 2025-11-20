@@ -142,6 +142,8 @@
         @include m.pad {
             margin-bottom: set-vw(50, 768);
             font-size: 3.9vw;
+            font-size: v.$mobile-fz;
+
         }
     }
 

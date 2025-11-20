@@ -3,7 +3,7 @@ window.onload = function () {
     const vh = window.innerHeight; // 視窗高度
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    ucyCore.headerScroll.init();
+    
     ucyCore.pageBanner.bannerAni(".work-progress-body");
     ucyCore.pageTitle.titleAni(".work-progress-body");
 
