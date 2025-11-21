@@ -4,93 +4,103 @@
 
 .page-preview {
     padding-bottom: set-vw(264, 1920);
-
     @include pad {
         padding-bottom: set-vw(143, 768);
     }
+    .page-banner {
+        position: relative;
+        z-index: 10;
+    }
+
 
     .gallery {
-        width: 100%;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
+        width: 100%;
+        // transition: all 0.3s;
 
-        .swiper-controller {
-            position: absolute;
-            right: 4vw;
-            top: 13vw;
+    }
+    .swiper-controller {
+        // position: absolute;
+        // right: 4vw;
+        // top: 13vw;
+        position: fixed;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 4vw;
 
-            @include pad {
-                display: none;
+        @include pad {
+            display: none;
+        }
+        .swiper-pagination {
+            font-family: "Cormorant Infant";
+            font-size: $font-20;
+            color: #c7b299;
+            position: relative;
+            width: initial;
+            bottom: initial;
+            left: initial;
+            letter-spacing: 0.05em;
+            margin-top: 3vw;
+
+            .swiper-pagination-total {
+                opacity: 0.6;
             }
-            .swiper-pagination {
-                font-family: "Cormorant Infant";
-                font-size: $font-20;
-                color: #c7b299;
+        }
+        .prev-next-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .swiper-pagination-progressbar
+                .swiper-pagination-progressbar-fill {
+                background-color: #736357;
+                width: 0.15vw;
+                left: -0.07vw;
+            }
+            .swiper-pagination-progressbar {
                 position: relative;
-                width: initial;
                 bottom: initial;
                 left: initial;
-                letter-spacing: 0.05em;
-                margin-top: 3vw;
-
-                .swiper-pagination-total {
-                    opacity: 0.6;
-                }
+                margin-top: 0.4vw;
+                margin-bottom: 0.4vw;
+                top: initial;
+                width: 1px;
+                background-color: #c7b299;
+                height: 6vw;
+                display: flex;
             }
-            .prev-next-box {
+            .slider-arrow {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-
-                .swiper-pagination-progressbar
-                    .swiper-pagination-progressbar-fill {
-                    background-color: #736357;
-                    width: 0.15vw;
-                    left: -0.07vw;
-                }
-                .swiper-pagination-progressbar {
-                    position: relative;
-                    bottom: initial;
-                    left: initial;
-                    margin-top: 0.4vw;
-                    margin-bottom: 0.4vw;
-                    top: initial;
-                    width: 1px;
-                    background-color: #c7b299;
-                    height: 6vw;
-                    display: flex;
-                }
-                .slider-arrow {
-                    display: flex;
-                    flex-direction: column;
-                    font-family: "Cormorant Infant";
-                    color: #c7b299;
-                    font-size: $font-20 !important;
-                    align-self: center;
-                    letter-spacing: 0.05em;
-                    cursor: pointer;
-                    &:hover {
-                        .next-img {
-                            transform: translateY(30%);
-                        }
-                        .prev-img {
-                            transform: translateY(-30%);
-                        }
-                    }
+                font-family: "Cormorant Infant";
+                color: #c7b299;
+                font-size: $font-20 !important;
+                align-self: center;
+                letter-spacing: 0.05em;
+                cursor: pointer;
+                &:hover {
                     .next-img {
-                        height: 1.8vw;
-                        margin-top: 1vw;
-                        margin-left: 0.07vw;
-                        transition: transform 0.4s ease;
+                        transform: translateY(30%);
                     }
                     .prev-img {
-                        height: 1.8vw;
-                        margin-bottom: 1vw;
-                        margin-left: 0.07vw;
-                        transition: transform 0.4s ease;
+                        transform: translateY(-30%);
                     }
+                }
+                .next-img {
+                    height: 1.8vw;
+                    margin-top: 1vw;
+                    margin-left: 0.07vw;
+                    transition: transform 0.4s ease;
+                }
+                .prev-img {
+                    height: 1.8vw;
+                    margin-bottom: 1vw;
+                    margin-left: 0.07vw;
+                    transition: transform 0.4s ease;
                 }
             }
         }

@@ -30,7 +30,7 @@ const njkTemplate = `{% set page_title = "" %}
 </main>
 {% endblock %}
 {% block page_script %}
-<script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
+
 <script src="js/${pageName}.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}
 

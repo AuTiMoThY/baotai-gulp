@@ -12,7 +12,8 @@ window.onload = function () {
                 // markers: true,
                 trigger: ".portfolio-hd",
                 start: "-30% 75%",
-                end: "+=50%"
+                end: "+=50%",
+                toggleActions: "play none none reverse"
                 // scrub: 1
                 // toggleActions: "play none play reverse"
             },

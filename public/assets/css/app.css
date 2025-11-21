@@ -1829,6 +1829,11 @@ header.transparent {
           flex-direction: column;
 }
 
+.project-body .page-banner {
+  position: relative;
+  z-index: 10;
+}
+
 .project-body .banner-box {
   width: 100%;
   height: 40vw;
@@ -1846,18 +1851,8 @@ header.transparent {
 }
 
 .project-body .main-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   width: 100%;
   position: relative;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   background-image: url(../images/project/bg.webp);
   padding-bottom: 13.4895833333vw;
 }
@@ -1867,71 +1862,6 @@ header.transparent {
     padding-bottom: 19.4010416667vw;
   }
 }
-.project-body .main-box .title-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-bottom: 4vw;
-  margin-top: 4vw;
-}
-
-.project-body .main-box .title-box .top,
-.project-body .main-box .title-box .bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.project-body .main-box .title-box .top .zh,
-.project-body .main-box .title-box .bottom .zh {
-  font-family: "Noto Serif TC", serif;
-  color: #fff;
-  letter-spacing: 0.15em;
-  font-size: 1.25vw;
-  -ms-flex-item-align: center;
-      align-self: center;
-  font-weight: 500;
-}
-
-@media (max-width: 900px) {
-  .project-body .main-box .title-box .top .zh,
-  .project-body .main-box .title-box .bottom .zh {
-    font-size: 4.6875vw;
-  }
-}
-.project-body .main-box .title-box .top .en,
-.project-body .main-box .title-box .bottom .en {
-  font-family: "Cormorant Infant", serif;
-  color: #c7b299;
-  letter-spacing: 0.04em;
-  font-size: 2.55vw;
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-
-@media (max-width: 900px) {
-  .project-body .main-box .title-box .top .en,
-  .project-body .main-box .title-box .bottom .en {
-    font-size: 6.25vw;
-  }
-}
-.project-body .main-box .title-box .top .line {
-  margin-left: 0.25vw;
-  margin-right: 0.5vw;
-  width: 1.5vw;
-  -ms-flex-item-align: center;
-      align-self: center;
-  height: 1px;
-  background-color: #c3b09d;
-}
-
 .project-body .main-box .gallery {
   width: 100%;
   display: -webkit-box;
@@ -1946,18 +1876,22 @@ header.transparent {
   position: relative;
 }
 
-.project-body .main-box .gallery .swiper-controller {
-  position: absolute;
+.project-body .main-box .swiper-controller {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
   right: 4vw;
-  top: 13vw;
 }
 
 @media (max-width: 900px) {
-  .project-body .main-box .gallery .swiper-controller {
+  .project-body .main-box .swiper-controller {
     display: none;
   }
 }
-.project-body .main-box .gallery .swiper-controller .swiper-pagination {
+.project-body .main-box .swiper-controller .swiper-pagination {
   font-family: "Cormorant Infant";
   font-size: 1.1vw;
   color: #c7b299;
@@ -1969,11 +1903,11 @@ header.transparent {
   margin-top: 3vw;
 }
 
-.project-body .main-box .gallery .swiper-controller .swiper-pagination .swiper-pagination-total {
+.project-body .main-box .swiper-controller .swiper-pagination .swiper-pagination-total {
   opacity: 0.6;
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box {
+.project-body .main-box .swiper-controller .prev-next-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1986,13 +1920,13 @@ header.transparent {
           align-items: center;
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+.project-body .main-box .swiper-controller .prev-next-box .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   background-color: #736357;
   width: 0.15vw;
   left: -0.07vw;
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .swiper-pagination-progressbar {
+.project-body .main-box .swiper-controller .prev-next-box .swiper-pagination-progressbar {
   position: relative;
   bottom: initial;
   left: initial;
@@ -2007,7 +1941,7 @@ header.transparent {
   display: flex;
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .slider-arrow {
+.project-body .main-box .swiper-controller .prev-next-box .slider-arrow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2024,19 +1958,19 @@ header.transparent {
   cursor: pointer;
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .slider-arrow:hover .next-img {
+.project-body .main-box .swiper-controller .prev-next-box .slider-arrow:hover .next-img {
   -webkit-transform: translateY(30%);
       -ms-transform: translateY(30%);
           transform: translateY(30%);
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .slider-arrow:hover .prev-img {
+.project-body .main-box .swiper-controller .prev-next-box .slider-arrow:hover .prev-img {
   -webkit-transform: translateY(-30%);
       -ms-transform: translateY(-30%);
           transform: translateY(-30%);
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .slider-arrow .next-img {
+.project-body .main-box .swiper-controller .prev-next-box .slider-arrow .next-img {
   height: 1.8vw;
   margin-top: 1vw;
   margin-left: 0.07vw;
@@ -2046,7 +1980,7 @@ header.transparent {
   transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 
-.project-body .main-box .gallery .swiper-controller .prev-next-box .slider-arrow .prev-img {
+.project-body .main-box .swiper-controller .prev-next-box .slider-arrow .prev-img {
   height: 1.8vw;
   margin-bottom: 1vw;
   margin-left: 0.07vw;

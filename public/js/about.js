@@ -1,7 +1,6 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    
     ucyCore.pageBanner.bannerAni(".about-body");
 
     const cut1 = () => {
@@ -34,31 +33,30 @@ window.onload = function () {
         return {
             elArray,
             init() {
-                gsap.set([
-                    gsap.utils.toArray(elArray[0])[0],
-                    gsap.utils.toArray(elArray[1])[0],
-                    gsap.utils.toArray(elArray[2])[0],
-                    gsap.utils.toArray(elArray[3])[0],
-                    gsap.utils.toArray(elArray[4])[0],
-                    gsap.utils.toArray(elArray[5])[0],
-                    gsap.utils.toArray(elArray[6])[0],
-                    gsap.utils.toArray(elArray[7])[0],
-                ], { opacity: 0 });
-            },
+                gsap.set(
+                    [
+                        gsap.utils.toArray(elArray[0])[0],
+                        gsap.utils.toArray(elArray[1])[0],
+                        gsap.utils.toArray(elArray[2])[0],
+                        gsap.utils.toArray(elArray[3])[0],
+                        gsap.utils.toArray(elArray[4])[0],
+                        gsap.utils.toArray(elArray[5])[0],
+                        gsap.utils.toArray(elArray[6])[0],
+                        gsap.utils.toArray(elArray[7])[0]
+                    ],
+                    { opacity: 0 }
+                );
+            }
         };
     };
 
     const cut3 = () => {
-        const elArray = [
-            ".structure-img",
-        ];
+        const elArray = [".structure-img"];
         return {
             elArray,
             init() {
-                gsap.set([
-                    gsap.utils.toArray(elArray[0])[0],
-                ], { opacity: 0 });
-            },
+                gsap.set([gsap.utils.toArray(elArray[0])[0]], { opacity: 0 });
+            }
         };
     };
 
@@ -74,7 +72,8 @@ window.onload = function () {
                     // markers: true,
                     trigger: ".about-founder .summary-block",
                     start: "-30% 75%",
-                    end: "bottom 75%"
+                    end: "bottom 75%",
+                    toggleActions: "play none none reverse"
                 }
             });
 
@@ -104,11 +103,11 @@ window.onload = function () {
             summaryTl.fromTo(
                 cut1().elArray[2],
                 {
-                    opacity: 0,
+                    opacity: 0
                     // y: 80
                 },
                 {
-                    opacity: 1,
+                    opacity: 1
                     // y: 0
                 },
                 "<+0.3"
@@ -121,18 +120,19 @@ window.onload = function () {
                             // markers: true,
                             trigger: ".founder-signature",
                             start: "-50% 75%",
-                            end: "bottom 75%"
+                            end: "bottom 75%",
+                            toggleActions: "play none none reverse"
                         }
                     });
                     signatureTl.fromTo(
                         [cut1().elArray[3], cut1().elArray[4]],
                         {
                             opacity: 0,
-                            y: 80
+                            x: 80
                         },
                         {
                             opacity: 1,
-                            y: 0,
+                            x: 0,
                             stagger: 0.1
                         },
                         "<+0.3"
@@ -148,7 +148,8 @@ window.onload = function () {
                     // markers: true,
                     trigger: ".founder-photo",
                     start: "top 75%",
-                    end: "bottom 75%"
+                    end: "bottom 75%",
+                    toggleActions: "play none none reverse"
                 }
             });
             photoTl.fromTo(
@@ -161,9 +162,7 @@ window.onload = function () {
                 }
             );
         });
-        ucyCore.pageTitle.titleAni(".about-spirit", () => {
-
-        });
+        ucyCore.pageTitle.titleAni(".about-spirit", () => {});
         ucyCore.pageTitle.titleAni(".about-corp-structure", () => {
             const tl = gsap.timeline({
                 defaults: { duration: 1, ease: "linear" },
@@ -171,18 +170,19 @@ window.onload = function () {
                     // markers: true,
                     trigger: ".structure-img",
                     start: "-30% 75%",
-                    end: "bottom 75%"
+                    end: "bottom 75%",
+                    toggleActions: "play none none reverse"
                 }
             });
             tl.fromTo(
                 cut3().elArray[0],
                 {
-                    opacity: 0,
+                    opacity: 0
                 },
                 {
-                    opacity: 1,
+                    opacity: 1
                 }
-            )
+            );
         });
     });
 
@@ -233,8 +233,13 @@ window.onload = function () {
                 nextEl: ".spirit-swiper-nav.swiper-button-next"
             },
             on: {
-                init: function() {
-                    gsap.set(gsap.utils.toArray(".spirit-img .swiper-pagination-bullet"), { opacity: 0 });
+                init: function () {
+                    gsap.set(
+                        gsap.utils.toArray(
+                            ".spirit-img .swiper-pagination-bullet"
+                        ),
+                        { opacity: 0 }
+                    );
 
                     const spiritTl = gsap.timeline({
                         defaults: { duration: 1, ease: "linear" },
@@ -242,7 +247,8 @@ window.onload = function () {
                             // markers: true,
                             trigger: ".about-spirit",
                             start: "top 75%",
-                            end: "bottom 75%"
+                            end: "bottom 75%",
+                            toggleActions: "play none none reverse"
                         }
                     });
 
@@ -257,7 +263,9 @@ window.onload = function () {
                         }
                     );
                     spiritTl.fromTo(
-                        gsap.utils.toArray(".spirit-img .swiper-pagination-bullet"),
+                        gsap.utils.toArray(
+                            ".spirit-img .swiper-pagination-bullet"
+                        ),
                         {
                             opacity: 0,
                             scale: 0
@@ -274,10 +282,10 @@ window.onload = function () {
                             gsap.utils.toArray(cut2().elArray[1])[0],
                             gsap.utils.toArray(cut2().elArray[2])[0],
                             gsap.utils.toArray(cut2().elArray[4])[0],
-                            gsap.utils.toArray(cut2().elArray[5])[0],
+                            gsap.utils.toArray(cut2().elArray[5])[0]
                         ],
                         {
-                            opacity: 0,
+                            opacity: 0
                         },
                         {
                             opacity: 1,
@@ -291,21 +299,18 @@ window.onload = function () {
                         {
                             transformOrigin: "left center",
                             opacity: 0,
-                            scaleX: 0,
+                            scaleX: 0
                         },
                         {
                             opacity: 1,
-                            scaleX: 1,
+                            scaleX: 1
                         },
                         "<+0.3"
                     );
                     spiritTl.fromTo(
-                        [
-                            cut2().elArray[6],
-                            cut2().elArray[7]
-                        ],
+                        [cut2().elArray[6], cut2().elArray[7]],
                         {
-                            opacity: 0,
+                            opacity: 0
                         },
                         {
                             opacity: 1,

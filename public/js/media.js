@@ -1,4 +1,7 @@
 window.onload = function () {
+    console.log("media.js");
+
+    gsap.set(".page-media", { opacity: 1 });
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
     const asideItemArr = document.querySelectorAll(".media-aside-item");
@@ -33,11 +36,11 @@ window.onload = function () {
                 mediaItems.forEach((item, index) => {
                     gsap.to(item, {
                         delay: 0.3,
-                        ease: "power1.out",
+                        ease: "linear",
                         duration: 2,
                         opacity: 1,
                         scrollTrigger: {
-                            markers: true,
+                            // markers: true,
                             trigger: item,
                             start: "top 75%",
                             end: "50% 75%",

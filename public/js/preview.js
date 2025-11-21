@@ -1,7 +1,6 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    
     ucyCore.pageBanner.bannerAni(".preview-body");
     document.fonts.ready.then(() => {
         ucyCore.pageTitle.titleAni(".preview-body");
@@ -26,7 +25,7 @@ window.onload = function () {
             initialSlide: 1, // 初始顯示第二個
             pagination: {
                 el: ".swiper-pagination-progressbar",
-                type: "progressbar",
+                type: "progressbar"
             },
             on: {
                 init: function () {
@@ -34,8 +33,8 @@ window.onload = function () {
                 },
                 slideChange: function () {
                     updateFraction(this);
-                },
-            },
+                }
+            }
         });
     }
 
@@ -52,13 +51,13 @@ window.onload = function () {
 
     function handleResize() {
         const isMobileNow = window.innerWidth <= 1024;
-        
+
         // 如果切換到手機版，銷毀 Swiper
         if (isMobileNow && swiper) {
             destroySwiper();
             return;
         }
-        
+
         // 如果從手機版切換回桌面版，重新初始化 Swiper
         if (!isMobileNow && !swiper) {
             const swiperEl = document.querySelector(".mySwiper");
@@ -71,7 +70,7 @@ window.onload = function () {
             }, 100);
             return;
         }
-        
+
         // 更新 Swiper 設定
         if (swiper) {
             swiper.params.slidesPerView = window.innerWidth <= 1440 ? 2.5 : 2;
@@ -81,7 +80,7 @@ window.onload = function () {
 
     // 檢查初始狀態並設定
     const isMobile = window.innerWidth <= 1024;
-    
+
     if (!isMobile) {
         // 桌面版：初始化 Swiper
         initSwiper();
@@ -110,4 +109,22 @@ window.onload = function () {
         fractionEl.textContent = `${currentStr} / ${totalStr}`;
     }
 
+    ScrollTrigger.create({
+        // markers: true,
+        trigger: ".preview-body .gallery",
+        pin: true,
+        start: "top top",
+        end: "bottom+=50% 50%+=100px",
+        onToggle: (self) => console.log("toggled, isActive:", self.isActive),
+        onUpdate: (self) => {
+            console.log(
+                "progress:",
+                self.progress.toFixed(3),
+                "direction:",
+                self.direction,
+                "velocity",
+                self.getVelocity()
+            );
+        }
+    });
 };

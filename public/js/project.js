@@ -1,9 +1,12 @@
 window.onload = function () {
     const window_width = window.screen.width;
     const vh = window.innerHeight; // 視窗高度
-    gsap.registerPlugin(ScrollTrigger, SplitText)
+    gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    
+    ucyCore.pageBanner.bannerAni(".project-body");
+    document.fonts.ready.then(() => {
+        ucyCore.pageTitle.titleAni(".project-body");
+    });
 
     let swiper = null;
 
@@ -24,7 +27,7 @@ window.onload = function () {
             initialSlide: 1, // 初始顯示第二個
             pagination: {
                 el: ".swiper-pagination-progressbar",
-                type: "progressbar",
+                type: "progressbar"
             },
             on: {
                 init: function () {
@@ -32,8 +35,8 @@ window.onload = function () {
                 },
                 slideChange: function () {
                     updateFraction(this);
-                },
-            },
+                }
+            }
         });
     }
 
@@ -50,13 +53,13 @@ window.onload = function () {
 
     function handleResize() {
         const isMobileNow = window.innerWidth <= 1024;
-        
+
         // 如果切換到手機版，銷毀 Swiper
         if (isMobileNow && swiper) {
             destroySwiper();
             return;
         }
-        
+
         // 如果從手機版切換回桌面版，重新初始化 Swiper
         if (!isMobileNow && !swiper) {
             const swiperEl = document.querySelector(".mySwiper");
@@ -69,7 +72,7 @@ window.onload = function () {
             }, 100);
             return;
         }
-        
+
         // 更新 Swiper 設定
         if (swiper) {
             swiper.params.slidesPerView = window.innerWidth <= 1440 ? 2.5 : 2;
@@ -79,7 +82,7 @@ window.onload = function () {
 
     // 檢查初始狀態並設定
     const isMobile = window.innerWidth <= 1024;
-    
+
     if (!isMobile) {
         // 桌面版：初始化 Swiper
         initSwiper();
@@ -108,65 +111,22 @@ window.onload = function () {
         fractionEl.textContent = `${currentStr} / ${totalStr}`;
     }
 
-
-    const bannerAni = () => {
-
-        const tl = gsap.timeline({
-            onComplete: bannerAniRepeat
-        });
-        tl.from('.project-body .banner-box .img-box img', {
-            scale: 1.4,
-            duration: 1.2,
-            ease: 'power1.inOut',
-        })
-    }
-    bannerAni();
-
-    function bannerAniRepeat() {
-        let tl = gsap.timeline({
-            yoyo: true,
-            repeat: -1
-        });
-        tl.fromTo('.project-body .banner-box .img-box img', { scale: 1, }, { duration: 15, ease: "power1.inOut", scale: 1.25 })
-    }
-
-
-    const titleAni = () => {
-        const zhSplit = SplitText.create('.project-body .main-box .title-box .top .zh', {
-            type: 'chars,words,lines',
-            linesClass: 'clip-text',
-        })
-
-        const enSplit = SplitText.create('.project-body .main-box .title-box .bottom .en', {
-            type: 'chars,words,lines',
-            linesClass: 'clip-text',
-        })
-
-
-        let tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".project-body .main-box .title-box",
-                start: "top center",
-            }
-        })
-
-        tl.from(zhSplit.chars, { duration: 1, opacity: 0, stagger: 0.1, y: 80, })
-            .fromTo(enSplit.chars, {
-                opacity: 0,
-                rotationY: 180,
-                yPercent: 100
-            },
-                {
-                    duration: 1,
-                    opacity: 1,
-                    rotationY: 0,
-                    yPercent: 0,
-                    stagger: 0.03,
-                }, '<0.3')
-
-            .from('.project-body .main-box .title-box .top .line', { duration: 1, width: '0', opacity: 0 }, '<0.45')
-
-            .from('.project-body .main-box .swiper', { duration: 1, opacity: 0, ease: 'power1.in' }, '<0.1')
-    }
-    titleAni()
+    ScrollTrigger.create({
+        // markers: true,
+        trigger: ".project-body .gallery",
+        pin: true,
+        start: "top top",
+        end: "bottom+=50% 50%+=100px",
+        onToggle: (self) => console.log("toggled, isActive:", self.isActive),
+        onUpdate: (self) => {
+            console.log(
+                "progress:",
+                self.progress.toFixed(3),
+                "direction:",
+                self.direction,
+                "velocity",
+                self.getVelocity()
+            );
+        }
+    });
 };

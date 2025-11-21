@@ -43,7 +43,7 @@
 {% endmacro %}
 {% extends "layout.njk" %}
 {% block content %}
-    <main class="main-box  page-preview">
+    <main class="main-box page-preview">
         <div class="banner-box page-banner">
             <div class="img-box">
                 <picture>
@@ -69,31 +69,30 @@
                     {% for item in galleryData %}[[ galleryItem(item.img, item.name, item.txt) ]]{% endfor %}
                 </div>
             </div>
-            <div class="swiper-controller">
-                <div class="prev-next-box">
-                    <div class="slider-arrow prev">
-                        <img class="prev-img"
-                             alt="prev"
-                             src="assets/images/project/prev.svg"
-                             srcset="" />
-                        <div>PREV</div>
-                    </div>
-                    <!-- 進度條 -->
-                    <div class="swiper-pagination-progressbar"></div>
-                    <div class="slider-arrow next">
-                        <div>NEXT</div>
-                        <img class="next-img"
-                             alt="next"
-                             src="assets/images/project/next.svg"
-                             srcset="" />
-                    </div>
+        </div>
+        <div class="swiper-controller">
+            <div class="prev-next-box">
+                <div class="slider-arrow prev">
+                    <img class="prev-img"
+                         alt="prev"
+                         src="assets/images/project/prev.svg"
+                         srcset="" />
+                    <div>PREV</div>
                 </div>
-                <div class="swiper-pagination"></div>
+                <!-- 進度條 -->
+                <div class="swiper-pagination-progressbar"></div>
+                <div class="slider-arrow next">
+                    <div>NEXT</div>
+                    <img class="next-img"
+                         alt="next"
+                         src="assets/images/project/next.svg"
+                         srcset="" />
+                </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
     </main>
 {% endblock %}
 {% block page_script %}
-    <script src="js/main.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
     <script src="js/preview.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}

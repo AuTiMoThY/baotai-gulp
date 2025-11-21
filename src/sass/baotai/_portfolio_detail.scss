@@ -2,4 +2,233 @@
 @use "../../../public/assets/css/utils/mixin" as *;
 @use "../abstracts/functions/set-vw" as *;
 
-.page-portfolio_detail {}
+.page-portfolio_detail {
+    // Swiper共用上下頁按鈕樣式
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after,
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        content: "";
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+
+        width: 2.1vw;
+        height: 2vw;
+
+        @include pad {
+            width: 5.1vw;
+            height: 5vw;
+        }
+
+        @include mobile {
+            width: 7.1vw;
+            height: 7vw;
+        }
+    }
+
+    .swiper-button-prev {
+        img {
+            transform: scaleX(-1);
+        }
+    }
+
+    .case_dt_box {
+        padding: 7%;
+        padding-top: 12vw;
+        @include pad {
+            padding-bottom: 10%;
+        }
+
+        .flex_box {
+            display: flex;
+            gap: 6%;
+
+            @include pad {
+                flex-direction: column;
+            }
+
+            .slide_box {
+                flex: 1 1 50%;
+                width: 50%;
+
+                @include pad {
+                    width: 100%;
+                }
+
+                .swiper {
+                    width: 100%;
+                }
+            }
+
+            .dt_box {
+                flex: 1 1 50%;
+                margin-right: 10%;
+
+                @include pad {
+                    margin: 0;
+                    margin-top: 5vw;
+                }
+
+                h2 {
+                    margin-bottom: 30px;
+                    padding-bottom: 20px;
+                    position: relative;
+
+                    @include pad {
+                        font-size: 5.5vw;
+                    }
+
+                    @include mobile {
+                        font-size: 6.5vw;
+                    }
+
+                    &::after {
+                        content: "";
+                        display: block;
+                        width: 30px;
+                        height: 1px;
+                        background-color: #c3b09d;
+                        position: absolute;
+                        bottom: 0;
+
+                        @include pad {
+                            width: 6vw;
+                        }
+                    }
+
+                    small {
+                        margin-left: 15px;
+                    }
+                }
+
+                ul {
+                    li {
+                        display: flex;
+                        border-bottom: 1px solid #ffffff4f;
+                        padding-bottom: 0.8vw;
+                        margin-bottom: 0.8vw;
+
+                        @include pad {
+                            padding-bottom: 2.5vw;
+                            margin-bottom: 2.5vw;
+                        }
+
+                        h3 {
+                            position: relative;
+                            padding-right: 0.6vw;
+                            margin-right: 0.8vw;
+
+                            @include pad {
+                                padding-right: 2vw;
+                                margin-right: 3vw;
+                            }
+
+                            @include mobile {
+                                flex: 1 1 27%;
+                            }
+
+                            &::after {
+                                content: "";
+                                width: 1px;
+                                height: 70%;
+                                background-color: #fff;
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                            }
+                        }
+                        p {
+                            @include mobile {
+                                flex: 1 1 90%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .case_content_box {
+        text-align: center;
+        padding: 7%;
+        padding-top: 0;
+
+        h2 {
+            margin-bottom: 3%;
+
+            @include pad {
+                margin-bottom: 6%;
+            }
+        }
+
+        .img_wall {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -0.8%;
+
+        }
+        .img_one {
+            flex: 1 1 33.33%;
+            width: 33.33%;
+            padding: 0.8%;
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+
+            a {
+                display: block;
+                aspect-ratio: 32 / 21;
+                overflow: hidden;
+
+            }
+
+            img {
+                transition: all 0.5s;
+            }
+        }
+
+        .back_btn_box {
+            margin-top: 5%;
+            @include pad {
+                margin: 10% 0;
+            }
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                gap: 6%;
+                font-family: "Cormorant Garamond";
+                color: $color-subtext;
+                font-size: 0.9vw;
+                letter-spacing: 0.1em;
+                border: 1px solid;
+                border-radius: 30px;
+                padding: 0.3vw 1.5vw;
+
+                @include pad {
+                    font-size: 4vw;
+                    padding: 0.8vw 8vw;
+                }
+
+                img {
+                    width: 1vw;
+                    transition: all 0.5s;
+                    @include pad {
+                        width: 2.5vw;
+                    }
+                }
+
+                &:hover {
+                    img {
+                        transform: translateX(0.8vw);
+                    }
+                }
+            }
+        }
+    }
+}

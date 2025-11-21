@@ -126,7 +126,8 @@ window.onload = function () {
                     // markers: true,
                     trigger: ".history-photo",
                     start: "top 75%",
-                    end: "bottom 75%"
+                    end: "bottom 75%",
+                    toggleActions: "play none none reverse"
                 }
             });
             photoTl.to(".history-photo picture", { opacity: 1, duration: 1.5 });
@@ -136,7 +137,8 @@ window.onload = function () {
                     // markers: true,
                     trigger: ".history-summary",
                     start: "-30% 75%",
-                    end: "bottom 75%"
+                    end: "bottom 75%",
+                    toggleActions: "play none none reverse"
                 }
             });
             summaryTl.to(".history-summary .title", {
@@ -163,7 +165,8 @@ window.onload = function () {
             // markers: true,
             trigger: ".history-swiper",
             start: "top 75%",
-            end: "top 75%"
+            end: "top 75%",
+            toggleActions: "play none none reverse"
         }
     });
 

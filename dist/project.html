@@ -93,14 +93,16 @@
             </div>
         </header>
         <div class="body_wrap" id="app">
-            <div class="banner-box">
-                <div class="img-box">
-                    <img src="assets/images/project/banner.webp" alt="" srcset="" />
+            <main class="main-box page-project">
+                <div class="banner-box page-banner">
+                    <div class="img-box">
+                        <picture>
+                            <source srcset="assets/images/project/banner-m.jpg" media="(max-width: 1024px)" />
+                            <img src="assets/images/project/banner.jpg" alt="" />
+                        </picture>
+                    </div>
                 </div>
-            </div>
-
-            <div class="main-box">
-                <div class="title-box">
+                <div class="title-box page-title">
                     <div class="top">
                         <div class="line"></div>
                         <div class="zh">熱銷建案</div>
@@ -110,7 +112,6 @@
                         <div class="en">HOT PROJECT</div>
                     </div>
                 </div>
-
                 <div class="gallery">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
@@ -184,24 +185,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-controller">
-                        <div class="prev-next-box">
-                            <div class="slider-arrow prev">
-                                <img class="prev-img" alt="prev" src="assets/images/project/prev.svg" srcset="" />
-                                <div>PREV</div>
-                            </div>
-                            <!-- 進度條 -->
-                            <div class="swiper-pagination-progressbar"></div>
-                            <div class="slider-arrow next">
-                                <div>NEXT</div>
-
-                                <img class="next-img" alt="next" src="assets/images/project/next.svg" srcset="" />
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
                 </div>
-            </div>
+                <div class="swiper-controller">
+                    <div class="prev-next-box">
+                        <div class="slider-arrow prev">
+                            <img class="prev-img" alt="prev" src="assets/images/project/prev.svg" srcset="" />
+                            <div>PREV</div>
+                        </div>
+                        <!-- 進度條 -->
+                        <div class="swiper-pagination-progressbar"></div>
+                        <div class="slider-arrow next">
+                            <div>NEXT</div>
+                            <img class="next-img" alt="next" src="assets/images/project/next.svg" srcset="" />
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </main>
         </div>
         <footer class="footer">
             <div class="footer-box">
@@ -223,7 +223,6 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.min.js"></script>
         <script src="assets/js/main.js"></script>
 
-        <script src="js/main.js"></script>
         <script src="js/project.js"></script>
     </body>
 </html>

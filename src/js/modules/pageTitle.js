@@ -1,12 +1,9 @@
 export const pageTitle = {
     titleAni(bodyClass, callback) {
-        const zhSplit = SplitText.create(
-            `${bodyClass} .title-box .top .zh`,
-            {
-                type: "chars,words,lines",
-                linesClass: "clip-text"
-            }
-        );
+        const zhSplit = SplitText.create(`${bodyClass} .title-box .top .zh`, {
+            type: "chars,words,lines",
+            linesClass: "clip-text"
+        });
 
         const enSplit = SplitText.create(
             `${bodyClass} .title-box .bottom .en`,
@@ -21,8 +18,9 @@ export const pageTitle = {
                 trigger: `${bodyClass} .title-box`,
                 start: "top 75%",
                 once: true,
+                toggleActions: "play none none reverse"
             }
-        });        
+        });
 
         tl.from(zhSplit.chars, {
             duration: 1,
@@ -52,10 +50,14 @@ export const pageTitle = {
                 { duration: 1, width: "0", opacity: 0 },
                 "<0.45"
             )
-            .call(function() {
-                // 提前 1 秒觸發的 callback
-                console.log("提前 1 秒觸發", this);
-                callback && callback();
-            }, null, "-=1");
+            .call(
+                function () {
+                    // 提前 1 秒觸發的 callback
+                    console.log("提前 1 秒觸發", this);
+                    callback && callback();
+                },
+                null,
+                "-=1"
+            );
     }
 };
