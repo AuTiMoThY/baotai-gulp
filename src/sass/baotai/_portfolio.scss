@@ -26,15 +26,18 @@
 
 .portfolio-timeline-line {
     @include absolute(0, $L: 50%);
+    top: set-vw(103, 1920);
     transform: translateX(-50%);
     z-index: 1;
     width: 1px;
-    height: 100%;
+    height: calc(100% - #{set-vw(103, 1920)});
     background-color: #c7b299;
 
     @include pad {
+        top: set-vw(103, 768);
         left: set-vw(91, 768);
         transform: translateX(0);
+        height: calc(100% - #{set-vw(103, 768)});
     }
 }
 
@@ -90,6 +93,16 @@
                 @include pad {
                     flex-direction: row;
                 }
+
+                .mask {
+                    left: -5%;
+                }
+            }
+
+            &-r {
+                .mask {
+                    right: -5%;
+                }
             }
         }
 
@@ -112,14 +125,25 @@
                 align-items: center;
                 gap: set-vw(14, 1920);
 
-                .img {
-                    overflow: hidden;
-                }
-
                 @include pad {
                     gap: set-vw(19, 768);
                 }
             }
+
+
+            .img {
+                position: relative;
+                overflow: hidden;
+            }
+            .mask {
+                position: absolute;
+                top: -5%;
+                width: 110%;
+                height: 110%;
+                background-color: #473d39;
+                opacity: 0;
+            }
+
 
             .img-label {
                 color: #fff;

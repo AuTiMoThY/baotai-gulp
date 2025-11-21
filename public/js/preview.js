@@ -1,9 +1,27 @@
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
+    gsap.set(".swiper-controller .prev-next-box", { opacity: 0 });
+    gsap.set(".swiper-controller .swiper-pagination", { opacity: 0 });
     ucyCore.pageBanner.bannerAni(".preview-body");
     document.fonts.ready.then(() => {
-        ucyCore.pageTitle.titleAni(".preview-body");
+        ucyCore.pageTitle.titleAni(".preview-body", () => {
+            const tl = gsap.timeline({
+                defaults: {
+                    duration: 1,
+                    ease: "power1.out"
+                },
+                scrollTrigger: {
+                    // markers: true,
+                    trigger: ".preview-body .page-title",
+                    start: "top 30%",
+                    end: "bottom",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            tl.fromTo(".swiper-controller .prev-next-box", {opacity: 0, height: 0}, { opacity: 1, height: "auto" });
+            tl.fromTo(".swiper-controller .swiper-pagination", {opacity: 0}, { opacity: 1 }, ">-0.5");
+        });
     });
 
     let swiper = null;
@@ -109,22 +127,24 @@ window.onload = function () {
         fractionEl.textContent = `${currentStr} / ${totalStr}`;
     }
 
-    ScrollTrigger.create({
-        // markers: true,
-        trigger: ".preview-body .gallery",
-        pin: true,
-        start: "top top",
-        end: "bottom+=50% 50%+=100px",
-        onToggle: (self) => console.log("toggled, isActive:", self.isActive),
-        onUpdate: (self) => {
-            console.log(
-                "progress:",
-                self.progress.toFixed(3),
-                "direction:",
-                self.direction,
-                "velocity",
-                self.getVelocity()
-            );
-        }
-    });
+    if (!ucyCore.isMobile()) {
+        ScrollTrigger.create({
+            // markers: true,
+            trigger: ".preview-body .gallery",
+            pin: true,
+            start: "top top",
+            end: "bottom+=50% 50%+=100px",
+            // onToggle: (self) => console.log("toggled, isActive:", self.isActive),
+            // onUpdate: (self) => {
+            //     console.log(
+            //         "progress:",
+            //         self.progress.toFixed(3),
+            //         "direction:",
+            //         self.direction,
+            //         "velocity",
+            //         self.getVelocity()
+            //     );
+            // }
+        });
+    }
 };

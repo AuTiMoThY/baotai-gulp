@@ -15,7 +15,7 @@
         position: relative;
         align-items: center;
         background-image: url(../images/project/bg.webp);
-        padding-bottom: set-vw(261, 1920);
+        padding-bottom: 2vw;
         @include pad {
             padding-bottom: set-vw(150, 768);
 

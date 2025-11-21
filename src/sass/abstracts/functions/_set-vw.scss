@@ -1,10 +1,15 @@
 @use "sass:math";
 @function set-vw($num, $base-width) {
-    @return #{math.div($num, $base-width) * 100}vw;
+    // 四捨五入到小數點第一位
+    $rounded: math.div(math.round(math.div($num, $base-width) * 100 * 10), 10);
+    @return #{$rounded}vw;
 }
 
 @function set-vw-without-unit($num, $base-width) {
-    @return math.div($num * 100, $base-width); // 返回的是一个无单位的数，表示vw的数值
+    @return math.div(
+        $num * 100,
+        $base-width
+    ); // 返回的是一个无单位的数，表示vw的数值
 }
 
 @function relative-percentage($num, $base-width) {

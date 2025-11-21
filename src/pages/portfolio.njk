@@ -119,7 +119,7 @@
 
 {% macro timelineItem(year, img_l, img_r) %}
 <li class="portfolio-timeline-item">
-
+    <div class="portfolio-timeline-line"></div>
     <!-- 左半部：桌機版顯示，手機版隱藏 ( class "show-desktop" ) -->
     <div class="img-list img-list-l show-desktop">
         {% if img_l.length > 0 %}
@@ -127,6 +127,7 @@
         <a href="portfolio_detail.html" class="img-item">
             <figure class="img-figure">
                 <div class="img">
+                    <div class="mask"></div>
                     <img src="[[ img.src ]]" alt="[[ img.label ]]" />
                 </div>
                 <figcaption class="img-label">[[ img.label ]]</figcaption>
@@ -143,6 +144,7 @@
         <a href="portfolio_detail.html" class="img-item">
             <figure class="img-figure">
                 <div class="img">
+                    <div class="mask"></div>
                     <img src="[[ img.src ]]" alt="[[ img.label ]]" />
                 </div>
                 <figcaption class="img-label">[[ img.label ]]</figcaption>
@@ -156,6 +158,7 @@
         <a href="portfolio_detail.html" class="img-item show-mobile">
             <figure class="img-figure">
                 <div class="img">
+                    <div class="mask"></div>
                     <img src="[[ img.src ]]" alt="[[ img.label ]]" />
                 </div>
                 <figcaption class="img-label">[[ img.label ]]</figcaption>
@@ -207,7 +210,6 @@
         </div>
 
         <div class="portfolio-bd">
-            <div class="portfolio-timeline-line"></div>
 
             <ul class="portfolio-timeline">
                 {% for item in portfolio_list %}

@@ -153,4 +153,13 @@ window.onload = function () {
         ucyCore.pageTitle.titleAni(".push-map-body");
     });
     
+    if(!ucyCore.isMobile()) {
+        ScrollTrigger.create({
+            markers: true,
+            trigger: ".push-map-wrap",
+            pin: true,
+            start: "top-=12% top",
+            end: "50% bottom",
+        });
+    }
 };

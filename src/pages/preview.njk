@@ -53,43 +53,47 @@
                 </picture>
             </div>
         </div>
-        <div class="title-box page-title">
-            <div class="top">
-                <div class="line"></div>
-                <div class="zh">新案預告</div>
-                <div class="line"></div>
+        <div class="page-preview-container">
+            <div class="title-box page-title">
+                <div class="top">
+                    <div class="line"></div>
+                    <div class="zh">新案預告</div>
+                    <div class="line"></div>
+                </div>
+                <div class="bottom">
+                    <div class="en">NEW PREVIEW</div>
+                </div>
             </div>
-            <div class="bottom">
-                <div class="en">NEW PREVIEW</div>
-            </div>
-        </div>
-        <div class="gallery">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    {% for item in galleryData %}[[ galleryItem(item.img, item.name, item.txt) ]]{% endfor %}
+            <div class="gallery">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        {% for item in galleryData %}[[ galleryItem(item.img, item.name, item.txt) ]]{% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
         <div class="swiper-controller">
-            <div class="prev-next-box">
-                <div class="slider-arrow prev">
-                    <img class="prev-img"
-                         alt="prev"
-                         src="assets/images/project/prev.svg"
-                         srcset="" />
-                    <div>PREV</div>
+            <div class="inner">
+                <div class="prev-next-box">
+                    <div class="slider-arrow prev">
+                        <img class="prev-img"
+                             alt="prev"
+                             src="assets/images/project/prev.svg"
+                             srcset="" />
+                        <div>PREV</div>
+                    </div>
+                    <!-- 進度條 -->
+                    <div class="swiper-pagination-progressbar"></div>
+                    <div class="slider-arrow next">
+                        <div>NEXT</div>
+                        <img class="next-img"
+                             alt="next"
+                             src="assets/images/project/next.svg"
+                             srcset="" />
+                    </div>
                 </div>
-                <!-- 進度條 -->
-                <div class="swiper-pagination-progressbar"></div>
-                <div class="slider-arrow next">
-                    <div>NEXT</div>
-                    <img class="next-img"
-                         alt="next"
-                         src="assets/images/project/next.svg"
-                         srcset="" />
-                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </main>
 {% endblock %}

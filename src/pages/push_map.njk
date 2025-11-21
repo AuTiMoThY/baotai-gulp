@@ -92,22 +92,23 @@
         <section class="banner-box page-banner">
             <div class="img-box">
                 <picture>
-                    <source srcset="assets/images/push_map/banner-m.jpg" media="(max-width: 1024px)" />
+                    <source srcset="assets/images/push_map/banner-m.jpg"
+                            media="(max-width: 1024px)" />
                     <img src="assets/images/push_map/banner.jpg" alt="" />
                 </picture>
             </div>
         </section>
-        <section class="push-map-wrap">
-            <div class="title-box page-title">
-                <div class="top">
-                    <div class="line"></div>
-                    <div class="zh">推案地圖</div>
-                    <div class="line"></div>
-                </div>
-                <div class="bottom">
-                    <div class="en">PROJECT MAP</div>
-                </div>
+        <section class="title-box page-title">
+            <div class="top">
+                <div class="line"></div>
+                <div class="zh">推案地圖</div>
+                <div class="line"></div>
             </div>
+            <div class="bottom">
+                <div class="en">PROJECT MAP</div>
+            </div>
+        </section>
+        <section class="push-map-wrap">
             <div class="push-map-box">
                 <div id="map" class="google-iframe-box"></div>
                 <div class="item-list">
@@ -120,6 +121,5 @@
     </main>
 {% endblock %}
 {% block page_script %}
-    
     <script src="js/push_map.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script>
 {% endblock %}

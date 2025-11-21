@@ -128,11 +128,11 @@ window.onload = function () {
                         [cut1().elArray[3], cut1().elArray[4]],
                         {
                             opacity: 0,
-                            x: 80
+                            y: 40
                         },
                         {
                             opacity: 1,
-                            x: 0,
+                            y: 0,
                             stagger: 0.1
                         },
                         "<+0.3"
@@ -161,6 +161,20 @@ window.onload = function () {
                     opacity: 1
                 }
             );
+
+
+            gsap.to(".founder-photo img", {
+                y: "20%", // 向下移動
+                // scale: 1.1,
+                ease: "none",
+                scrollTrigger: {
+                    // markers: true,
+                    trigger: ".founder-photo",
+                    start: "top-=50% 75%",
+                    end: "bottom+=50% 75%",
+                    scrub: true
+                }
+            });
         });
         ucyCore.pageTitle.titleAni(".about-spirit", () => {});
         ucyCore.pageTitle.titleAni(".about-corp-structure", () => {
@@ -207,6 +221,8 @@ window.onload = function () {
                 clickable: true,
                 renderBullet: function (index, className) {
                     return `<span class="${className}">
+                    <span class="circle"></span>
+                    <span class="circle"></span>
                     <svg class="svg-inactive" viewBox="0 0 117 117" xmlns="http://www.w3.org/2000/svg">
                         <g opacity=".2">
                             <image width="117" height="117" xlink:href="data:image/png;base64,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"/>
@@ -224,7 +240,7 @@ window.onload = function () {
                         </g>
                     </g>
                     <circle cx="50.85" cy="50.22" r="4.4" fill="#b58b54"/>
-                    </svg>                
+                    </svg>
                     </span>`;
                 }
             },
@@ -234,12 +250,8 @@ window.onload = function () {
             },
             on: {
                 init: function () {
-                    gsap.set(
-                        gsap.utils.toArray(
-                            ".spirit-img .swiper-pagination-bullet"
-                        ),
-                        { opacity: 0 }
-                    );
+                    const bulletArr = gsap.utils.toArray(".spirit-img .swiper-pagination-bullet");
+                    gsap.set(bulletArr, { opacity: 0 });
 
                     const spiritTl = gsap.timeline({
                         defaults: { duration: 1, ease: "linear" },
@@ -263,9 +275,7 @@ window.onload = function () {
                         }
                     );
                     spiritTl.fromTo(
-                        gsap.utils.toArray(
-                            ".spirit-img .swiper-pagination-bullet"
-                        ),
+                        bulletArr,
                         {
                             opacity: 0,
                             scale: 0

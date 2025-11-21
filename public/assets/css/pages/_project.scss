@@ -34,7 +34,7 @@
         // align-items: center;
         background-image: url(../images/project/bg.webp);
 
-        padding-bottom: set-vw(259, 1920);
+        // padding-bottom: set-vw(259, 1920);
         @include pad {
             padding-bottom: set-vw(149, 768);
         }
@@ -54,7 +54,7 @@
             top: 50%;
             transform: translateY(-50%);
             right: 4vw;
-        
+
             @include pad {
                 display: none;
             }
@@ -68,7 +68,7 @@
                 left: initial;
                 letter-spacing: 0.05em;
                 margin-top: 3vw;
-        
+
                 .swiper-pagination-total {
                     opacity: 0.6;
                 }
@@ -77,8 +77,9 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-        
-                .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+
+                .swiper-pagination-progressbar
+                    .swiper-pagination-progressbar-fill {
                     background-color: #736357;
                     width: 0.15vw;
                     left: -0.07vw;
@@ -104,13 +105,21 @@
                     align-self: center;
                     letter-spacing: 0.05em;
                     cursor: pointer;
+                    transition: color 0.4s ease;
+
                     &:hover {
+                        color: #fff;
+
                         .next-img {
                             transform: translateY(30%);
                         }
                         .prev-img {
                             transform: translateY(-30%);
                         }
+                    }
+
+                    &:active {
+                        transform: translate(1px, 1px);
                     }
                     .next-img {
                         height: 1.8vw;
@@ -130,43 +139,43 @@
         .swiper {
             height: 100vh;
             width: 45%;
-        
+
             @include mobile {
                 height: auto;
                 width: 100%;
             }
-        
+
             // 手機版：禁用 Swiper，改為列表樣式
             &.swiper-disabled {
                 height: auto;
                 width: 100%;
-        
+
                 .swiper-wrapper {
                     display: flex;
                     flex-direction: column;
                     transform: none !important;
                 }
-        
+
                 .swiper-slide {
                     width: 100% !important;
                     height: auto !important;
                     transform: none !important;
                     margin-bottom: 8vw;
-        
+
                     &:last-child {
                         margin-bottom: 0;
                     }
                 }
             }
         }
-        
+
         .swiper-slide {
             display: flex;
             flex-direction: column;
             align-items: center;
             transition: all 1s;
             transform: scale(0.8);
-        
+
             @include mobile {
                 transform: none;
             }
@@ -182,16 +191,16 @@
             width: 80%;
             position: relative;
             flex-direction: column;
-        
+
             @include mobile {
                 width: 90%;
                 margin: 0 auto;
             }
-        
+
             .top-box {
                 display: flex;
                 flex-direction: column;
-        
+
                 .img-box {
                     display: flex;
                     flex-direction: column;
@@ -202,7 +211,7 @@
                         transition: all 0.5s;
                         object-fit: cover;
                     }
-        
+
                     a:hover {
                         img {
                             transform: scale(1.2);
@@ -213,20 +222,20 @@
             .bottom-box {
                 display: flex;
                 justify-content: center;
-        
+
                 .name-box {
                     display: flex;
                     position: relative;
                     margin-top: 0.3vw;
-        
+
                     @include pad {
                         // flex-direction: column;
                         align-items: center;
-        
+
                         gap: set-vw(16, 768);
                         margin-top: set-vw(64, 768);
                     }
-        
+
                     .name {
                         font-family: "Noto Serif TC";
                         color: white;
@@ -234,7 +243,7 @@
                         font-size: $font-26;
                         letter-spacing: 0.2em;
                         margin-right: 0.8vw;
-        
+
                         @include pad {
                             font-size: set-vw(32, 768);
                             margin-right: 0;
@@ -247,7 +256,7 @@
                         font-size: $font-17;
                         align-self: flex-end;
                         margin-bottom: 0.2vw;
-        
+
                         @include pad {
                             align-self: unset;
                             margin-bottom: 0;
