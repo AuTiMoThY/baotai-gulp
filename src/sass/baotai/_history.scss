@@ -17,6 +17,8 @@
     &-img {
         width: set-vw(1622, 1920);
         margin: auto;
+        overflow: hidden;
+
 
         @include pad {
             width: set-vw(685, 768);
@@ -182,7 +184,7 @@
                 right: 0;
             }
             &.swiper-button-prev, &.swiper-button-next {
-                top: set-vw(730, 768);
+                top: set-vw(670, 768);
                 margin-top: 0;
             }
         }

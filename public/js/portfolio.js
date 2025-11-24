@@ -58,8 +58,11 @@ window.onload = function () {
         tl.addLabel("img");
         if (ucyCore.isMobile()) {
             const listR = itemEl.querySelector(".img-list-r");
+            const imgItemsR = listR.querySelectorAll(".img-item");
+            tl.to(imgItemsR, { opacity: 1, stagger: 0.3, ease: "linear" }, "year+=0.3");
+
             tl.fromTo(
-                listR.querySelectorAll(".img-item"),
+                imgItemsR,
                 itemFromObj(45),
                 itemToObj(),
                 "year+=0.3"

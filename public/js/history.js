@@ -132,6 +132,20 @@ window.onload = function () {
             });
             photoTl.to(".history-photo picture", { opacity: 1, duration: 1.5 });
 
+            gsap.fromTo(".history-photo img", {
+                scale: 1.1,
+                y: "-10%",
+            },{
+                y: "10%", // 向下移動
+                scrollTrigger: {
+                    // markers: true,
+                    trigger: ".history-photo",
+                    start: "top 75%",
+                    end: "bottom+=50% 75%",
+                    scrub: true
+                }
+            });
+
             const summaryTl = gsap.timeline({
                 scrollTrigger: {
                     // markers: true,

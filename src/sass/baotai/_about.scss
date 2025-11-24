@@ -176,7 +176,7 @@
             margin-inline: auto;
         }
         img {
-            aspect-ratio: 1621 / 540;
+            aspect-ratio: 3242 / 1461;
             object-fit: cover;
 
             @include pad {
@@ -520,12 +520,11 @@
     .structure-img-wrap {
         position: relative;
         width: set-vw(683, 1920);
-        padding-bottom: set-vw(103, 1920);
+        aspect-ratio: 685 / 602;
 
         margin-inline: auto;
         @include pad {
             width: set-vw(683, 768);
-            padding-bottom: set-vw(178, 768);
         }
     }
     .structure-img {
@@ -533,12 +532,26 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        transform-origin: center relative-percentage(361, 601);
 
+        width: 100%;
 
+        &.c0 {
+            z-index: 3;
+        }
+        &.c1 {
+            z-index: 2;
+        }
+        &.c2 {
+            z-index: 2;
+        }
+        &.c3 {
+            z-index: 2;
+        }
 
         img {
-            aspect-ratio: 685 / 602;
-            object-fit: cover;
+            aspect-ratio: 682 / 601;
+            object-fit: contain;
         }
     }
 

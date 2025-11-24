@@ -51,11 +51,17 @@ window.onload = function () {
     };
 
     const cut3 = () => {
-        const elArray = [".structure-img"];
+        const elArray = [
+            ".structure-img.bg",
+            ".structure-img.c0",
+            ".structure-img.c1",
+            ".structure-img.c2",
+            ".structure-img.c3"
+        ];
         return {
             elArray,
             init() {
-                gsap.set([gsap.utils.toArray(elArray[0])[0]], { opacity: 0 });
+                gsap.set(elArray, { opacity: 0 });
             }
         };
     };
@@ -162,24 +168,24 @@ window.onload = function () {
                 }
             );
 
-
-            gsap.to(".founder-photo img", {
+            gsap.fromTo(".founder-photo picture", {
+                scale: 1.1,
+                y: "-20%",
+            },{
                 y: "20%", // 向下移動
-                // scale: 1.1,
-                ease: "none",
                 scrollTrigger: {
                     // markers: true,
                     trigger: ".founder-photo",
                     start: "top-=50% 75%",
                     end: "bottom+=50% 75%",
                     scrub: true
-                }
+                },
             });
         });
         ucyCore.pageTitle.titleAni(".about-spirit", () => {});
         ucyCore.pageTitle.titleAni(".about-corp-structure", () => {
             const tl = gsap.timeline({
-                defaults: { duration: 1, ease: "linear" },
+                defaults: { duration: 1, ease: "power1.out" },
                 scrollTrigger: {
                     // markers: true,
                     trigger: ".structure-img",
@@ -189,7 +195,7 @@ window.onload = function () {
                 }
             });
             tl.fromTo(
-                cut3().elArray[0],
+                cut3().elArray[1],
                 {
                     opacity: 0
                 },
@@ -197,6 +203,37 @@ window.onload = function () {
                     opacity: 1
                 }
             );
+            tl.fromTo(
+                cut3().elArray[0],
+                {
+                    opacity: 0,
+                    scale: 0.5,
+                    rotate: 90
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    rotate: 0,
+                    duration: 1.5
+                },
+                "<"
+            );
+
+            tl.fromTo(
+                [cut3().elArray[2], cut3().elArray[3], cut3().elArray[4]],
+                {
+                    opacity: 0,
+                    rotate: 30
+                },
+                {
+                    opacity: 1,
+                    rotate: 0,
+                    // duration: 1.5,
+                    stagger: 0.25
+                },
+                "<+0.3"
+            );
+
         });
     });
 
@@ -250,7 +287,9 @@ window.onload = function () {
             },
             on: {
                 init: function () {
-                    const bulletArr = gsap.utils.toArray(".spirit-img .swiper-pagination-bullet");
+                    const bulletArr = gsap.utils.toArray(
+                        ".spirit-img .swiper-pagination-bullet"
+                    );
                     gsap.set(bulletArr, { opacity: 0 });
 
                     const spiritTl = gsap.timeline({

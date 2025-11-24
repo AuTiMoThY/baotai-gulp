@@ -1,3 +1,5 @@
+@use "../../../../src/sass/abstracts/functions/set-vw" as *;
+
 .projectInner-body{
 
     // Swiper共用上下頁按鈕樣式
@@ -220,11 +222,19 @@
             display: flex;
             flex-wrap: wrap;
             margin: -0.8%;
-
+            @include pad {
+                flex-direction: column;
+                margin: set-vw(-16, 768);
+            }
             .img_one{
                 flex: 1 1 33.33%;
                 width: 33.33%;
                 padding: 0.8%;
+                @include pad {
+                    flex: 1 1 100%;
+                    width: 100%;
+                    padding: set-vw(16, 768);
+                }
             }
         }
 
