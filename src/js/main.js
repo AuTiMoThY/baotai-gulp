@@ -15,9 +15,10 @@ window.ucyCore = {
     headerScroll,
 };
 
-window.onload = function () {
+window.addEventListener("load", function () {
+
     ucyCore.headerScroll.init();
-};
+});
 
 $('.hamburger').click(function (e) { 
     e.preventDefault();
