@@ -3,14 +3,31 @@ window.onload = function () {
     const vh = window.innerHeight; // 視窗高度
     gsap.registerPlugin(ScrollTrigger, SplitText)
 
+    // 檢測是否為 Safari 瀏覽器
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) || 
+                     (navigator.vendor && navigator.vendor.indexOf('Apple') > -1);
     
+    // 根據 Safari 檢測結果顯示或隱藏 dummy-video
+    const dummyVideo = document.querySelector('.dummy-video');
+    if (dummyVideo) {
+        dummyVideo.style.display = isSafari ? 'block' : 'none';
+    }
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            dummyVideo.classList.add('js-hidden');
+        } else {
+            dummyVideo.classList.remove('js-hidden');
+        }
+    });
 
     let isSyncing = false;
 
     const swiperLeft = new Swiper(".swiper-left", { loop: true, speed: 1200, allowTouchMove: false, });
     const swiperMiddle = new Swiper(".swiper-middle", {
         loop: true,
-        speed: 1200, allowTouchMove: false,
+        speed: 1200,
+        allowTouchMove: false,
         navigation: { prevEl: ".prev", nextEl: ".next" },
         // pagination: { el: '.swiper-pagination', type: 'fraction' },
         on: {
@@ -27,7 +44,7 @@ window.onload = function () {
 
         // 取得目前索引和總數
         const current = swiper.realIndex + 1;
-        const total = swiper.slides.length-2;
+        const total = swiper.slides.length;
 
         // 個位數補0
         const currentStr = current < 10 ? `0${current}` : `${current}`;
@@ -38,11 +55,18 @@ window.onload = function () {
     const swiperRight = new Swiper(".swiper-right", { allowTouchMove: false, loop: true, speed: 1200 });
 
     // 初始設定偏移
-    const total = swiperMiddle.slides.length - 2;
+    const total = swiperMiddle.slides.length;
+
+    console.log(total);
     const middleIndex = 1;
+    const leftIndex = (middleIndex - 1 + total) % total;
+    const rightIndex = (middleIndex + 1) % total;
+
+    console.log(leftIndex, middleIndex, rightIndex);
+
     swiperMiddle.slideToLoop(middleIndex, 0, false);
-    swiperLeft.slideToLoop((middleIndex - 1 + total) % total, 0, false);
-    swiperRight.slideToLoop((middleIndex + 1) % total, 0, false);
+    swiperLeft.slideToLoop(leftIndex, 0, false);
+    swiperRight.slideToLoop(rightIndex, 0, false);
 
     // 同步函數
     function syncSwipers(direction) {
@@ -176,6 +200,13 @@ window.onload = function () {
 
     //-- 第一卡(電腦) --
     const c1ScrollAni = () => {
+        // 計算 21vw 對應的 vh 值，解決 Safari 混合單位動畫問題
+        const imgBox = document.querySelector('.index-body .card1 .main-box .p-fv-img-wrapper .img-box');
+        const initialHeightVh = imgBox ? ((21 * window.innerWidth) / window.innerHeight).toFixed(4) + 'dvh' : '21vw';
+        console.log(initialHeightVh);
+        gsap.set('.index-body .card1 .main-box .p-fv-img-wrapper .img-box', {
+            height: initialHeightVh,
+        });
         let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.card1',
@@ -189,10 +220,16 @@ window.onload = function () {
             }
         })
 
-        tl.to('.index-body .card1 .main-box .p-fv-img-wrapper .img-box', {
+        tl.fromTo('.index-body .card1 .main-box .p-fv-img-wrapper .img-box', {
+            width: '31vw',
+            height: initialHeightVh,
+
+            right: '7.2vw',
+            top: '12vw',
+        }, {
             duration: 1,
             width: '100vw',
-            height: '100svh',
+            height: '100dvh',
             right: '0vw',
             top: '0vw',
         })
@@ -222,7 +259,7 @@ window.onload = function () {
         c1ScrollAni();
     }
     else{
-        c1ScrollAni_mobile();
+        // c1ScrollAni_mobile();
     }
     
 
@@ -244,7 +281,7 @@ window.onload = function () {
         marqueeAni();
     }
     
-
+    //-- 熱銷建案 --
     const hotProjectAni = () => {
 
         const enSplit1 = SplitText.create('.index-body .hot-project .title-box .top .en', {

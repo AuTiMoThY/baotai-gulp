@@ -396,7 +396,7 @@ header .header-box .link-box .l_div a.link {
 }
 @media (max-width: 900px) {
   header .header-box .link-box .l_div a.link {
-    padding-bottom: 6vw;
+    padding-block: 3vw;
   }
 }
 header .header-box .link-box .l_div a.link .en {
@@ -448,6 +448,13 @@ header .header-box .link-box .l_div a.link:hover .zh {
   color: #e0caae;
 }
 
+@media (max-width: 900px) {
+  header .header-box .link-box .l_div a.link:hover .en, header .header-box .link-box .l_div a.link:hover .zh {
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
 header .header-box .link-box .l_div a.link .en {
   -webkit-transform: translateY(0);
       -ms-transform: translateY(0);
@@ -964,7 +971,7 @@ header.transparent {
     height: auto;
   }
 }
-.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box {
+.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box, .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video {
   right: 7.2vw;
   top: 12vw;
   width: 31vw;
@@ -978,7 +985,7 @@ header.transparent {
   overflow: hidden;
 }
 
-.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box video {
+.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box video, .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video video {
   position: absolute;
   top: 0;
   left: 0;
@@ -989,7 +996,7 @@ header.transparent {
 }
 
 @media (max-width: 900px) {
-  .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box {
+  .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box, .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video {
     position: relative;
     top: 0;
     right: 0;
@@ -999,10 +1006,26 @@ header.transparent {
     border-radius: 0;
   }
 }
-.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box img {
+.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box img, .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box {
+  z-index: 1;
+}
+
+.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video {
+  z-index: 2;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+.index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video.js-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {

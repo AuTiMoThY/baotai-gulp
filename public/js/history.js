@@ -133,16 +133,16 @@ window.onload = function () {
             photoTl.to(".history-photo picture", { opacity: 1, duration: 1.5 });
 
             gsap.fromTo(".history-photo img", {
-                scale: 1.1,
-                y: "-10%",
+                scale: 1.2,
+                yPercent: -10,
             },{
-                y: "10%", // 向下移動
+                yPercent: 10, // 向下移動
                 scrollTrigger: {
                     // markers: true,
                     trigger: ".history-photo",
-                    start: "top 75%",
-                    end: "bottom+=50% 75%",
-                    scrub: true
+                    start: "top 100%",
+                    end: "bottom 0%",
+                    scrub: 0.5
                 }
             });
 

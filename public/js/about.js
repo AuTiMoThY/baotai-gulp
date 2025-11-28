@@ -168,86 +168,85 @@ window.onload = function () {
                 }
             );
 
-            gsap.fromTo(".founder-photo picture", {
+            gsap.fromTo(".founder-photo img", {
                 scale: 1.1,
-                y: "-20%",
+                yPercent: -10,
             },{
-                y: "20%", // 向下移動
+                yPercent: 10, // 向下移動
                 scrollTrigger: {
                     // markers: true,
                     trigger: ".founder-photo",
-                    start: "top-=50% 75%",
-                    end: "bottom+=50% 75%",
-                    scrub: true
+                    start: "top 100%",
+                    end: "bottom 0%",
+                    scrub: 0.5
                 },
             });
         });
         ucyCore.pageTitle.titleAni(".about-spirit", () => {});
-        ucyCore.pageTitle.titleAni(".about-corp-structure", () => {
-            const tl = gsap.timeline({
-                defaults: { duration: 1, ease: "power1.out" },
-                scrollTrigger: {
-                    // markers: true,
-                    trigger: ".structure-img",
-                    start: "-30% 75%",
-                    end: "bottom 75%",
-                    toggleActions: "play none none reverse"
-                }
-            });
-            tl.fromTo(
-                cut3().elArray[1],
-                {
-                    opacity: 0
-                },
-                {
-                    opacity: 1
-                }
-            );
-            tl.fromTo(
-                cut3().elArray[0],
-                {
-                    opacity: 0,
-                    scale: 0.5,
-                    rotate: 90
-                },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    rotate: 0,
-                    duration: 1.5
-                },
-                "<"
-            );
+        ucyCore.pageTitle.titleAni(".about-corp-structure");
 
-            tl.fromTo(
-                [cut3().elArray[2], cut3().elArray[3], cut3().elArray[4]],
-                {
-                    opacity: 0,
-                    rotate: 30
-                },
-                {
-                    opacity: 1,
-                    rotate: 0,
-                    // duration: 1.5,
-                    stagger: 0.25
-                },
-                "<+0.3"
-            );
-
+        const tl = gsap.timeline({
+            defaults: { duration: 1, ease: "expo.out" },
+            scrollTrigger: {
+                // markers: true,
+                trigger: ".structure-img",
+                start: "-30% 75%",
+                end: "bottom 75%",
+                toggleActions: "play none none reverse"
+            }
         });
+        tl.fromTo(
+            cut3().elArray[1],
+            {
+                opacity: 0,
+                scale: 0.5
+            },
+            {
+                delay: 1,
+                opacity: 1,
+                scale: 1,
+                ease: "elastic.out(1,0.75)"
+            }
+        );
+        tl.fromTo(
+            cut3().elArray[0],
+            {
+                opacity: 0,
+                scale: 0.5,
+                rotation: 90
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                duration: 1.5
+            },
+            "<"
+        );
+
+        tl.fromTo(
+            [cut3().elArray[2], cut3().elArray[3], cut3().elArray[4]],
+            {
+                opacity: 0,
+                rotation: 30
+            },
+            {
+                opacity: 1,
+                rotation: 0,
+                duration: 1.5,
+                stagger: 0.1
+            },
+            "<+0.3"
+        );
+
     });
 
     let swiper = null;
     const initSwiper = () => {
         swiper = new Swiper(".spirit-swiper", {
-            effect: "creative",
-            creativeEffect: {
-                prev: {
-                    opacity: 0
-                },
-                next: {
-                    opacity: 0
-                }
+            effect: "fade",
+            fadeEffect: {
+                crossFade: true
             },
             loop: true,
             speed: 1500,

@@ -18,6 +18,14 @@ window.ucyCore = {
 window.addEventListener("load", function () {
 
     ucyCore.headerScroll.init();
+
+    const parallax = document.querySelectorAll(".ukiyo");
+    new Ukiyo(parallax, {
+        scale: 1.1,
+        speed: 2,
+        willChange: true,
+        externalRAF: false
+    });
 });
 
 $('.hamburger').click(function (e) { 

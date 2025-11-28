@@ -155,7 +155,7 @@ window.onload = function () {
     
     if(!ucyCore.isMobile()) {
         ScrollTrigger.create({
-            markers: true,
+            // markers: true,
             trigger: ".push-map-wrap",
             pin: true,
             start: "top-=12% top",

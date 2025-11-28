@@ -2665,18 +2665,37 @@
 }
 
 .about-founder .founder-photo {
+  position: relative;
   width: 100%;
+  aspect-ratio: 1622/540;
   overflow: hidden;
 }
 
 @media (max-width: 900px) {
   .about-founder .founder-photo {
     width: 89.7vw;
+    aspect-ratio: 689/461;
     margin-inline: auto;
   }
 }
+.about-founder .founder-photo-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  aspect-ratio: 1622/1251;
+}
+
+@media (max-width: 900px) {
+  .about-founder .founder-photo-img {
+    aspect-ratio: 689/461;
+  }
+}
 .about-founder .founder-photo img {
-  aspect-ratio: 3242/1461;
+  aspect-ratio: 1622/1251;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -2739,6 +2758,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   padding: 1.1vw 1.3vw;
+  will-change: transform;
 }
 
 @media (max-width: 900px) {
@@ -3069,6 +3089,15 @@
   width: max(1.8vw, 35px);
 }
 
+.about-corp-structure {
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .about-corp-structure {
+    padding-bottom: 23.2vw;
+  }
+}
 .about-corp-structure .structure-img-wrap {
   position: relative;
   width: 35.6vw;

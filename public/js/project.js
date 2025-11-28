@@ -38,7 +38,7 @@ window.onload = function () {
         swiper = new Swiper(".mySwiper", {
             direction: "vertical",
             slidesPerView: slidesView,
-            mousewheel: true,
+            mousewheel: false,
             centeredSlides: true,
             speed: 1000,
             navigation: { prevEl: ".prev", nextEl: ".next" },

@@ -120,7 +120,8 @@ header {
           }
 
           @include pad{
-            padding-bottom: 6vw;
+            // padding-bottom: 6vw;
+            padding-block: 3vw;
           }
 
           .en {
@@ -157,6 +158,11 @@ header {
             .zh {
               transform: translateY(-90%);
               color: #e0caae;
+            }
+            @include pad{
+              .en, .zh {
+                transform: translateY(0);
+              }
             }
           }
           .en {
