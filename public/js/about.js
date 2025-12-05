@@ -1,7 +1,10 @@
+
 window.onload = function () {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    ucyCore.pageBanner.bannerAni(".about-body");
+    ucyCore.resourcesLoading(() => {
+        ucyCore.pageBanner.bannerAni(".about-body");
+    });
 
     const cut1 = () => {
         const elArray = [
@@ -22,13 +25,17 @@ window.onload = function () {
     const cut2 = () => {
         const elArray = [
             ".spirit-img",
-            ".spirit-block-hd .title-txt-1",
-            ".spirit-block-hd .title-txt-2",
-            ".spirit-block-hd .line",
+            ".spirit-block-hd.show-desktop .title-txt-1",
+            ".spirit-block-hd.show-desktop .title-txt-2",
+            ".spirit-block-hd.show-desktop .line",
             ".spirit-block-bd .title",
             ".spirit-block-bd .txt",
             ".spirit-block-ft .swiper-button-prev",
-            ".spirit-block-ft .swiper-button-next"
+            ".spirit-block-ft .swiper-button-next",
+            ".spirit-block-hd.show-mobile .title-txt-1",
+            ".spirit-block-hd.show-mobile .title-txt-2",
+            ".spirit-block-hd.show-mobile .line",
+        
         ];
         return {
             elArray,
@@ -42,7 +49,10 @@ window.onload = function () {
                         gsap.utils.toArray(elArray[4])[0],
                         gsap.utils.toArray(elArray[5])[0],
                         gsap.utils.toArray(elArray[6])[0],
-                        gsap.utils.toArray(elArray[7])[0]
+                        gsap.utils.toArray(elArray[7])[0],
+                        gsap.utils.toArray(elArray[8])[0],
+                        gsap.utils.toArray(elArray[9])[0],
+                        gsap.utils.toArray(elArray[10])[0]
                     ],
                     { opacity: 0 }
                 );
@@ -195,6 +205,7 @@ window.onload = function () {
                 toggleActions: "play none none reverse"
             }
         });
+
         tl.fromTo(
             cut3().elArray[1],
             {
@@ -249,7 +260,10 @@ window.onload = function () {
                 crossFade: true
             },
             loop: true,
-            speed: 1500,
+            speed: 300,
+            preventInteractionOnTransition: false,
+            allowSlideNext: true,
+            allowSlidePrev: true,
             autoHeight: ucyCore.isMobile() ? true : false,
             spaceBetween: 30,
             pagination: {
@@ -301,17 +315,47 @@ window.onload = function () {
                             toggleActions: "play none none reverse"
                         }
                     });
+                    if(ucyCore.isMobile()) {
+                        spiritTl.fromTo(
+                            [
+                                gsap.utils.toArray(cut2().elArray[8])[0],
+                                gsap.utils.toArray(cut2().elArray[9])[0],
+                                gsap.utils.toArray(cut2().elArray[10])[0]
+                            ],
+                            {
+                                opacity: 0
+                            },
+                            {
 
-                    spiritTl.fromTo(
-                        cut2().elArray[0],
-                        {
-                            opacity: 0
-                        },
-                        {
-                            delay: 0.5,
-                            opacity: 1
-                        }
-                    );
+                                delay: 0.5,
+                                opacity: 1,
+                                duration: 1.5,
+                                stagger: 0.3
+                            }
+                        );
+                        spiritTl.fromTo(
+                            cut2().elArray[0],
+                            {
+                                opacity: 0
+                            },
+                            {
+                                opacity: 1
+                            },
+                            "<0.5"
+                        );
+                    }
+                    else {
+                        spiritTl.fromTo(
+                            cut2().elArray[0],
+                            {
+                                opacity: 0
+                            },
+                            {
+                                delay: 0.5,
+                                opacity: 1
+                            }
+                        );
+                    }
                     spiritTl.fromTo(
                         bulletArr,
                         {
@@ -325,23 +369,25 @@ window.onload = function () {
                         },
                         "<+0.3"
                     );
-                    spiritTl.fromTo(
-                        [
-                            gsap.utils.toArray(cut2().elArray[1])[0],
-                            gsap.utils.toArray(cut2().elArray[2])[0],
-                            gsap.utils.toArray(cut2().elArray[4])[0],
-                            gsap.utils.toArray(cut2().elArray[5])[0]
-                        ],
-                        {
-                            opacity: 0
-                        },
-                        {
-                            opacity: 1,
-                            duration: 1.5,
-                            stagger: 0.3
-                        },
-                        "<+0.3"
-                    );
+                    // if(!ucyCore.isMobile()) {
+                        spiritTl.fromTo(
+                            [
+                                gsap.utils.toArray(cut2().elArray[1])[0],
+                                gsap.utils.toArray(cut2().elArray[2])[0],
+                                gsap.utils.toArray(cut2().elArray[4])[0],
+                                gsap.utils.toArray(cut2().elArray[5])[0]
+                            ],
+                            {
+                                opacity: 0
+                            },
+                            {
+                                opacity: 1,
+                                duration: 1.5,
+                                stagger: 0.3
+                            },
+                            "<+0.3"
+                        );
+                    // }
                     spiritTl.fromTo(
                         cut2().elArray[3],
                         {
@@ -367,9 +413,50 @@ window.onload = function () {
                         },
                         "<+0.3"
                     );
+                },
+                touchStart: function() {
+                    // 在觸摸開始時允許立即切換
+                    if (this.animating) {
+                        this.setTransition(0);
+                    }
                 }
             }
         });
+
+        // // 為導航按鈕添加點擊事件，確保在動畫進行中也能立即切換
+        // const prevBtn = document.querySelector(".spirit-swiper-nav.swiper-button-prev");
+        // const nextBtn = document.querySelector(".spirit-swiper-nav.swiper-button-next");
+        
+        // if (prevBtn) {
+        //     prevBtn.addEventListener("click", function() {
+        //         if (swiper && swiper.animating) {
+        //             swiper.setTransition(0);
+        //         }
+        //     });
+        // }
+        
+        // if (nextBtn) {
+        //     nextBtn.addEventListener("click", function() {
+        //         if (swiper && swiper.animating) {
+        //             swiper.setTransition(0);
+        //         }
+        //     });
+        // }
+
+        // // 移除 autoHeight 的過渡動畫（僅在移動設備上）
+        // if (swiper && ucyCore.isMobile()) {
+        //     const container = swiper.el;
+            
+        //     if (container) {
+        //         // 直接移除容器的 transition 屬性
+        //         container.style.transition = "none";
+                
+        //         // 監聽所有可能觸發高度變化的事件
+        //         swiper.on("slideChange slideChangeTransitionStart beforeSlideChangeStart", function() {
+        //             container.style.transition = "none";
+        //         });
+        //     }
+        // }
     };
 
     const destroySwiper = () => {

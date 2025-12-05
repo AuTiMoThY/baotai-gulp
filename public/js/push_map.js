@@ -1,4 +1,3 @@
-
 let map;
 let markers = [];
 let info;
@@ -38,7 +37,7 @@ const infoPopup = (title, floor_space, loc_img, loc_url) => {
 
 async function initMap() {
     // ✅ 等待 API 完成載入（如果支援 importLibrary）
-    if (google.maps && typeof google.maps.importLibrary === 'function') {
+    if (google.maps && typeof google.maps.importLibrary === "function") {
         await google.maps.importLibrary("maps");
         await google.maps.importLibrary("marker");
     }
@@ -88,22 +87,30 @@ locationItems.forEach((item, index) => {
     item.addEventListener("click", (e) => {
         openInfo(index);
 
-        if(ucyCore.isMobile()) {
+        if (ucyCore.isMobile()) {
             const mapElement = document.getElementById("map");
             const headerElement = document.querySelector(".header");
-            if(mapElement) {
-                const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-                const targetY = mapElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            if (mapElement) {
+                const headerHeight = headerElement
+                    ? headerElement.offsetHeight
+                    : 0;
+                const targetY =
+                    mapElement.getBoundingClientRect().top +
+                    window.pageYOffset -
+                    headerHeight;
                 const startY = window.pageYOffset;
-                
-                gsap.to({ y: startY }, {
-                    y: targetY,
-                    duration: 0.8,
-                    ease: "power2.inOut",
-                    onUpdate: function() {
-                        window.scrollTo(0, this.targets()[0].y);
+
+                gsap.to(
+                    { y: startY },
+                    {
+                        y: targetY,
+                        duration: 0.8,
+                        ease: "power2.inOut",
+                        onUpdate: function () {
+                            window.scrollTo(0, this.targets()[0].y);
+                        }
                     }
-                });
+                );
             }
         }
     });
@@ -129,7 +136,6 @@ function openInfo(index) {
     setTimeout(() => {
         // map.panTo(marker.position);
     }, 500);
-
 }
 
 // 等待 Google Maps API 載入完成後再執行 initMap
@@ -143,23 +149,22 @@ if (window.initGoogleMap) {
 }
 
 window.onload = function () {
-    const window_width = window.screen.width;
-    const vh = window.innerHeight; // 視窗高度
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    
-    ucyCore.pageBanner.bannerAni(".push-map-body");
-    document.fonts.ready.then(() => {
-        ucyCore.pageTitle.titleAni(".push-map-body");
+    ucyCore.resourcesLoading(() => {
+        ucyCore.pageBanner.bannerAni(".push-map-body");
+        document.fonts.ready.then(() => {
+            ucyCore.pageTitle.titleAni(".push-map-body");
+        });
     });
-    
-    if(!ucyCore.isMobile()) {
+
+    if (!ucyCore.isMobile()) {
         ScrollTrigger.create({
             // markers: true,
             trigger: ".push-map-wrap",
             pin: true,
             start: "top-=12% top",
-            end: "50% bottom",
+            end: "50% bottom"
         });
     }
 };

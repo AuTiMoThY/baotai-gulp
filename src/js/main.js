@@ -7,16 +7,17 @@ import { pageBanner } from "./modules/pageBanner";
 import { pageTitle } from "./modules/pageTitle";
 import { isMobile } from "./modules/common/isMobile";
 import { headerScroll } from "./modules/common/headerScroll";
+import { resourcesLoading } from "./modules/common/resourcesLoading";
 
 window.ucyCore = {
     isMobile,
     pageBanner,
     pageTitle,
     headerScroll,
+    resourcesLoading,
 };
 
 window.addEventListener("load", function () {
-
     ucyCore.headerScroll.init();
 
     const parallax = document.querySelectorAll(".ukiyo");

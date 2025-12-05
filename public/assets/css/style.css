@@ -1578,6 +1578,11 @@
   overflow: visible;
 }
 
+.history-swiper.swiper-3d {
+  -webkit-perspective: unset;
+          perspective: unset;
+}
+
 @media (max-width: 900px) {
   .history-swiper {
     padding-top: 11.3vw;
@@ -3009,6 +3014,15 @@
     margin-inline: auto;
   }
 }
+@media (max-width: 900px) {
+  .spirit-block-bd {
+    padding-top: 9.4vw;
+  }
+}
+.spirit-block-hd.show-mobile .title {
+  padding-top: 0;
+}
+
 .spirit-slide-bd {
   padding-bottom: 1.9vw;
 }

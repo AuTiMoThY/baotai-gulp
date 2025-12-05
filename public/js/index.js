@@ -1,25 +1,32 @@
 window.onload = function () {
     const window_width = window.screen.width;
     const vh = window.innerHeight; // 視窗高度
-    gsap.registerPlugin(ScrollTrigger, SplitText)
+    gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    // 檢測是否為 Safari 瀏覽器
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) || 
-                     (navigator.vendor && navigator.vendor.indexOf('Apple') > -1);
-    
-    // 根據 Safari 檢測結果顯示或隱藏 dummy-video
-    const dummyVideo = document.querySelector('.dummy-video');
-    if (dummyVideo) {
-        dummyVideo.style.display = isSafari ? 'block' : 'none';
-    }
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            dummyVideo.classList.add('js-hidden');
-        } else {
-            dummyVideo.classList.remove('js-hidden');
+    ucyCore.resourcesLoading(() => {
+        if ($(window).width() > 1024) {
+            c1Ani();
         }
     });
+
+    // 檢測是否為桌面版 Safari 瀏覽器（排除 iPhone/iPad）
+    const isSafari = (/^((?!chrome|android).)*safari/i.test(navigator.userAgent) || 
+                      (navigator.vendor && navigator.vendor.indexOf('Apple') > -1)) &&
+                     !/iPhone|iPad|iPod/i.test(navigator.userAgent);
+    
+    // // 根據 Safari 檢測結果顯示或隱藏 dummy-video
+    // const dummyVideo = document.querySelector('.dummy-video');
+    // if (dummyVideo) {
+    //     dummyVideo.style.display = isSafari ? 'block' : 'none';
+    // }
+
+    // window.addEventListener('scroll', () => {
+    //     if (window.scrollY > 10) {
+    //         dummyVideo.classList.add('js-hidden');
+    //     } else {
+    //         dummyVideo.classList.remove('js-hidden');
+    //     }
+    // });
 
     let isSyncing = false;
 
@@ -27,7 +34,10 @@ window.onload = function () {
     const swiperMiddle = new Swiper(".swiper-middle", {
         loop: true,
         speed: 1200,
-        allowTouchMove: false,
+        allowTouchMove: ucyCore.isMobile() ? true : false,
+        autoplay: ucyCore.isMobile() ? {
+            delay: 1500,
+        } : false,
         navigation: { prevEl: ".prev", nextEl: ".next" },
         // pagination: { el: '.swiper-pagination', type: 'fraction' },
         on: {
@@ -47,8 +57,8 @@ window.onload = function () {
         const total = swiper.slides.length;
 
         // 個位數補0
-        const currentStr = current < 10 ? `0${current}` : `${current}`;
-        const totalStr = total < 10 ? `0${total}` : `${total}`;
+        const currentStr = String(current).padStart(2, '0')
+        const totalStr = String(total).padStart(2, '0');
 
         fractionEl.textContent = `${currentStr} / ${totalStr}`;
     }
@@ -57,12 +67,12 @@ window.onload = function () {
     // 初始設定偏移
     const total = swiperMiddle.slides.length;
 
-    console.log(total);
-    const middleIndex = 1;
+    // console.log(total);
+    const middleIndex = 0;
     const leftIndex = (middleIndex - 1 + total) % total;
     const rightIndex = (middleIndex + 1) % total;
 
-    console.log(leftIndex, middleIndex, rightIndex);
+    // console.log(leftIndex, middleIndex, rightIndex);
 
     swiperMiddle.slideToLoop(middleIndex, 0, false);
     swiperLeft.slideToLoop(leftIndex, 0, false);
@@ -102,53 +112,6 @@ window.onload = function () {
 
         maskWrapper.style.setProperty('--spotlight', `${percent}%`);
     });
-
-
-    const loadingScreen = document.querySelector(".loading-screen");
-    const loadingText = document.getElementById("loading-text");
-
-    const images = Array.from(document.images);
-    const videos = Array.from(document.querySelectorAll("video"));
-    const resources = [...images, ...videos]; // 統一資源陣列
-    const totalResources = resources.length;
-    let loadedResources = 0;
-
-    // 更新百分比函數
-    function updateProgress() {
-        let percent = totalResources === 0 ? 100 : Math.floor((loadedResources / totalResources) * 100);
-        loadingText.textContent = percent;
-
-        if (percent >= 100) {
-            gsap.timeline()
-                .to(loadingScreen, { duration: 1, height: 0, ease: "power3.in" })
-                .to(loadingScreen, { duration: 1, display: 'none', ease: "power1.inOut" }, '<0.5')
-
-            if($(window).width()>1024){
-                c1Ani();
-            }
-            
-        }
-    }
-
-    // 統一監聽函數
-    function listenResourceLoad(res) {
-        // 已經加載完成或可播放
-        if ((res.tagName === "IMG" && res.complete) ||
-            (res.tagName === "VIDEO" && res.readyState >= 3)) {
-            loadedResources++;
-            updateProgress();
-        } else {
-            res.addEventListener("load", () => { loadedResources++; updateProgress(); });
-            res.addEventListener("loadeddata", () => { loadedResources++; updateProgress(); });
-            res.addEventListener("error", () => { loadedResources++; updateProgress(); });
-        }
-    }
-
-    // 監聽所有資源
-    resources.forEach(res => listenResourceLoad(res));
-
-    // 如果沒有資源，也直接跳到 100%
-    if (totalResources === 0) updateProgress();
 
 
     function c1Ani() {
@@ -202,7 +165,9 @@ window.onload = function () {
     const c1ScrollAni = () => {
         // 計算 21vw 對應的 vh 值，解決 Safari 混合單位動畫問題
         const imgBox = document.querySelector('.index-body .card1 .main-box .p-fv-img-wrapper .img-box');
-        const initialHeightVh = imgBox ? ((21 * window.innerWidth) / window.innerHeight).toFixed(4) + 'dvh' : '21vw';
+        const imgBoxHeight = imgBox.offsetHeight; // 取得元素高度（像素）
+        const viewportHeight = window.innerHeight; // 取得視窗高度（像素）
+        const initialHeightVh = (imgBoxHeight / viewportHeight) * 100 + 'dvh'; // 轉換成 dvh
         console.log(initialHeightVh);
         gsap.set('.index-body .card1 .main-box .p-fv-img-wrapper .img-box', {
             height: initialHeightVh,
@@ -221,11 +186,10 @@ window.onload = function () {
         })
 
         tl.fromTo('.index-body .card1 .main-box .p-fv-img-wrapper .img-box', {
-            width: '31vw',
+            width: '40vw',
             height: initialHeightVh,
-
-            right: '7.2vw',
-            top: '12vw',
+            right: '7vw',
+            top: '10vw',
         }, {
             duration: 1,
             width: '100vw',
@@ -235,7 +199,7 @@ window.onload = function () {
         })
             .to('.card1 .title-box', { duration: 1, top: '-40vw' }, '<')
             .to('.c-maskText-wrapper .c-maskText-inner', { duration: 1, x: -150 }, '<')
-            .fromTo('.index-body .card1 .main-box .p-fv-img-wrapper .img-box img', { width: '100%', }, { duration: 0.5, width: '100vw', })
+            // .fromTo('.index-body .card1 .main-box .p-fv-img-wrapper .img-box img', { width: '100%', }, { duration: 0.5, width: '100vw', })
     }
     //-- 第一卡(手機) --
     const c1ScrollAni_mobile = () => {
@@ -517,7 +481,7 @@ window.onload = function () {
                 start: "top 65%",
                 end: calcEndPercent(), // 動態換算
                 scrub: 5,
-
+                marker: true
             }
         })
 
@@ -563,7 +527,7 @@ window.onload = function () {
                 start: "top 80%",
                 end: calcEndPercent(), // 動態換算
                 scrub: 5,
-
+                markers: true,
             }
         })
         tl.from('.index-body .news-latest .news-box .item', { duration: 1.5, xPercent: '-40', opacity: 0, stagger: 0.3 })

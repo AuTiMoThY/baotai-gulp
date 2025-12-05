@@ -1,21 +1,7 @@
-// 共用計算 function
-const calcEndPercent = () => {
-    const vh = window.innerHeight;
-    const percent = (400 / vh) * 100;
-    return `+=${percent}%`;
-};
-
 window.onload = function () {
-    const window_width = window.screen.width;
-    const vh = window.innerHeight; // 視窗高度
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    
-    ucyCore.pageBanner.bannerAni(".news-body");
-    ucyCore.pageTitle.titleAni(".news-body");
-
     const newsListAni = () => {
-        // const isMobile = window.matchMedia("(max-width: 1024px)").matches;
         const items = document.querySelectorAll(".news-box .item");
         const itemsArray = Array.from(items);
 
@@ -25,11 +11,11 @@ window.onload = function () {
                 if (index === 0) {
                     gsap.from(item, {
                         duration: 2.5,
-                        opacity: 0,
+                        opacity: 0
                     });
                     return;
-                };
-                
+                }
+
                 gsap.from(item, {
                     duration: 1.7,
                     opacity: 0,
@@ -43,11 +29,11 @@ window.onload = function () {
                     }
                 });
             });
-        }else {
+        } else {
             // 每3個為一組
             for (let i = 0; i < itemsArray.length; i += 3) {
                 const group = itemsArray.slice(i, i + 3);
-                
+
                 // 使用組內第一個元素作為觸發點
                 gsap.from(group, {
                     duration: 1,
@@ -63,7 +49,11 @@ window.onload = function () {
                 });
             }
         }
-
     };
-    newsListAni();
+
+    ucyCore.resourcesLoading(() => {
+        ucyCore.pageBanner.bannerAni(".news-body");
+        ucyCore.pageTitle.titleAni(".news-body");
+        newsListAni();
+    });
 };

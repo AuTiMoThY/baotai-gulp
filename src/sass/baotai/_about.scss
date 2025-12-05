@@ -172,11 +172,10 @@
         width: 100%;
         aspect-ratio: 1622 / 540;
         overflow: hidden;
-        
+
         @include pad {
             width: set-vw(689, 768);
             aspect-ratio: 689 / 461;
-
 
             margin-inline: auto;
         }
@@ -193,7 +192,6 @@
             }
         }
         img {
-
             aspect-ratio: 1622 / 1251;
             object-fit: cover;
 
@@ -345,7 +343,8 @@
             }
 
             .circle {
-                animation: ripple 3s cubic-bezier(0.12, 0.49, 0.17, 0.87) infinite;
+                animation: ripple 3s cubic-bezier(0.12, 0.49, 0.17, 0.87)
+                    infinite;
                 &:nth-of-type(2) {
                     animation-delay: 1s;
                 }
@@ -455,6 +454,18 @@
                 margin-inline: auto;
             }
         }
+    }
+
+    &-bd {
+        @include pad {
+            padding-top: set-vw(72, 768);
+        }
+    }
+}
+
+.spirit-block-hd.show-mobile {
+    .title {
+        padding-top: 0;
     }
 }
 

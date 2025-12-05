@@ -155,10 +155,15 @@
           }
 
           .img-box, .dummy-video {
-            right: 7.2vw;
-            top: 12vw;
-            width: 31vw;
-            height: 21vw;
+            // right: 7.2vw;
+            // top: 12vw;
+            // width: 44vw;
+            // height: 29.81vw;
+            right: 7vw;
+            top: 10vw;
+            width: 40vw;
+            aspect-ratio: 31 / 21;
+            // height: 29.81vw;
             transform-origin: right center;
             border-radius: 1rem;
             z-index: 10 !important;

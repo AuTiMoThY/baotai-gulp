@@ -972,10 +972,10 @@ header.transparent {
   }
 }
 .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .img-box, .index-body .scroll-box .card1 .main-box .p-fv-img-wrapper .dummy-video {
-  right: 7.2vw;
-  top: 12vw;
-  width: 31vw;
-  height: 21vw;
+  right: 7vw;
+  top: 10vw;
+  width: 40vw;
+  aspect-ratio: 31/21;
   -webkit-transform-origin: right center;
       -ms-transform-origin: right center;
           transform-origin: right center;

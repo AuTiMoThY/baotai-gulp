@@ -87,6 +87,11 @@ extends "layout.njk" %} {% block content %}
         </div>
     </div>
 </main>
-{% endblock %} {% block page_script %}
-
+{% endblock %}
+{% block page_script %}
+<script>
+window.onload = function () {
+    ucyCore.resourcesLoading();
+}
+</script>
 {% endblock %}

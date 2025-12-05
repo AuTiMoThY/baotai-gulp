@@ -50,6 +50,9 @@
     </main>
 {% endblock %}
 {% block page_script %}
-    
-    {# <script src="js/preview_detail.js{% if VERSION != '' %}?v=[[VERSION]]{% endif %}"></script> #}
+<script>
+window.onload = function () {
+    ucyCore.resourcesLoading();
+}
+</script>
 {% endblock %}

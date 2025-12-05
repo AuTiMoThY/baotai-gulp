@@ -9,7 +9,7 @@ const prodOutput = "dist_prod";
 export default {
     project: project,
     version: version,
-    port: 8082,
+    port: 8083,
     entry: `./${entry}`,
     output: `./${output}`,
     prodOutput: `./${prodOutput}`,

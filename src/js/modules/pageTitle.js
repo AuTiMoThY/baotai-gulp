@@ -53,7 +53,7 @@ export const pageTitle = {
             .call(
                 function () {
                     // 提前 1 秒觸發的 callback
-                    console.log("提前 1 秒觸發", this);
+                    // console.log("提前 1 秒觸發", this);
                     callback && callback();
                 },
                 null,
