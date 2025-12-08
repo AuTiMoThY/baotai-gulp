@@ -165,7 +165,7 @@ window.onload = function () {
         // 因為 Swiper 使用 slidesPerView，需要獲取實際顯示的高度
         let slideHeight = 0;
 
-        // 方法1：使用 Swiper 容器高度除以 slidesPerView（最準確）
+        // 使用 Swiper 容器高度除以 slidesPerView（最準確）
         const swiperHeight = swiper.height || swiper.el.offsetHeight;
         const slidesPerView = swiper.params.slidesPerView || 2;
         slideHeight = swiperHeight / slidesPerView;

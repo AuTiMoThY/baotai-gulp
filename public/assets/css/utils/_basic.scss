@@ -132,7 +132,7 @@ textarea{
 
 .loading-screen {
   width: 100vw;
-  height: 100vh;
+  height: var(--dvh);
   position: fixed;
   top: 0px;
   left: 0px;
@@ -145,24 +145,24 @@ textarea{
   text-align: end;
   overflow: hidden;
 
-  @media all and (max-width: 500px) {
-    height: calc(var(--loadingvh, 1vh) * 99);
-  }
+  // @media all and (max-width: 500px) {
+  //   height: calc(var(--loadingvh, 1vh) * 99);
+  // }
   .loading-text {
     // letter-spacing: 0.1em;
     font-weight: 600;
     font-family: "Cormorant Infant";
     line-height: 1;
     font-weight: 100;
-    padding-left: 0vw;
     color: $color-text;
     font-size: 13vw;
+    padding-left: 0vw;
     padding-right: 3vw;
 
     @include pad{
       font-size: 20vw;
       padding-right: 4vw;
-      padding-bottom: 3vw;
+      padding-bottom: 5vw;
     }
   }
 }
