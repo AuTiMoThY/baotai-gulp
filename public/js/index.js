@@ -232,8 +232,6 @@ window.onload = function () {
 
         // 建立三個 swiper 並設定同步
         const initHotProjectSwiper = () => {
-            let isSyncing = false;
-
             swiperLeft = new Swiper(".swiper-left", {
                 loop: true,
                 speed: 1200,
@@ -295,34 +293,6 @@ window.onload = function () {
             swiperLeft.slideToLoop(leftIndex, 0, false);
             swiperMiddle.slideToLoop(middleIndex, 0, false);
             swiperRight.slideToLoop(rightIndex, 0, false);
-
-            // 依方向同步左右 swiper（保持滑動效果）
-            function syncSwipers(direction) {
-                if (isSyncing) return;
-                isSyncing = true;
-
-                if (direction === "next") {
-                    swiperLeft.slideNext();
-                    swiperRight.slideNext();
-                } else if (direction === "prev") {
-                    swiperLeft.slidePrev();
-                    swiperRight.slidePrev();
-                }
-            }
-
-
-            // 監聽中間 Swiper 滑動方向（觸控/導航）
-            swiperMiddle.on("slideNextTransitionStart", () =>
-                syncSwipers("next")
-            );
-            swiperMiddle.on("slidePrevTransitionStart", () =>
-                syncSwipers("prev")
-            );
-
-            // 當中間 swiper 動畫結束後，解除同步鎖
-            swiperMiddle.on("slideChangeTransitionEnd", () => {
-                isSyncing = false;
-            });
         };
 
         // 滾動切換 swiper 功能（僅桌面版）
@@ -331,7 +301,7 @@ window.onload = function () {
             if (!swiperInstance) {
                 return;
             }
-            let isSyncingScroll = false;
+            const neighborSpeed = () => swiperInstance.params.speed || 300;
 
             const hotProjectElement = document.querySelector(".hot-project");
             if (!hotProjectElement) return;
@@ -354,58 +324,50 @@ window.onload = function () {
             // 使用 Swiper 容器高度除以 slidesPerView（最準確）
             const swiperHeight =
                 swiperInstance.height || swiperInstance.el.offsetHeight;
+            console.log(swiperHeight);
             const slidesPerView = swiperInstance.params.slidesPerView || 1;
             slideHeight = swiperHeight / slidesPerView;
+            console.log(swiperHeight);
 
             // 每個 slide 對應 slide 高度 的滾動距離
             const scrollPerSlide = slideHeight;
             fixedScrollRange = (totalSlides - 1) * scrollPerSlide + 200;
             // console.log(fixedScrollRange);
 
-            // 同步三個 swiper 至指定索引（中間直接 target，左右取前後一張）
-            const slideAllTo = (targetIndex) => {
-                if (isSyncingScroll) return;
-                isSyncingScroll = true;
-                const speed = swiperInstance.params.speed || 300;
-
-                // 判斷方向與步數（loop 模式）
-                const diff = (targetIndex - lastIndex + totalSlides) % totalSlides;
-                const steps =
-                    diff === 0
-                        ? 0
-                        : diff <= totalSlides / 2
-                        ? diff
-                        : totalSlides - diff;
-                const direction =
-                    diff === 0
-                        ? null
-                        : diff <= totalSlides / 2
-                        ? "next"
-                        : "prev";
-
-                // 中間直接到 target
-                swiperInstance.slideTo(targetIndex, speed);
-
-                // 左右用 slideNext/slidePrev 以動畫方式跟進
-                const slideLR = (dir) => {
+            // 單一監聽：方向事件同步左右，slideChange 校正為相鄰索引
+            const setupMiddleSync = () => {
+                const targetSwiper = swiperInstance;
+                if (!targetSwiper || !swiperLeft || !swiperRight) return;
+                const syncByDirection = (dir) => {
+                    const speed = neighborSpeed();
                     if (dir === "next") {
-                        swiperLeft.slideNext();
-                        swiperRight.slideNext();
+                        swiperLeft.slideNext(speed, false);
+                        swiperRight.slideNext(speed, false);
                     } else if (dir === "prev") {
-                        swiperLeft.slidePrev();
-                        swiperRight.slidePrev();
+                        swiperLeft.slidePrev(speed, false);
+                        swiperRight.slidePrev(speed, false);
                     }
                 };
-
-                if (direction) {
-                    for (let i = 0; i < steps; i++) {
-                        slideLR(direction);
-                    }
-                }
-
-                lastIndex = targetIndex;
-                isSyncingScroll = false;
+                const forceAlign = () => {
+                    const idx = targetSwiper.realIndex;
+                    const leftTarget = (idx - 1 + totalSlides) % totalSlides;
+                    const rightTarget = (idx + 1) % totalSlides;
+                    swiperLeft.slideToLoop(leftTarget, 0, false);
+                    swiperRight.slideToLoop(rightTarget, 0, false);
+                    lastMiddleIndex = idx;
+                };
+                targetSwiper.off("slideNextTransitionStart");
+                targetSwiper.off("slidePrevTransitionStart");
+                targetSwiper.off("slideChange");
+                targetSwiper.on("slideNextTransitionStart", () =>
+                    syncByDirection("next")
+                );
+                targetSwiper.on("slidePrevTransitionStart", () =>
+                    syncByDirection("prev")
+                );
+                targetSwiper.on("slideChange", forceAlign);
             };
+            // setupMiddleSync();
 
             // 使用 timeline 配合 scrub 來實現流暢的滾動切換
             const scrollTl = gsap.timeline({
@@ -420,7 +382,7 @@ window.onload = function () {
                     scrub: 0.1, // 減小 scrub 值，讓切換更緊跟滾動（值越小越緊跟）
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
-                        console.log(self);
+                        // console.log(self);
                         // 如果是用戶點擊操作，不響應滾動更新
                         if (isUserClicking) {
                             return;
@@ -446,9 +408,60 @@ window.onload = function () {
                         const targetIndexFloat = progress * (totalSlides - 1);
                         const targetIndex = Math.round(targetIndexFloat);
 
-                        // 只在索引改變時切換，使用較短的動畫時間讓切換更平滑
+                        // 只在索引改變時切換，三個 swiper 同步滑動
                         if (targetIndex !== lastIndex) {
-                            slideAllTo(targetIndex);
+                            const speed = neighborSpeed();
+                            const leftTarget =
+                                (targetIndex - 1 + totalSlides) % totalSlides;
+                            const rightTarget = (targetIndex + 1) % totalSlides;
+                            // 直接同時推動三個 swiper，保持滑動感（不中轉中間事件）
+                            swiperInstance.slideTo(targetIndex, speed);
+                            console.log(self.direction);
+                            
+                            if (self.direction === 1) {
+                                swiperLeft.slideNext(speed, false);
+                                swiperRight.slideNext(speed, false);
+                            } else if (self.direction === -1) {
+                                swiperLeft.slidePrev(speed, false);
+                                swiperRight.slidePrev(speed, false);
+                            }
+
+
+                            // const diff =
+                            //     (targetIndex - lastIndex + totalSlides) %
+                            //     totalSlides;
+                            // const steps =
+                            //     diff === 0
+                            //         ? 0
+                            //         : diff <= totalSlides / 2
+                            //           ? diff
+                            //           : totalSlides - diff;
+                            // const direction =
+                            //     diff === 0
+                            //         ? null
+                            //         : diff <= totalSlides / 2
+                            //           ? "next"
+                            //           : "prev";
+                            // console.log(direction);
+                            
+                            // const slideLR = (dir) => {
+                            //     if (dir === "next") {
+                            //         swiperLeft.slideNext(speed, false);
+                            //         swiperRight.slideNext(speed, false);
+                            //     } else if (dir === "prev") {
+                            //         swiperLeft.slidePrev(speed, false);
+                            //         swiperRight.slidePrev(speed, false);
+                            //     }
+                            // };
+
+                            // if (direction) {
+                            //     for (let i = 0; i < steps; i++) {
+                            //         slideLR(direction);
+                            //     }
+                            // }
+                            // swiperLeft.slideToLoop(leftTarget, speed, false);
+                            // swiperRight.slideToLoop(rightTarget, speed, false);
+                            lastIndex = targetIndex;
                         }
                     },
                     onRefresh: function () {
