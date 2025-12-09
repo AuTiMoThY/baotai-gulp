@@ -252,6 +252,7 @@ window.onload = function () {
         let currentIndex = 0;
         let totalSlides = 0;
         let targetIndex = 0;
+        let bufferHeight = 200;
 
         const initHotProjectSwiper = () => {
             // 先取得原始 slide 數量（複製之前）
@@ -265,13 +266,11 @@ window.onload = function () {
                 originalSlideCount = originalSlides.length;
             }
 
-            console.log(isMobile);
-
             swiperMiddle = new Swiper(".swiper-middle.show-desktop", {
                 loop: false,
                 speed: 1200,
-                allowTouchMove: isMobile ? true : false,
-                slidesPerView: isMobile ? 1 : "auto",
+                allowTouchMove: false,
+                slidesPerView: "auto",
                 initialSlide: initialSlideIndex,
                 autoplay: isMobile
                     ? {
@@ -401,7 +400,7 @@ window.onload = function () {
             // 使用 Swiper 容器高度除以 slidesPerView（最準確）
             const swiperHeight =
                 swiperInstance.height || swiperInstance.el.offsetHeight;
-            console.log(swiperHeight);
+            // console.log(swiperHeight);
             const slidesPerView = swiperInstance.params.slidesPerView || 1;
             // 當 slidesPerView 為 'auto' 時，使用實際的 slide 高度
             if (slidesPerView === "auto" && swiperInstance.slides.length > 0) {
@@ -412,7 +411,9 @@ window.onload = function () {
                     swiperHeight /
                     (typeof slidesPerView === "number" ? slidesPerView : 1);
             }
-            console.log(swiperHeight);
+            slideHeight = slideHeight * 3 / 4;
+            // console.log(swiperHeight);
+            console.log(slideHeight);
 
             // 定義滾動範圍的起始和結束索引（統一使用，避免重複）
             const startIndex = initialSlideIndex;
@@ -420,8 +421,12 @@ window.onload = function () {
 
             // 計算滾動範圍
             const scrollPerSlide = slideHeight;
-            const slidesToScroll = endIndex - startIndex; // 需要滾動的 slide 數量
-            fixedScrollRange = slidesToScroll * scrollPerSlide + 200;
+            // 需要「切換」的次數 = 總張數；再額外多一段「不切換的首次滾動」
+            const slidesToScroll = Math.max(endIndex - startIndex, 0);
+            const totalSegments = slidesToScroll + 1; // segment0 保持原狀，其餘才切換
+            const pinPadding = bufferHeight * 2;
+            fixedScrollRange =
+                totalSegments * scrollPerSlide + pinPadding;
 
             // 調試信息
             console.log("滾動範圍計算:", {
@@ -462,17 +467,18 @@ window.onload = function () {
                             isScrolling = false;
                         }, 150); // 150ms 無滾動更新後視為滾動停止
 
-                        // 簡化計算：將 progress (0-1) 映射到從初始位置到最後一個 slide
+                        // 進度映射：totalSegments 分段
+                        // 第 0 段：首次滾動，不切換（停留在初始 slide）
                         const progress = Math.max(
                             0,
                             Math.min(1, self.progress)
                         );
-
-                        // 使用外部定義的 startIndex 和 endIndex 計算目標索引
-                        // progress 0 -> startIndex, progress 1 -> endIndex
-                        targetIndex = Math.round(
-                            startIndex + progress * (endIndex - startIndex)
+                        const segmentIndex = Math.min(
+                            Math.floor(progress * totalSegments),
+                            totalSegments - 1
                         );
+                        // segment 0 -> 初始；之後才逐張切換
+                        targetIndex = startIndex + segmentIndex;
 
                         // 確保索引在有效範圍內（0 到 totalSlides）
                         const clampedTargetIndex = Math.max(
@@ -480,26 +486,12 @@ window.onload = function () {
                             Math.min(targetIndex, totalSlides)
                         );
 
-                        // 監控 swiper 當前的 index
-                        const currentRealIndex = swiperInstance.realIndex;
-                        const currentActiveIndex = swiperInstance.activeIndex;
-                        // console.log('滾動監控:', {
-                        //     progress: progress.toFixed(3),
-                        //     targetIndex: clampedTargetIndex,
-                        //     calculatedTarget: targetIndex,
-                        //     realIndex: currentRealIndex,
-                        //     activeIndex: currentActiveIndex,
-                        //     totalSlides,
-                        //     startIndex,
-                        //     endIndex
-                        // });
-
                         // 只在索引改變時切換
                         if (clampedTargetIndex !== lastIndex) {
                             // 使用 slideTo 直接切換到目標索引（使用 realIndex，排除複製的 slides）
                             swiperInstance.slideTo(
                                 clampedTargetIndex,
-                                300,
+                                500,
                                 false
                             );
                             lastIndex = clampedTargetIndex;

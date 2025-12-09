@@ -128,7 +128,7 @@ async function bundleJS() {
             plugins: [
                 rollupResolve(),
                 rollupCommonjs(),
-                ...(isProduction ? [rollupTerser()] : [])
+                // ...(isProduction ? [rollupTerser()] : [])
             ]
         });
 
