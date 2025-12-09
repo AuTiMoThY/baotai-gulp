@@ -1,3 +1,5 @@
+@use "../../../src/sass/abstracts/functions/set-vw" as *;
+
 .index-body {
   display: flex;
   flex-direction: column;
@@ -314,10 +316,6 @@
       padding: 0;
       margin-top: -17%;
     }
-
-    
-
-
     .swiper-box {
       width: 90%;
       display: flex;
@@ -325,259 +323,325 @@
       .swiper {
         display: flex;
       }
-      .swiper-left {
-        width: 25%;
-        align-self: center;
-        margin-bottom: 5vw;
-        .swiper-wrapper {
-          width: 100%;
-          img {
-            width: 100%;
-          }
+    }
+    // .swiper-left {
+    //   width: 25%;
+    //   align-self: center;
+    //   margin-bottom: 5vw;
+    //   .swiper-wrapper {
+    //     width: 100%;
+    //     img {
+    //       width: 100%;
+    //     }
+    //   }
+    //   @include pad{
+    //     display: none;
+    //   }
+    // }
+    .swiper-middle {
+      width: 43%;
+      align-self: center;
+      overflow: visible;
+
+      &.show-mobile {
+        display: none;
+        @include pad{
+          display: block;
         }
+      }
+
+      &.show-desktop {
+        display: block;
         @include pad{
           display: none;
         }
       }
-      .swiper-middle {
-        width: 43%;
-        align-self: center;
+      @include pad{
+        width: 100%;
+        overflow: hidden;
+      }
 
-        @include pad{
+      .swiper-wrapper {
+        width: 100%;
+        img {
           width: 100%;
         }
+      }
 
-        .swiper-wrapper {
-          width: 100%;
-          img {
-            width: 100%;
-          }
-        }
-        .content-box {
-          display: flex;
-          flex-direction: column;
-          margin-top: 1vw;
-          position: relative;
+      // // 桌面版：使用 auto 模式時，設定 slide 寬度以顯示前一個 slide
+      // @media (min-width: 1025px) {
+      //   .swiper-slide {
+      //     width: 90%; // 設定每個 slide 的寬度，允許同時顯示前一個 slide
+      //     transition: opacity 0.3s ease, transform 0.3s ease;
+      //   }
 
-          @include pad{
-            margin-top: 6vw;
-          }
+      //   .swiper-slide-active {
+      //     width: 90%;
+      //   }
 
-          .name {
-            display: flex;
-            position: relative;
-            margin-bottom: 1vw;
-            padding-bottom: 0.5vw;
+      //   .swiper-slide-prev {
+      //     opacity: 0.6; // 前一個 slide 稍微透明
+      //     transform: scale(0.95);
+      //   }
+      // }
 
-            @include pad{
-              margin-bottom: 6vw;
-            }
 
-            &::after {
-              content: "";
-              position: absolute;
-              background-color: #c3b09d;
-              width: 1.5vw;
-              height: 2px;
-              bottom: 0px;
-              left: 0px;
-
-              @include pad{
-                width: 4%;
-                height: 1px;
-                bottom: -60%;
-              }
-            }
-            div {
-              font-family: "Noto Serif TC";
-              color: white;
-              font-size: $font-26;
-              font-weight: 400;
-              letter-spacing: 0.08em;
-
-              @include pad{
-                font-size: 5vw;
-                line-height: 1;
-              }
-            }
-            .local {
-              font-family: "微軟正黑體";
-              color: #c7b299;
-              font-size: $font-17;
-              opacity: 0.6;
-              margin-left: 0.5vw;
-              align-self: flex-end;
-
-              @include pad{
-                font-size: 3vw;
-              }
-            }
-          }
-          .content {
-            font-family: "微軟正黑體";
-            line-height: 2;
-            letter-spacing: 0.15em;
-            font-size: $font-18;
-            color: white;
-
-            @include pad{
-              font-size: 3.5vw;
-              line-height: 1.6;
-              margin-bottom: 10vw;
-            }
-          }
-        }
+      &:hover {
         .more-box {
-          display: flex;
-          justify-content: right;
-          position: absolute;
-          right: 1vw;
-          bottom: 0.5vw;
-
-          @include pad{
-            right: auto;
-            left: 0;
-            bottom: 0;
-          }
-
           .more {
-            display: flex;
-            padding: 0.3vw 2vw;
-            padding-right: 1.7vw;
-            border-radius: 2vw;
-            border: 1px solid #c3b09d;
-            cursor: pointer;
-
-            @include pad{
-              padding: 0.7vw 7vw;
-              border-radius: 30px;
+            .arrow {
+              transform: translateX(20px);
             }
-          }
-          div {
-            color: #c3b09d;
-            font-family: "Cormorant Infant";
-            font-size: $font-22;
-
-            @include pad{
-              font-size: 3.2vw;
-            }
-          }
-          .arrow {
-            width: 1.5vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 0.3vw;
-            margin-top: -0.2vw;
-            transition: all 0.35s ease-in-out;
-
-            @include pad{
-              width: 4vw;
-              margin-left: 1vw;
-            }
-          }
-        }
-
-        &:hover {
-          .more-box {
-            .more {
-              .arrow {
-                transform: translateX(20px);
-              }
-            }
-          }
-        }
-      }
-      .swiper-right {
-        width: 25%;
-        align-self: center;
-        margin-bottom: 5vw;
-
-        @include pad{
-          display: none;
-        }
-
-        .swiper-wrapper {
-          width: 100%;
-          img {
-            width: 100%;
           }
         }
       }
     }
+
+    .content-box {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1vw;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+
+      @include pad{
+        margin-top: 6vw;
+      }
+
+      .name {
+        display: flex;
+        position: relative;
+        margin-bottom: 1vw;
+        padding-bottom: 0.5vw;
+
+        @include pad{
+          margin-bottom: 6vw;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          background-color: #c3b09d;
+          width: 1.5vw;
+          height: 2px;
+          bottom: 0px;
+          left: 0px;
+
+          @include pad{
+            width: 4%;
+            height: 1px;
+            bottom: -60%;
+          }
+        }
+        div {
+          font-family: "Noto Serif TC";
+          color: white;
+          font-size: $font-26;
+          font-weight: 400;
+          letter-spacing: 0.08em;
+
+          @include pad{
+            font-size: 5vw;
+            line-height: 1;
+          }
+        }
+        .local {
+          font-family: "微軟正黑體";
+          color: #c7b299;
+          font-size: $font-17;
+          opacity: 0.6;
+          margin-left: 0.5vw;
+          align-self: flex-end;
+
+          @include pad{
+            font-size: 3vw;
+          }
+        }
+      }
+      .content {
+        font-family: "微軟正黑體";
+        line-height: 2;
+        letter-spacing: 0.15em;
+        font-size: $font-18;
+        color: white;
+
+        @include pad{
+          font-size: 3.5vw;
+          line-height: 1.6;
+          margin-bottom: 10vw;
+        }
+      }
+    }
+    .more-box {
+      display: flex;
+      justify-content: right;
+      position: absolute;
+      right: 1vw;
+      bottom: 0.5vw;
+      transition: all 0.3s ease-in-out;
+
+      @include pad{
+        right: auto;
+        left: 0;
+        bottom: 0;
+      }
+
+      .more {
+        display: flex;
+        padding: 0.3vw 2vw;
+        padding-right: 1.7vw;
+        border-radius: 2vw;
+        border: 1px solid #c3b09d;
+        cursor: pointer;
+
+        @include pad{
+          padding: 0.7vw 7vw;
+          border-radius: 30px;
+        }
+      }
+      div {
+        color: #c3b09d;
+        font-family: "Cormorant Infant";
+        font-size: $font-22;
+
+        @include pad{
+          font-size: 3.2vw;
+        }
+      }
+      .arrow {
+        width: 1.5vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 0.3vw;
+        margin-top: -0.2vw;
+        transition: all 0.35s ease-in-out;
+
+        @include pad{
+          width: 4vw;
+          margin-left: 1vw;
+        }
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      
+      .swiper-slide {
+        transform: scale(0.6);
+        transition: all 0.3s ease-in-out;
+        .content-box, .more-box {
+          opacity: 0;
+        }
+  
+        &.swiper-slide-active {
+          transform: scale(1);
+          .content-box, .more-box {
+            opacity: 1;
+          }
+        }
+      }
+  
+      .swiper-slide-prev {
+        // width: set-vw(293, 1303);
+        transform: scale(0.6) translate(25%, 0);
+      }
+  
+      .swiper-slide-next {
+        // width: set-vw(293, 1303);
+        transform: scale(0.6) translate(-25%, 0);
+      }
+    }
+
+
+    // .swiper-right {
+    //   width: 25%;
+    //   align-self: center;
+    //   margin-bottom: 5vw;
+
+    //   @include pad{
+    //     display: none;
+    //   }
+
+    //   .swiper-wrapper {
+    //     width: 100%;
+    //     img {
+    //       width: 100%;
+    //     }
+    //   }
+    // }
     .swiper-controller {
       display: flex;
       justify-content: right;
       padding-right: 5vw;
       margin-top: 3vw;
-      .swiper-pagination {
-        position: relative;
-        font-family: "Cormorant Infant";
-        font-size: $font-22;
+    }
+    .swiper-pagination {
+      position: relative;
+      font-family: "Cormorant Infant";
+      font-size: $font-22;
+      color: #c7b299;
+      width: initial;
+      bottom: initial;
+      left: initial;
+
+      @include pad{
+        font-size: 4.4vw;
+      }
+
+      .swiper-pagination-total {
+        opacity: 0.6;
+      }
+    }
+    .prev-next-box {
+      display: flex;
+      margin-left: 0.5vw;
+
+      @include pad{
+        margin-left: 3vw;
+      }
+
+      .line {
         color: #c7b299;
-        width: initial;
-        bottom: initial;
-        left: initial;
+        font-size: $font-15;
+        margin-left: 0.8vw;
+        margin-right: 0.8vw;
+        align-self: center;
 
-        @include pad{
-          font-size: 4.4vw;
-        }
-
-        .swiper-pagination-total {
-          opacity: 0.6;
+         @include pad{
+           font-size: 2vw;
+           margin: 0 3vw;
         }
       }
-      .prev-next-box {
+      .slider-arrow {
         display: flex;
-        margin-left: 0.5vw;
+        font-family: "Cormorant Infant";
+        color: #c7b299;
+        font-size: $font-20 !important;
+        align-self: center;
+        cursor: pointer;
 
         @include pad{
-          margin-left: 3vw;
+           font-size: 4vw !important;
         }
 
-        .line {
-          color: #c7b299;
-          font-size: $font-15;
-          margin-left: 0.8vw;
-          margin-right: 0.8vw;
-          align-self: center;
-
-           @include pad{
-             font-size: 2vw;
-             margin: 0 3vw;
-          }
-        }
-        .slider-arrow {
-          display: flex;
-          font-family: "Cormorant Infant";
-          color: #c7b299;
-          font-size: $font-20 !important;
-          align-self: center;
-          cursor: pointer;
+        .next-img {
+          width: 1.5vw;
+          margin-left: 0.7vw;
+          margin-top: -0.2vw;
 
           @include pad{
-             font-size: 4vw !important;
+            width: 4vw;
+            margin-left: 2vw;
           }
+        }
+        .prev-img {
+          width: 1.5vw;
+          margin-top: -0.2vw;
+          margin-right: 0.7vw;
 
-          .next-img {
-            width: 1.5vw;
-            margin-left: 0.7vw;
-            margin-top: -0.2vw;
-
-            @include pad{
-              width: 4vw;
-              margin-left: 2vw;
-            }
-          }
-          .prev-img {
-            width: 1.5vw;
-            margin-top: -0.2vw;
-            margin-right: 0.7vw;
-
-            @include pad{
-              width: 4vw;
-              margin-right: 2vw;
-            }
+          @include pad{
+            width: 4vw;
+            margin-right: 2vw;
           }
         }
       }

@@ -219,37 +219,106 @@ window.onload = function () {
             marqueeAni();
         }
     };
-    // 熱銷建案：三層 swiper 與滾動切換
-    const hotProjectScroll = () => {
-        let swiperLeft = null;
-        let swiperMiddle = null;
-        let swiperRight = null;
-        let total = 0;
-        let middleIndex = 0;
-        let leftIndex = 0;
-        let rightIndex = 0;
-        let lastMiddleIndex = 0;
+    // 更新頁碼顯示
+    const updateFraction = (swiper, currentIndex) => {
+        const fractionEl = document.querySelector(".swiper-pagination");
 
-        // 建立三個 swiper 並設定同步
+        const current = currentIndex || swiper.realIndex;
+        const originalTotal =
+            swiper.originalSlideCount ||
+            (() => {
+                // 如果沒有儲存，計算原始數量（排除複製的）
+                const wrapper = swiper.el.querySelector(".swiper-wrapper");
+                if (wrapper) {
+                    const originalSlides = wrapper.querySelectorAll(
+                        ".swiper-slide:not(.swiper-slide-duplicate)"
+                    );
+                    return originalSlides.length;
+                }
+                return swiper.slides.length;
+            })();
+
+        // 個位數補0
+        const currentStr = String(current).padStart(2, "0");
+        const totalStr = String(originalTotal).padStart(2, "0");
+
+        fractionEl.textContent = `${currentStr} / ${totalStr}`;
+    };
+    // 熱銷建案： swiper 與滾動切換
+    const hotProjectScroll = () => {
+        let swiperMiddle = null;
+        let total = 0;
+        let initialSlideIndex = 1;
+        let currentIndex = 0;
+        let totalSlides = 0;
+        let targetIndex = 0;
+
         const initHotProjectSwiper = () => {
-            swiperLeft = new Swiper(".swiper-left", {
-                loop: true,
-                speed: 1200,
-                allowTouchMove: false
-            });
-            swiperMiddle = new Swiper(".swiper-middle", {
-                loop: true,
+            // 先取得原始 slide 數量（複製之前）
+            const swiperWrapper = document.querySelector(
+                ".swiper-middle.show-desktop .swiper-wrapper"
+            );
+            let originalSlideCount = 0;
+            if (swiperWrapper) {
+                const originalSlides =
+                    swiperWrapper.querySelectorAll(".swiper-slide");
+                originalSlideCount = originalSlides.length;
+            }
+
+            console.log(isMobile);
+
+            swiperMiddle = new Swiper(".swiper-middle.show-desktop", {
+                loop: false,
                 speed: 1200,
                 allowTouchMove: isMobile ? true : false,
+                slidesPerView: isMobile ? 1 : "auto",
+                initialSlide: initialSlideIndex,
                 autoplay: isMobile
                     ? {
                           delay: 1500
                       }
                     : false,
-                navigation: { prevEl: ".prev", nextEl: ".next" },
-                // pagination: { el: '.swiper-pagination', type: 'fraction' },
+                // navigation: isMobile
+                //     ? { prevEl: ".prev", nextEl: ".next" }
+                //     : false,
                 on: {
                     init: function () {
+                        // Swiper 初始化完成後，複製 slides 以實現無縫 loop
+                        const swiperWrapper =
+                            this.el.querySelector(".swiper-wrapper");
+                        if (swiperWrapper) {
+                            const slides = swiperWrapper.querySelectorAll(
+                                ".swiper-slide:not(.swiper-slide-duplicate)"
+                            );
+                            if (slides.length > 0) {
+                                // 複製最後一個 slide 到第一個之前
+                                const lastSlide = slides[slides.length - 1];
+                                const clonedLastSlide =
+                                    lastSlide.cloneNode(true);
+                                clonedLastSlide.classList.add(
+                                    "swiper-slide-duplicate",
+                                    "swiper-slide-duplicate-prev"
+                                );
+                                swiperWrapper.insertBefore(
+                                    clonedLastSlide,
+                                    slides[0]
+                                );
+
+                                // 複製第一個 slide 到最後一個之後
+                                const firstSlide = slides[0];
+                                const clonedFirstSlide =
+                                    firstSlide.cloneNode(true);
+                                clonedFirstSlide.classList.add(
+                                    "swiper-slide-duplicate",
+                                    "swiper-slide-duplicate-next"
+                                );
+                                swiperWrapper.appendChild(clonedFirstSlide);
+                            }
+                        }
+
+                        // 儲存原始數量到 swiper 實例，供後續使用
+                        this.originalSlideCount = originalSlideCount;
+
                         updateFraction(this);
                         // Swiper 初始化完成後，設置滾動切換功能
                         if (!isMobile) {
@@ -261,38 +330,23 @@ window.onload = function () {
                     }
                 }
             });
-            swiperRight = new Swiper(".swiper-right", {
-                loop: true,
-                allowTouchMove: false,
-                speed: 1200
-            });
 
-            // 初始設定偏移
-            total = swiperMiddle.slides.length;
-
-            middleIndex = 0;
-            leftIndex = (middleIndex - 1 + total) % total;
-            rightIndex = (middleIndex + 1) % total;
-            lastMiddleIndex = middleIndex;
-
-            // 更新頁碼顯示
-            function updateFraction(swiper) {
-                const fractionEl = document.querySelector(".swiper-pagination");
-
-                // 取得目前索引和總數
-                const current = swiper.realIndex + 1;
-                const total = swiper.slides.length;
-
-                // 個位數補0
-                const currentStr = String(current).padStart(2, "0");
-                const totalStr = String(total).padStart(2, "0");
-
-                fractionEl.textContent = `${currentStr} / ${totalStr}`;
+            // 初始設定偏移 - 使用原始數量
+            total =
+                swiperMiddle.originalSlideCount || swiperMiddle.slides.length;
+            // 如果 originalSlideCount 還沒設定，計算原始數量（排除複製的）
+            if (!swiperMiddle.originalSlideCount) {
+                const wrapper = document.querySelector(
+                    ".swiper-middle.show-desktop .swiper-wrapper"
+                );
+                if (wrapper) {
+                    const originalSlides = wrapper.querySelectorAll(
+                        ".swiper-slide:not(.swiper-slide-duplicate)"
+                    );
+                    total = originalSlides.length;
+                    swiperMiddle.originalSlideCount = total;
+                }
             }
-
-            swiperLeft.slideToLoop(leftIndex, 0, false);
-            swiperMiddle.slideToLoop(middleIndex, 0, false);
-            swiperRight.slideToLoop(rightIndex, 0, false);
         };
 
         // 滾動切換 swiper 功能（僅桌面版）
@@ -301,12 +355,35 @@ window.onload = function () {
             if (!swiperInstance) {
                 return;
             }
-            const neighborSpeed = () => swiperInstance.params.speed || 300;
 
             const hotProjectElement = document.querySelector(".hot-project");
             if (!hotProjectElement) return;
 
-            const totalSlides = swiperInstance.slides.length;
+            // 簡化：獲取原始 slide 數量（排除複製的）
+            totalSlides =
+                swiperInstance.originalSlideCount ||
+                (() => {
+                    const wrapper =
+                        swiperInstance.el.querySelector(".swiper-wrapper");
+                    if (wrapper) {
+                        const originalSlides = wrapper.querySelectorAll(
+                            ".swiper-slide:not(.swiper-slide-duplicate)"
+                        );
+                        return originalSlides.length;
+                    }
+                    return swiperInstance.slides.length;
+                })();
+
+            // 獲取初始 slide 的索引（排除複製的）
+            const initialSlideIndex = swiperInstance.realIndex;
+
+            // 調試：確認初始值
+            console.log("初始化:", {
+                totalSlides,
+                initialSlideIndex,
+                realIndex: swiperInstance.realIndex,
+                activeIndex: swiperInstance.activeIndex
+            });
             // 創建一個進度對象來追蹤滾動進度
             const progressObj = { progress: 0 };
             let lastIndex = swiperInstance.realIndex;
@@ -326,48 +403,34 @@ window.onload = function () {
                 swiperInstance.height || swiperInstance.el.offsetHeight;
             console.log(swiperHeight);
             const slidesPerView = swiperInstance.params.slidesPerView || 1;
-            slideHeight = swiperHeight / slidesPerView;
+            // 當 slidesPerView 為 'auto' 時，使用實際的 slide 高度
+            if (slidesPerView === "auto" && swiperInstance.slides.length > 0) {
+                slideHeight =
+                    swiperInstance.slides[0].offsetHeight || swiperHeight;
+            } else {
+                slideHeight =
+                    swiperHeight /
+                    (typeof slidesPerView === "number" ? slidesPerView : 1);
+            }
             console.log(swiperHeight);
 
-            // 每個 slide 對應 slide 高度 的滾動距離
-            const scrollPerSlide = slideHeight;
-            fixedScrollRange = (totalSlides - 1) * scrollPerSlide + 200;
-            // console.log(fixedScrollRange);
+            // 定義滾動範圍的起始和結束索引（統一使用，避免重複）
+            const startIndex = initialSlideIndex;
+            const endIndex = totalSlides; // 結束索引（totalSlides，不減 1）
 
-            // 單一監聽：方向事件同步左右，slideChange 校正為相鄰索引
-            const setupMiddleSync = () => {
-                const targetSwiper = swiperInstance;
-                if (!targetSwiper || !swiperLeft || !swiperRight) return;
-                const syncByDirection = (dir) => {
-                    const speed = neighborSpeed();
-                    if (dir === "next") {
-                        swiperLeft.slideNext(speed, false);
-                        swiperRight.slideNext(speed, false);
-                    } else if (dir === "prev") {
-                        swiperLeft.slidePrev(speed, false);
-                        swiperRight.slidePrev(speed, false);
-                    }
-                };
-                const forceAlign = () => {
-                    const idx = targetSwiper.realIndex;
-                    const leftTarget = (idx - 1 + totalSlides) % totalSlides;
-                    const rightTarget = (idx + 1) % totalSlides;
-                    swiperLeft.slideToLoop(leftTarget, 0, false);
-                    swiperRight.slideToLoop(rightTarget, 0, false);
-                    lastMiddleIndex = idx;
-                };
-                targetSwiper.off("slideNextTransitionStart");
-                targetSwiper.off("slidePrevTransitionStart");
-                targetSwiper.off("slideChange");
-                targetSwiper.on("slideNextTransitionStart", () =>
-                    syncByDirection("next")
-                );
-                targetSwiper.on("slidePrevTransitionStart", () =>
-                    syncByDirection("prev")
-                );
-                targetSwiper.on("slideChange", forceAlign);
-            };
-            // setupMiddleSync();
+            // 計算滾動範圍
+            const scrollPerSlide = slideHeight;
+            const slidesToScroll = endIndex - startIndex; // 需要滾動的 slide 數量
+            fixedScrollRange = slidesToScroll * scrollPerSlide + 200;
+
+            // 調試信息
+            console.log("滾動範圍計算:", {
+                totalSlides,
+                startIndex,
+                endIndex,
+                slidesToScroll,
+                fixedScrollRange
+            });
 
             // 使用 timeline 配合 scrub 來實現流暢的滾動切換
             const scrollTl = gsap.timeline({
@@ -399,69 +462,47 @@ window.onload = function () {
                             isScrolling = false;
                         }, 150); // 150ms 無滾動更新後視為滾動停止
 
-                        // 根據滾動進度計算應該顯示的 slide 索引
+                        // 簡化計算：將 progress (0-1) 映射到從初始位置到最後一個 slide
                         const progress = Math.max(
                             0,
                             Math.min(1, self.progress)
                         );
-                        // 使用更精確的計算，不四捨五入，讓切換更平滑
-                        const targetIndexFloat = progress * (totalSlides - 1);
-                        const targetIndex = Math.round(targetIndexFloat);
 
-                        // 只在索引改變時切換，三個 swiper 同步滑動
-                        if (targetIndex !== lastIndex) {
-                            const speed = neighborSpeed();
-                            const leftTarget =
-                                (targetIndex - 1 + totalSlides) % totalSlides;
-                            const rightTarget = (targetIndex + 1) % totalSlides;
-                            // 直接同時推動三個 swiper，保持滑動感（不中轉中間事件）
-                            swiperInstance.slideTo(targetIndex, speed);
-                            console.log(self.direction);
-                            
-                            if (self.direction === 1) {
-                                swiperLeft.slideNext(speed, false);
-                                swiperRight.slideNext(speed, false);
-                            } else if (self.direction === -1) {
-                                swiperLeft.slidePrev(speed, false);
-                                swiperRight.slidePrev(speed, false);
-                            }
+                        // 使用外部定義的 startIndex 和 endIndex 計算目標索引
+                        // progress 0 -> startIndex, progress 1 -> endIndex
+                        targetIndex = Math.round(
+                            startIndex + progress * (endIndex - startIndex)
+                        );
 
+                        // 確保索引在有效範圍內（0 到 totalSlides）
+                        const clampedTargetIndex = Math.max(
+                            0,
+                            Math.min(targetIndex, totalSlides)
+                        );
 
-                            // const diff =
-                            //     (targetIndex - lastIndex + totalSlides) %
-                            //     totalSlides;
-                            // const steps =
-                            //     diff === 0
-                            //         ? 0
-                            //         : diff <= totalSlides / 2
-                            //           ? diff
-                            //           : totalSlides - diff;
-                            // const direction =
-                            //     diff === 0
-                            //         ? null
-                            //         : diff <= totalSlides / 2
-                            //           ? "next"
-                            //           : "prev";
-                            // console.log(direction);
-                            
-                            // const slideLR = (dir) => {
-                            //     if (dir === "next") {
-                            //         swiperLeft.slideNext(speed, false);
-                            //         swiperRight.slideNext(speed, false);
-                            //     } else if (dir === "prev") {
-                            //         swiperLeft.slidePrev(speed, false);
-                            //         swiperRight.slidePrev(speed, false);
-                            //     }
-                            // };
+                        // 監控 swiper 當前的 index
+                        const currentRealIndex = swiperInstance.realIndex;
+                        const currentActiveIndex = swiperInstance.activeIndex;
+                        // console.log('滾動監控:', {
+                        //     progress: progress.toFixed(3),
+                        //     targetIndex: clampedTargetIndex,
+                        //     calculatedTarget: targetIndex,
+                        //     realIndex: currentRealIndex,
+                        //     activeIndex: currentActiveIndex,
+                        //     totalSlides,
+                        //     startIndex,
+                        //     endIndex
+                        // });
 
-                            // if (direction) {
-                            //     for (let i = 0; i < steps; i++) {
-                            //         slideLR(direction);
-                            //     }
-                            // }
-                            // swiperLeft.slideToLoop(leftTarget, speed, false);
-                            // swiperRight.slideToLoop(rightTarget, speed, false);
-                            lastIndex = targetIndex;
+                        // 只在索引改變時切換
+                        if (clampedTargetIndex !== lastIndex) {
+                            // 使用 slideTo 直接切換到目標索引（使用 realIndex，排除複製的 slides）
+                            swiperInstance.slideTo(
+                                clampedTargetIndex,
+                                300,
+                                false
+                            );
+                            lastIndex = clampedTargetIndex;
                         }
                     },
                     onRefresh: function () {
@@ -478,13 +519,27 @@ window.onload = function () {
 
             // 等待 ScrollTrigger 初始化完成後，獲取實際的 start 位置
             // ScrollTrigger.refresh();
-            if (typeof scrollTriggerInstance.start === "number") {
-                fixedStartPos = scrollTriggerInstance.start;
-            } else {
-                // 如果 ScrollTrigger 還沒計算好，使用手動計算
-                const triggerRect = hotProjectElement.getBoundingClientRect();
-                fixedStartPos = triggerRect.top + window.scrollY;
-            }
+            const updateFixedStartPos = () => {
+                if (
+                    typeof scrollTriggerInstance.start === "number" &&
+                    scrollTriggerInstance.start > 0
+                ) {
+                    fixedStartPos = scrollTriggerInstance.start;
+                } else {
+                    // 如果 ScrollTrigger 還沒計算好，使用手動計算
+                    const triggerRect =
+                        hotProjectElement.getBoundingClientRect();
+                    fixedStartPos = triggerRect.top + window.scrollY;
+                }
+                // 確保 fixedStartPos 不為 0
+                if (fixedStartPos === 0 || fixedStartPos === null) {
+                    const triggerRect =
+                        hotProjectElement.getBoundingClientRect();
+                    fixedStartPos = triggerRect.top + window.scrollY;
+                }
+            };
+
+            updateFixedStartPos();
 
             // 動畫 progressObj 從 0 到 1，配合 scrub 使用
             scrollTl.to(progressObj, {
@@ -504,11 +559,8 @@ window.onload = function () {
                     return null;
                 }
 
-                // 確保 targetIndex 在有效範圍內
-                targetIndex = Math.max(
-                    0,
-                    Math.min(targetIndex, totalSlides - 1)
-                );
+                // 確保 targetIndex 在有效範圍內（索引從 1 開始）
+                targetIndex = Math.max(1, Math.min(targetIndex, totalSlides));
 
                 // 使用固定的基準位置，避免位置疊加
                 if (fixedStartPos === null || fixedScrollRange === null) {
@@ -519,9 +571,14 @@ window.onload = function () {
                 const startPos = fixedStartPos;
                 const scrollRange = fixedScrollRange;
 
-                // 計算目標進度和位置
+                // 計算目標進度和位置（與 onUpdate 中的計算方式保持一致）
+                // progress = (targetIndex - startIndex) / (endIndex - startIndex)
+                // 這樣當 targetIndex = startIndex 時，progress = 0（滾動到起始位置）
+                // 當 targetIndex = endIndex 時，progress = 1（滾動到結束位置）
                 const targetProgress =
-                    totalSlides > 1 ? targetIndex / (totalSlides - 1) : 0;
+                    endIndex - startIndex > 0
+                        ? (targetIndex - startIndex) / (endIndex - startIndex)
+                        : 0;
                 const targetScroll = startPos + targetProgress * scrollRange;
 
                 // 確保返回的是有效數字
@@ -534,29 +591,56 @@ window.onload = function () {
 
             // 使用 ScrollToPlugin 平滑滾動到目標位置
             let scrollAnimation = null;
-            const scrollToTarget = (targetIndex) => {
+            let scrollMonitorInterval = null; // 滾動監控計時器
+
+            const scrollToTarget = (
+                targetIndex,
+                onCompleteCallback,
+                customTargetScroll = null
+            ) => {
                 // 如果正在滾動，先停止當前的動畫
                 if (scrollAnimation) {
                     scrollAnimation.kill();
                     scrollAnimation = null;
                 }
 
-                // 確保 targetIndex 在有效範圍內
+                // 停止之前的滾動監控
+                if (scrollMonitorInterval) {
+                    clearInterval(scrollMonitorInterval);
+                    scrollMonitorInterval = null;
+                }
+
+                // 確保 targetIndex 在有效範圍內（索引從 1 開始）
                 const validTargetIndex = Math.max(
-                    0,
-                    Math.min(targetIndex, totalSlides - 1)
+                    1,
+                    Math.min(targetIndex, totalSlides)
                 );
 
-                const targetScroll = calculateTargetScroll(validTargetIndex);
+                // 如果提供了自定義目標滾動位置，使用它；否則計算
+                let targetScroll = customTargetScroll;
+                if (targetScroll === null) {
+                    targetScroll = calculateTargetScroll(validTargetIndex);
+                }
+
+                // 確保目標滾動位置不小於 fixedStartPos（避免滾動到頁面頂部）
+                if (targetScroll !== null && fixedStartPos !== null) {
+                    targetScroll = Math.max(targetScroll, fixedStartPos);
+                }
+
                 if (targetScroll === null) {
                     isNavigating = false;
+                    if (onCompleteCallback) onCompleteCallback();
                     return;
                 }
 
                 isUserClicking = true;
 
-                // 先切換 swiper 到目標索引
-                swiperInstance.slideTo(validTargetIndex, 300);
+                // 先切換 swiper 到目標索引 - 在 loop mode 下使用 slideToLoop
+                if (swiperInstance.params.loop) {
+                    swiperInstance.slideToLoop(validTargetIndex, 300);
+                } else {
+                    swiperInstance.slideTo(validTargetIndex, 300);
+                }
                 // 更新 lastIndex 以保持同步
                 lastIndex = validTargetIndex;
 
@@ -570,10 +654,17 @@ window.onload = function () {
                     ease: "power2.inOut",
                     onComplete: () => {
                         scrollAnimation = null;
+                        // 停止滾動監控
+                        if (scrollMonitorInterval) {
+                            clearInterval(scrollMonitorInterval);
+                            scrollMonitorInterval = null;
+                        }
                         // 滾動完成後重置標記
                         setTimeout(() => {
                             isUserClicking = false;
                         }, 100);
+                        // 執行回調
+                        if (onCompleteCallback) onCompleteCallback();
                     }
                 });
             };
@@ -588,14 +679,53 @@ window.onload = function () {
                 if (isScrolling) return;
                 if (!scrollTriggerInstance || isNavigating) return;
 
+                // 記錄當前滾動位置和 hot-project 位置
+                const currentScrollY = window.scrollY || window.pageYOffset;
+                const hotProjectRect =
+                    hotProjectElement.getBoundingClientRect();
+                const hotProjectTop = hotProjectRect.top + currentScrollY;
+
+                // 重新計算 fixedStartPos（確保它是正確的）
+                // 優先使用 ScrollTrigger 的 start 位置，如果無效則使用 hot-project 的實際位置
+                if (
+                    typeof scrollTriggerInstance.start === "number" &&
+                    scrollTriggerInstance.start > 0
+                ) {
+                    fixedStartPos = scrollTriggerInstance.start;
+                } else if (
+                    fixedStartPos === 0 ||
+                    fixedStartPos === null ||
+                    fixedStartPos < hotProjectTop - 100
+                ) {
+                    // 如果 fixedStartPos 無效或明顯不對，使用 hot-project 的實際位置
+                    fixedStartPos = hotProjectTop;
+                }
+
+                // 獲取當前索引
+                currentIndex = swiperInstance.realIndex;
+
+                console.log("點擊導航:", {
+                    direction,
+                    totalSlides,
+                    currentIndex,
+                    currentScrollY,
+                    hotProjectTop,
+                    fixedStartPos
+                });
+
+                // 根據方向檢查是否到達邊界
+                if (direction === "next" && totalSlides === currentIndex)
+                    return;
+                if (direction === "prev" && currentIndex === 1) return;
+
                 isNavigating = true;
 
-                // 使用 swiper 的當前 realIndex，確保獲取最新的索引
-                const currentIndex = swiperInstance.realIndex;
-                const targetIndex =
-                    direction === "next"
-                        ? Math.min(currentIndex + 1, totalSlides - 1)
-                        : Math.max(currentIndex - 1, 0);
+                // 計算目標索引
+                targetIndex =
+                    direction === "next" ? currentIndex + 1 : currentIndex - 1;
+
+                // 確保目標索引在有效範圍內
+                targetIndex = Math.max(1, Math.min(targetIndex, totalSlides));
 
                 // 如果目標索引和當前索引相同，不執行滾動
                 if (targetIndex === currentIndex) {
@@ -603,12 +733,121 @@ window.onload = function () {
                     return;
                 }
 
-                scrollToTarget(targetIndex);
+                // 計算目標滾動位置
+                const targetScroll = calculateTargetScroll(targetIndex);
 
-                // 短暫延遲後重置標記，防止快速連續點擊
-                setTimeout(() => {
+                // 檢查當前是否在 hot-project 區域內
+                const isInHotProjectRange =
+                    currentScrollY >= fixedStartPos &&
+                    currentScrollY <= fixedStartPos + fixedScrollRange;
+
+                // 如果當前在 hot-project 區域內，直接使用計算出的目標位置
+                // 如果不在區域內，需要先滾動到區域內
+                let finalTargetScroll = targetScroll;
+
+                // 確保目標滾動位置在 hot-project 區域範圍內
+                finalTargetScroll = Math.max(
+                    fixedStartPos,
+                    Math.min(targetScroll, fixedStartPos + fixedScrollRange)
+                );
+
+                // 如果當前在區域內，且目標位置與當前位置相同或非常接近，不執行滾動
+                if (
+                    isInHotProjectRange &&
+                    Math.abs(finalTargetScroll - currentScrollY) < 10
+                ) {
+                    console.log(
+                        "當前已在目標位置附近，只切換 swiper，不滾動頁面"
+                    );
+                    // 只切換 swiper，不滾動頁面
+                    if (swiperInstance.params.loop) {
+                        swiperInstance.slideToLoop(targetIndex, 300);
+                    } else {
+                        swiperInstance.slideTo(targetIndex, 300);
+                    }
+                    lastIndex = targetIndex;
                     isNavigating = false;
-                }, 500);
+                    return;
+                }
+
+                console.log("滾動計算:", {
+                    targetIndex,
+                    targetScroll,
+                    finalTargetScroll,
+                    fixedStartPos,
+                    currentScrollY,
+                    isInHotProjectRange,
+                    hotProjectRange: `[${fixedStartPos}, ${fixedStartPos + fixedScrollRange}]`,
+                    direction:
+                        finalTargetScroll > currentScrollY ? "向下" : "向上",
+                    scrollDistance: Math.abs(finalTargetScroll - currentScrollY)
+                });
+
+                // 開始滾動監控
+                const startScrollMonitor = (targetScrollPos) => {
+                    // 先停止之前的監控
+                    if (scrollMonitorInterval) {
+                        clearInterval(scrollMonitorInterval);
+                        scrollMonitorInterval = null;
+                    }
+
+                    let lastScrollY = window.scrollY || window.pageYOffset;
+                    scrollMonitorInterval = setInterval(() => {
+                        const currentY = window.scrollY || window.pageYOffset;
+                        const scrollDiff = currentY - lastScrollY;
+                        const distanceToTarget = Math.abs(
+                            currentY - targetScrollPos
+                        );
+                        const progressInRange =
+                            fixedScrollRange > 0
+                                ? Math.max(
+                                      0,
+                                      Math.min(
+                                          100,
+                                          ((currentY - fixedStartPos) /
+                                              fixedScrollRange) *
+                                              100
+                                      )
+                                  ).toFixed(2)
+                                : 0;
+
+                        console.log("滾動監控:", {
+                            currentY,
+                            targetScroll: targetScrollPos,
+                            fixedStartPos,
+                            scrollDiff:
+                                scrollDiff > 0
+                                    ? "向下"
+                                    : scrollDiff < 0
+                                      ? "向上"
+                                      : "停止",
+                            distanceToTarget:
+                                distanceToTarget.toFixed(2) + "px",
+                            progress: progressInRange + "%"
+                        });
+
+                        // 如果接近目標位置（誤差小於 5px），停止監控
+                        if (distanceToTarget < 5) {
+                            clearInterval(scrollMonitorInterval);
+                            scrollMonitorInterval = null;
+                            console.log("滾動完成，到達目標位置");
+                        }
+
+                        lastScrollY = currentY;
+                    }, 50); // 每 50ms 檢查一次
+                };
+
+                if (!isMobile) {
+                    // 直接從當前位置滾動到目標位置（不先回到起始位置）
+                    startScrollMonitor(finalTargetScroll);
+                    scrollToTarget(
+                        targetIndex,
+                        () => {
+                            isNavigating = false;
+                        },
+                        finalTargetScroll
+                    );
+                }
             };
 
             if (prevBtn) {
@@ -636,6 +875,27 @@ window.onload = function () {
         }
 
         initHotProjectSwiper();
+    };
+    const hotProjectSwiper = () => {
+        const swiperMiddle = new Swiper(".swiper-middle.show-mobile", {
+            loop: true,
+            speed: 1200,
+            allowTouchMove: true,
+            slidesPerView: 1,
+            initialSlide: 0,
+            autoplay: {
+                delay: 1500
+            },
+            navigation: { prevEl: ".prev", nextEl: ".next" },
+            on: {
+                init: function () {
+                    updateFraction(this, this.realIndex + 1);
+                },
+                slideChange: function () {
+                    updateFraction(this, this.realIndex + 1);
+                }
+            }
+        });
     };
     // 品牌願景：滑動 pin 與深度堆疊
     const ourVisionScrollAni = () => {
@@ -1230,6 +1490,7 @@ window.onload = function () {
             ourVisionTextAni();
             newsAni();
         } else {
+            hotProjectSwiper();
             hotProjectAni();
             ourVisionScrollAni();
             ourVisionTextAni();

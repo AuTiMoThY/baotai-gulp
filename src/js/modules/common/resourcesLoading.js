@@ -18,8 +18,8 @@ export const resourcesLoading = (callback) => {
     const videos = Array.from(document.querySelectorAll("video"));
     const resources = [...images, ...videos]; // 統一資源陣列
     const totalResources = resources.length;
-    console.log(resources);
-    console.log(totalResources);
+    // console.log(resources);
+    // console.log(totalResources);
     let loadedResources = 0;
     let currentDisplayPercent = 0; // 追蹤當前顯示的百分比
     let progressTween = null; // 追蹤當前的動畫實例
@@ -181,13 +181,13 @@ export const resourcesLoading = (callback) => {
     // 將控制器掛載到 window 上，方便在控制台除錯
     if (typeof window !== 'undefined') {
         window.loadingScreenController = controller;
-        console.log('【除錯模式】Loading screen 控制器已掛載到 window.loadingScreenController');
-        console.log('可用方法：');
-        console.log('  - window.loadingScreenController.show() - 顯示 loading screen');
-        console.log('  - window.loadingScreenController.hide() - 隱藏 loading screen');
-        console.log('  - window.loadingScreenController.reset() - 重置進度');
-        console.log('  - window.loadingScreenController.setProgress(50) - 設置進度百分比');
-        console.log('  - window.loadingScreenController.getState() - 獲取當前狀態');
+        // console.log('【除錯模式】Loading screen 控制器已掛載到 window.loadingScreenController');
+        // console.log('可用方法：');
+        // console.log('  - window.loadingScreenController.show() - 顯示 loading screen');
+        // console.log('  - window.loadingScreenController.hide() - 隱藏 loading screen');
+        // console.log('  - window.loadingScreenController.reset() - 重置進度');
+        // console.log('  - window.loadingScreenController.setProgress(50) - 設置進度百分比');
+        // console.log('  - window.loadingScreenController.getState() - 獲取當前狀態');
     }
 
     return controller;

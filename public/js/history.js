@@ -366,7 +366,8 @@ window.onload = function () {
             el: ".swiper-pagination",
             clickable: true,
             renderBullet: function (index, className) {
-                return `<span class="${className}" data-year="${index + startYear}">${index + startYear}</span>`;
+                const getSlideYear = this.slides[index].dataset.year;
+                return `<span class="${className}" data-year="${getSlideYear}">${getSlideYear}</span>`;
             }
         },
         on: {
