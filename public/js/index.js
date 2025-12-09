@@ -219,7 +219,7 @@ window.onload = function () {
             marqueeAni();
         }
     };
-    // 更新頁碼顯示
+    // 熱銷建案：更新頁碼顯示
     const updateFraction = (swiper, currentIndex) => {
         const fractionEl = document.querySelector(".swiper-pagination");
 
@@ -437,7 +437,7 @@ window.onload = function () {
                 scrollTrigger: {
                     // markers: true,
                     trigger: hotProjectElement,
-                    start: "-10% top",
+                    start: "-2.5% top",
                     end: () => `+=${fixedScrollRange}`, // 使用計算出的滾動範圍
                     pin: true,
                     pinSpacing: true,
