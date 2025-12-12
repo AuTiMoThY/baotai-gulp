@@ -331,7 +331,7 @@ function cleanTemp() {
 // 合併 CSS 檔案
 function mergeSrlCSS() {
     const currentVersion = getCurrentVersion();
-    return src(["./srl/source.css", "./public/assets/css/style.css"])
+    return src(["./srl/source.css", "./dist_prod/assets/css/style.css"])
         .pipe(concat("output.css"))
         .pipe(header(`/*! Version: ${currentVersion} */\n`))
         .pipe(dest("./srl"))

@@ -1,0 +1,192 @@
+.page-portfolio {
+    padding-bottom: set-vw(262, 1920);
+
+    @include pad {
+        padding-bottom: set-vw(138, 768);
+    }
+}
+.portfolio-hd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: set-vw(60, 1920);
+    @include pad {
+        padding-bottom: set-vw(110, 768);
+    }
+}
+
+.portfolio-bd {
+    position: relative;
+}
+
+.portfolio-timeline-line {
+    @include absolute(0, $L: 50%);
+    top: set-vw(103, 1920);
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 1px;
+    height: calc(100% - #{set-vw(103, 1920)});
+    background-color: #c7b299;
+
+    @include pad {
+        top: set-vw(103, 768);
+        left: set-vw(91, 768);
+        transform: translateX(0);
+        height: calc(100% - #{set-vw(103, 768)});
+    }
+}
+
+.portfolio-timeline {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+        position: relative;
+        display: grid;
+        grid-template-areas: "img_l year img_r";
+        grid-template-columns: 1fr set-vw(103, 1920) 1fr;
+        gap: 0 set-vw(81, 1920);
+
+        padding-bottom: set-vw(93, 1920);
+        @include pad {
+            grid-template-areas: "year img_r";
+            grid-template-columns: set-vw(103, 768) 1fr;
+
+            gap: 0 set-vw(11, 768);
+            padding-left: set-vw(40, 768);
+            padding-right: set-vw(40, 768);
+            padding-bottom: set-vw(58, 768);
+        }
+        .img-list {
+            &-l {
+                grid-area: img_l;
+
+                &.show-desktop {
+                    display: flex;
+                    @include pad {
+                        display: none;
+                    }
+                }
+            }
+            &-r {
+                grid-area: img_r;
+            }
+        }
+        .img-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: set-vw(42, 1920) set-vw(15, 1920);
+            overflow: hidden;
+
+            @include pad {
+                gap: set-vw(36, 768) set-vw(15, 768);
+            }
+
+            &-l {
+                flex-direction: row-reverse;
+
+                @include pad {
+                    flex-direction: row;
+                }
+
+                .mask {
+                    left: -5%;
+                }
+            }
+
+            &-r {
+                .mask {
+                    right: -5%;
+                }
+            }
+        }
+
+        .img-item {
+            width: set-vw(215, 1920);
+
+            @include pad {
+                width: set-vw(178, 768);
+            }
+
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+
+            .img-figure {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: set-vw(14, 1920);
+
+                @include pad {
+                    gap: set-vw(19, 768);
+                }
+            }
+
+
+            .img {
+                position: relative;
+                overflow: hidden;
+            }
+            .mask {
+                position: absolute;
+                top: -5%;
+                width: 110%;
+                height: 110%;
+                background-color: #473d39;
+                opacity: 0;
+            }
+
+
+            .img-label {
+                color: #fff;
+                font-size: set-vw(18, 1920);
+                letter-spacing: 0.15em;
+                font-family: "微軟正黑體", sans-serif;
+
+                @include pad {
+                    font-size: set-vw(24, 768);
+                }
+            }
+
+            img {
+                aspect-ratio: 215 / 151;
+                object-fit: cover;
+                transition: all 0.5s;
+            }
+        }
+
+        .year {
+            grid-area: year;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: set-vw(103, 1920);
+            height: set-vw(103, 1920);
+            border-radius: 50%;
+            background-color: #a67c52;
+            color: #fff;
+            font-size: set-vw(24, 1920);
+            font-family: "Jost", sans-serif;
+            line-height: 1.2;
+
+            @include pad {
+                width: set-vw(103, 768);
+                height: set-vw(103, 768);
+                font-size: set-vw(32, 768);
+            }
+            &::after {
+                content: "YEAR";
+                font-size: set-vw(18, 1920);
+                @include pad {
+                    font-size: set-vw(21, 768);
+                }
+            }
+        }
+    }
+}

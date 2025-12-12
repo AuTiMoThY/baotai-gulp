@@ -1,110 +1,110 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+Upright:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@500;600;700&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
 }
 body {
-  margin: 0;
-  padding: 0;
-  background-color: $color-background;
+    margin: 0;
+    padding: 0;
+    background-color: $color-background;
 }
 
 picture {
-  display: flex;
+    display: flex;
 }
 img,
 video,
 canvas,
 iframe {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
 
-h2{
-  font-family: "Noto Serif TC";
-  color: $color-text;
-  letter-spacing: 0.15em;
-  font-size: 1.8vw;
-  font-weight: 600;
-  line-height: 1;
+h2 {
+    font-family: "Noto Serif TC";
+    color: $color-text;
+    letter-spacing: 0.15em;
+    font-size: 1.8vw;
+    font-weight: 600;
+    line-height: 1;
 
-  @include pad{
-    font-size: 4vw;
-  }
-
-  @include mobile{
-    font-size: 5vw;
-  }
-
-  small{
-    font-size: 0.9vw;
-    color: $color-subtext;
-
-    @include pad{
-      font-size: 3.3vw;
+    @include pad {
+        font-size: 4vw;
     }
-  }
-}
-h3{
-  font-family: "Microsoft JhengHei";
-  color: $color-text;
-  letter-spacing: 0.15em;
-  font-size: 0.85vw;
-  font-weight: 300;
 
-  @include pad{
-      font-size: 2.5vw;
-  }
-  @include mobile{
-      font-size: 3.5vw;
-  }
-}
-h4{
-  font-family: "Noto Serif TC";
-  color: $color-text;
-  letter-spacing: 0.15em;
-  font-size: 1.3vw;
-  font-weight: 500;
+    @include mobile {
+        font-size: 5vw;
+    }
 
-  @include pad{
-      font-size: 3vw;
-  }
-  @include mobile{
-      font-size: 4.5vw;
-  }
-}
-p{
-  font-family: "Microsoft JhengHei";
-  color: $color-text;
-  letter-spacing: 0.15em;
-  font-size: 0.85vw;
-  font-weight: 300;
+    small {
+        font-size: 0.9vw;
+        color: $color-subtext;
 
-  @include pad{
-      font-size: 2.5vw;
-  }
-  @include mobile{
-      font-size: 3.5vw;
-      line-height: 1.5;
-  }
+        @include pad {
+            font-size: 3.3vw;
+        }
+    }
 }
-label{
-  font-family: "Noto Serif TC";
-  color: $color-text;
-  letter-spacing: 0.15em;
-  font-size: 1vw;
+h3 {
+    font-family: "Microsoft JhengHei";
+    color: $color-text;
+    letter-spacing: 0.15em;
+    font-size: 0.85vw;
+    font-weight: 300;
 
-  @include pad{
-      font-size: 4vw;
-  }
+    @include pad {
+        font-size: 2.5vw;
+    }
+    @include mobile {
+        font-size: 3.5vw;
+    }
+}
+h4 {
+    font-family: "Noto Serif TC";
+    color: $color-text;
+    letter-spacing: 0.15em;
+    font-size: 1.3vw;
+    font-weight: 500;
+
+    @include pad {
+        font-size: 3vw;
+    }
+    @include mobile {
+        font-size: 4.5vw;
+    }
+}
+p {
+    font-family: "Microsoft JhengHei";
+    color: $color-text;
+    letter-spacing: 0.15em;
+    font-size: 0.85vw;
+    font-weight: 300;
+
+    @include pad {
+        font-size: 2.5vw;
+    }
+    @include mobile {
+        font-size: 3.5vw;
+        line-height: 1.5;
+    }
+}
+label {
+    font-family: "Noto Serif TC";
+    color: $color-text;
+    letter-spacing: 0.15em;
+    font-size: 1vw;
+
+    @include pad {
+        font-size: 4vw;
+    }
 }
 
 input,
-textarea{
+textarea {
     background: none;
     border: none;
     font-family: "Noto Serif TC";
@@ -112,76 +112,169 @@ textarea{
     color: $color-text;
     letter-spacing: 0.15em;
 
-    @include pad{
+    @include pad {
         font-size: 4vw;
     }
 }
 
-.pc{
-  @include pad{
-    display: none !important;
-  }
+.pc {
+    @include pad {
+        display: none !important;
+    }
 }
 
-.pad{
-  display: none !important;
-  @include pad{
-    display: block !important;
-  }
+.pad {
+    display: none !important;
+    @include pad {
+        display: block !important;
+    }
 }
 
 .loading-screen {
-  width: 100vw;
-  height: var(--dvh);
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 9999999;
-  background-color: #3c312e;
+    width: 100vw;
+    height: var(--dvh);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999999;
+    background-color: #3c312e;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  text-align: end;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    text-align: end;
+    overflow: hidden;
 
-  // @media all and (max-width: 500px) {
-  //   height: calc(var(--loadingvh, 1vh) * 99);
-  // }
-  .loading-text {
-    // letter-spacing: 0.1em;
-    font-weight: 600;
-    font-family: "Cormorant Infant";
-    line-height: 1;
-    font-weight: 100;
-    color: $color-text;
-    font-size: 13vw;
-    padding-left: 0vw;
-    padding-right: 3vw;
+    // @media all and (max-width: 500px) {
+    //   height: calc(var(--loadingvh, 1vh) * 99);
+    // }
+    .loading-text {
+        // letter-spacing: 0.1em;
+        font-weight: 600;
+        font-family: "Cormorant Infant";
+        line-height: 1;
+        font-weight: 100;
+        color: $color-text;
+        font-size: 13vw;
+        padding-left: 0vw;
+        padding-right: 3vw;
 
-    @include pad{
-      font-size: 20vw;
-      padding-right: 4vw;
-      padding-bottom: 5vw;
+        @include pad {
+            font-size: 20vw;
+            padding-right: 4vw;
+            padding-bottom: 5vw;
+        }
     }
-  }
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #736357;
-  border-radius: 10px;
+    background: #736357;
+    border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #998675;
-  border-radius: 10px;
-  &:hover {
-    background: #c3b09d; /* 滾塊 hover 顏色 */
-  }
+    background: #998675;
+    border-radius: 10px;
+    &:hover {
+        background: #c3b09d; /* 滾塊 hover 顏色 */
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        r: 4.4;
+        opacity: 1;
+    }
+    50% {
+        r: 6;
+        opacity: 0.7;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        width: 50%;
+        height: 50%;
+        opacity: 1;
+    }
+    30% {
+        opacity: 0.6;
+    }
+    100% {
+        width: 120%;
+        height: 120%;
+        opacity: 0;
+    }
+}
+
+.show-desktop.show-desktop {
+    display: block;
+    @include pad {
+        display: none;
+    }
+}
+
+.show-mobile.show-mobile {
+    display: none;
+    @include pad {
+        display: block;
+    }
+}
+
+.ff-noto-serif-tc {
+    font-family: "Noto Serif TC", serif;
+}
+
+.ff-noto-sans-tc {
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+.ff-microsoft-jhenghei {
+    font-family:
+        "Microsoft JhengHei", "微軟正黑體", "Segoe UI", "PingFang TC",
+        sans-serif;
+}
+
+.color-primary {
+    color: #c7b299;
+}
+
+.color-white {
+    color: #ffffff;
+}
+
+.mobile-break-line {
+    display: none;
+    @include pad {
+        display: block;
+    }
+}
+
+.html-editor {
+    p {
+        margin-bottom: set-vw(32, 1920);
+        line-height: 2;
+        font-size: max(set-vw(18, 1920), 16px);
+
+        @include pad {
+            font-size: 3.9vw;
+            font-size: $mobile-fz;
+        }
+    }
 }

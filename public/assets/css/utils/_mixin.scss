@@ -1,45 +1,65 @@
 @mixin indexENtitle() {
-  font-family: "Cormorant Infant", serif;
-  color: #c7b299;
-  letter-spacing: 0.04em;
-  font-size: $font-45;
-  align-self: center;
-  @include pad {
-    font-size: set-vw(48, 768);
-  }
+    font-family: "Cormorant Infant", serif;
+    color: #c7b299;
+    letter-spacing: 0.04em;
+    font-size: $font-45;
+    align-self: center;
+    @include pad {
+        font-size: set-vw(48, 768);
+    }
 }
 
 @mixin indexZHtitle() {
-  font-family: "Noto Serif TC", serif;
-  color: #fff;
-  letter-spacing: 0.15em;
-  font-size: $font-24;
-  align-self: center;
-  font-weight: 500;
-  @include pad {
-    font-size: set-vw(36, 768);
-  }
+    font-family: "Noto Serif TC", serif;
+    color: #fff;
+    letter-spacing: 0.15em;
+    font-size: $font-24;
+    align-self: center;
+    font-weight: 500;
+    @include pad {
+        font-size: set-vw(36, 768);
+    }
 }
 
 @mixin content() {
-  font-family: "微軟正黑體", sans-serif;
-  line-height: 2;
-  letter-spacing: 0.15em;
-  font-size: $font-18;
-  color: white;
-  @include pad {
-    font-size: $content;
-  }
+    font-family: "微軟正黑體", sans-serif;
+    line-height: 2;
+    letter-spacing: 0.15em;
+    font-size: $font-18;
+    color: white;
+    @include pad {
+        font-size: $content;
+    }
 }
 
-
-@mixin pad{
-  @media(max-width:900px){
-    @content;
-  }
+@mixin pad {
+    @media (max-width: 900px) {
+        @content;
+    }
 }
-@mixin mobile{
-  @media(max-width:500px){
-    @content;
-  }
+@mixin mobile {
+    @media (max-width: 500px) {
+        @content;
+    }
+}
+
+@mixin element-effect($hover: false, $active: false) {
+    @if $hover {
+        transition:
+            background-color 0.3s ease-in-out,
+            box-shadow 0.3s ease-in-out,
+            color 0.3s ease-in-out,
+            border 0.3s ease-in-out,
+            text-shadow 0.3s ease-in-out;
+
+        &:hover {
+            @content;
+        }
+    }
+
+    @if $active {
+        &:active {
+            transform: translate(1px, 1px);
+        }
+    }
 }

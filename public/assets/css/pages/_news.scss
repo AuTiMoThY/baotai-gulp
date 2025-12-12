@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     background-color: $color-background;
-    padding-bottom: 8vw;
-
+    // padding-bottom: 8vw;
+    padding-bottom: 0;
 
     .main-box {
         display: flex;
@@ -13,5 +13,21 @@
         width: 100%;
         position: relative;
         align-items: center;
+        padding-bottom: set-vw(163, 1920);
+        @include pad {
+            padding-bottom: set-vw(144, 768);
+        }
+    }
+
+    .news-box {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: set-vw(63, 1920) 0;
+
+        @include pad {
+            width: set-vw(685, 768);
+            grid-template-columns: 1fr;
+            margin: auto;
+        }
     }
 }

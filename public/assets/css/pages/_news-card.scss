@@ -1,0 +1,142 @@
+.news-card {
+    display: flex;
+    flex-direction: column;
+    width: 23vw;
+    margin-right: 2vw;
+
+    @include pad {
+        margin: 0;
+        margin-bottom: 10vw;
+        width: 100%;
+    }
+
+    @include element-effect(true, true) {
+        .img-box {
+            img {
+                scale: 1.3;
+
+                @include pad {
+                    scale: 1;
+                }
+            }
+        }
+        .more-box {
+            .more {
+                .arrow {
+                    transform: translateX(set-vw(20, 1920));
+
+                    @include pad {
+                        transform: translateX(0);
+                        // width: 4vw;
+                        // margin-left: 1vw;
+                    }
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        margin-right: 0vw;
+    }
+    .img-box {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: set-vw(60 * 0.9, 1920);
+
+        @include pad {
+            margin-bottom: set-vw(69 * 0.9, 768);
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease-in-out;
+        }
+    }
+    .date-box {
+        display: flex;
+        margin-bottom: set-vw(26 * 0.9, 1920);
+        color: white;
+        font-family: "Jost";
+        font-size: set-vw(21, 1920);
+        letter-spacing: 0.07em;
+
+        @include pad {
+            font-size: 4.5vw;
+            margin-bottom: set-vw(30 * 0.9, 768);
+        }
+
+        .date {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: set-vw(21, 1920);
+
+            @include pad {
+                font-weight: 300;
+                gap: set-vw(21, 768);
+            }
+
+            &::before,
+            &::after {
+                content: "";
+                background-color: white;
+                height: 70%;
+                width: 1px;
+            }
+        }
+    }
+    .title {
+        position: relative;
+        font-family: "Noto Serif TC";
+        font-size: $font-26;
+        font-weight: 500;
+        color: white;
+        letter-spacing: 0.1em;
+        padding-bottom: set-vw(32, 1920);
+        margin-bottom: set-vw(32, 1920);
+
+        @include pad {
+            font-size: 4.7vw;
+            // padding-top: 2vw;
+            padding-bottom: set-vw(42, 768);
+            margin-bottom: set-vw(51, 768);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            background-color: #c3b09d;
+            width: set-vw(30, 1920);
+            height: 1px;
+            left: 0px;
+            bottom: 0px;
+
+            @include pad {
+                background-color: #c3b09d7a;
+                width: set-vw(43, 768);
+                height: 1px;
+            }
+        }
+    }
+    .content {
+        @include content();
+        font-size: $font-18;
+        line-height: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        display: -webkit-box;
+        padding-right: 0.6vw;
+        margin-bottom: set-vw(59, 1920);
+
+        @include pad {
+            margin-bottom: set-vw(50, 768);
+            font-size: 3.9vw;
+            font-size: $mobile-fz;
+        }
+    }
+}

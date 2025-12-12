@@ -1,0 +1,161 @@
+.news-detail {
+    width: set-vw(1441, 1920);
+    margin: 0 auto;
+    padding-top: set-vw(180, 1920);
+    padding-bottom: set-vw(163, 1920);
+
+    @include pad {
+        width: set-vw(685, 768);
+        padding-top: set-vw(166, 768);
+        padding-bottom: set-vw(144, 768);
+    }
+}
+
+.news-detail-content {
+    padding-top: set-vw(72, 1920);
+
+    @include pad {
+        padding-top: set-vw(69, 768);
+    }
+
+    &-hd {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        margin-bottom: set-vw(52, 1920);
+
+        @include pad {
+            margin-bottom: set-vw(35, 768);
+        }
+    }
+
+    &-bd {
+        margin-bottom: set-vw(91, 1920);
+
+        @include pad {
+            margin-bottom: set-vw(88, 768);
+        }
+    }
+
+    &-ft {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.news-detail-content-hd {
+    position: relative;
+    padding-bottom: set-vw(30, 1920);
+
+    @include pad {
+        padding-bottom: set-vw(42, 768);
+    }
+
+    &::after {
+        content: "";
+        @include absolute($L: 0, $B: 0);
+        background-color: #c3b09d;
+        width: set-vw(30, 1920);
+        height: 1px;
+
+        @include pad {
+            background-color: #c3b09d7a;
+            width: set-vw(43, 768);
+            height: 1px;
+        }
+    }
+    .date-box {
+        display: flex;
+        margin-bottom: set-vw(26, 1920);
+        color: white;
+        font-family: "Jost", sans-serif;
+        font-size: set-vw(21, 1920);
+        letter-spacing: 0.07em;
+
+        @include pad {
+            font-size: 4.5vw;
+            margin-bottom: set-vw(30, 768);
+        }
+
+        .date {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: set-vw(21, 1920);
+
+            @include pad {
+                font-weight: 300;
+                gap: set-vw(21, 768);
+            }
+
+            &::before,
+            &::after {
+                content: "";
+                background-color: white;
+                height: 70%;
+                width: 1px;
+            }
+        }
+    }
+
+    .title {
+        font-family: "Noto Serif TC";
+        font-size: set-vw(32, 1920);
+        font-weight: 500;
+        color: white;
+        letter-spacing: 0.1em;
+
+        @include pad {
+            font-size: 4.7vw;
+        }
+    }
+
+    .share {
+        display: flex;
+        align-items: center;
+        gap: set-vw(16, 1920);
+        @include pad {
+            gap: set-vw(24, 768);
+        }
+
+        @include pad {
+            @include absolute(0, 0);
+        }
+
+        &-label {
+            color: #c7b299;
+            font-size: set-vw(18, 1920);
+            letter-spacing: 0.1em;
+
+            @include pad {
+                font-size: set-vw(21, 768);
+            }
+        }
+
+        &-list {
+            display: flex;
+            gap: set-vw(12, 1920);
+
+            @include pad {
+                gap: set-vw(16, 768);
+            }
+        }
+
+        &-item {
+            width: set-vw(36, 1920);
+            height: set-vw(36, 1920);
+            border-radius: 40px;
+            transition: all 0.35s ease-in-out;
+
+            @include pad {
+                width: set-vw(45, 768);
+                height: set-vw(45, 768);
+            }
+
+            @include element-effect(true, true) {
+                background-color: #fff;
+            }
+        }
+    }
+}

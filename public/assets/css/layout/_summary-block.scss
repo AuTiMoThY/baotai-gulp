@@ -1,0 +1,42 @@
+.summary-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .title {
+        margin-bottom: set-vw(20, 1920);
+        font-size: set-vw(26, 1920);
+        color: #fff;
+        font-family: "Noto Serif TC", serif;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        @include pad {
+            margin-bottom: set-vw(18, 768);
+            font-size: 4.7vw;
+        }
+    }
+
+    .line {
+        width: 1px;
+        height: set-vw(26, 1920);
+        background-color: #c3b09d;
+        margin-bottom: set-vw(20, 1920);
+
+        @include pad {
+            height: set-vw(26, 768);
+            margin-bottom: set-vw(13, 1920);
+        }
+    }
+
+    .txt {
+        font-family: "微軟正黑體", sans-serif;
+        font-size: set-vw(18, 1920);
+        text-align: center;
+        line-height: 2;
+        color: #fff;
+        letter-spacing: 0.15em;
+        @include pad {
+            font-size: $mobile-fz;
+        }
+    }
+}

@@ -5,6 +5,18 @@
     @return #{$rounded}vw;
 }
 
+@function set-lh($fz, $lh) {
+    @return math.div($lh, $fz);
+}
+
+@function set-lh($fz, $lh) {
+    @return math.div($lh, $fz);
+}
+
+@function set-ls($value) {
+    @return #{$value * 0.001}em;
+}
+
 @function relative-percentage($num, $base-width) {
     @return math.div($num, $base-width) * 100%;
 }
@@ -16,4 +28,37 @@
     // 四捨五入到小數點第一位
     $rounded: math.div(math.round($result * 10), 10);
     @return #{$rounded}vw;
+}
+
+@function isNum($num) {
+    @if is-number($num) {
+        @if is-length-HG($num) or is-percentage($num) {
+            @return $num;
+        } @else {
+            @return $num * 1px;
+        }
+    } @else {
+        @return $num;
+    }
+}
+
+/// Shorthand mixin for offset positioning
+/// @param {String} $position - Either `relative`, `absolute` or `fixed`
+/// @param {Length} $top [null] - Top offset
+/// @param {Length} $right [null] - Right offset
+/// @param {Length} $bottom [null] - Bottom offset
+/// @param {Length} $left [null] - Left offset
+@mixin position($position, $T: null, $R: null, $B: null, $L: null) {
+    position: $position;
+    top: isNum($T);
+    right: isNum($R);
+    bottom: isNum($B);
+    left: isNum($L);
+}
+/// Shorthand mixin for absolute positioning
+/// Serves as an alias for `position(absolute, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin absolute($args...) {
+    @include position(absolute, $args...);
 }

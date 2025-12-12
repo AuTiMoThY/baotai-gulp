@@ -1,19 +1,34 @@
 //Utils
 @import "utils/variables";
+@import "utils/functions";
 @import "utils/mixin";
 @import "utils/basic";
-@import "utils/functions";
+@import "utils/btn-more";
 
 
 //layout
 @import "layout/header";
 @import "layout/footer";
 @import "layout/menu";
+@import "layout/page-banner";
+@import "layout/page-title";
+@import "layout/summary-block";
 
 //Pages
 @import "pages/index";
 @import "pages/project";
 @import "pages/projectInner";
 @import "pages/push_map";
-@import "pages/_work_progress";
+@import "pages/work_progress";
 @import "pages/news";
+@import "pages/news-card";
+@import "pages/news-detail";
+@import "pages/contact";
+@import "pages/portfolio";
+@import "pages/portfolio_detail";
+@import "pages/history";
+@import "pages/preview";
+@import "pages/preview_detail";
+@import "pages/about";
+@import "pages/media";
+

@@ -1,0 +1,55 @@
+.btn-more {
+    display: flex;
+
+    @include element-effect(true, true) {
+        .arrow {
+            transform: translateX(set-vw(20, 1920));
+
+            @include pad {
+                transform: translateX(0);
+
+                // width: 4vw;
+                // margin-left: 1vw;
+            }
+        }
+    }
+
+    .more {
+        display: flex;
+        padding: 0.4vw 2vw;
+        padding-right: 1.7vw;
+        border-radius: 2vw;
+        cursor: pointer;
+        border: 1px solid #c3b09d;
+        color: #c3b09d;
+        transition: all 0.35s ease-in-out;
+
+        @include pad {
+            padding: set-vw(14 * 0.9, 768) 7vw;
+            border-radius: 30px;
+        }
+    }
+    div {
+        color: currentColor;
+        font-family: "Cormorant Infant", serif;
+        font-size: $font-18;
+
+        @include pad {
+            font-size: 3.5vw;
+        }
+    }
+    .arrow {
+        width: set-vw(19, 1920);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 0.3vw;
+        margin-top: -0.2vw;
+        transition: all 0.35s ease-in-out;
+
+        @include pad {
+            width: set-vw(24 * 1.2, 768);
+            margin-left: set-vw(10, 768);
+        }
+    }
+}
