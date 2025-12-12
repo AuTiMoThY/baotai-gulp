@@ -1,11 +1,8 @@
-@use "./variables" as v;
-@use "../../../../src/sass/abstracts/functions/set-vw" as *;
-
 @mixin indexENtitle() {
   font-family: "Cormorant Infant", serif;
   color: #c7b299;
   letter-spacing: 0.04em;
-  font-size: v.$font-45;
+  font-size: $font-45;
   align-self: center;
   @include pad {
     font-size: set-vw(48, 768);
@@ -16,7 +13,7 @@
   font-family: "Noto Serif TC", serif;
   color: #fff;
   letter-spacing: 0.15em;
-  font-size: v.$font-24;
+  font-size: $font-24;
   align-self: center;
   font-weight: 500;
   @include pad {
@@ -28,10 +25,10 @@
   font-family: "微軟正黑體", sans-serif;
   line-height: 2;
   letter-spacing: 0.15em;
-  font-size: v.$font-18;
+  font-size: $font-18;
   color: white;
   @include pad {
-    font-size: v.$content;
+    font-size: $content;
   }
 }
 
